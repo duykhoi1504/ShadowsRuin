@@ -59,13 +59,20 @@ public class MobileJoystick : MonoBehaviour
         Vector3 currentPosition = Input.mousePosition;
         Vector3 direction = currentPosition - clickedPosition;
 
+        //dùng để điều chỉnh chuyển động của joystick dựa trên tỷ lệ này.
         float canvasScale = GetComponentInParent<Canvas>().GetComponent<RectTransform>().localScale.x;
 
+        //một hệ số moveFactor (có thể là tham số có thể cấu hình), và tỷ lệ scale của Canvas.
         float moveMagnitude = direction.magnitude * moveFactor * canvasScale;
 
+
+        //Tính toán một nửa chiều rộng của vùng bao quanh joystick.
         float absoluteWidth = joystickOutline.rect.width / 2;
+        
+        // Điều chỉnh chiều rộng thực của vùng bao quanh joystick dựa trên tỷ lệ scale của Canvas.
         float realWidth = absoluteWidth * canvasScale;
 
+        //Đảm bảo rằng độ lớn chuyển động không vượt quá chiều rộng thực của vùng bao quanh joystick.
         moveMagnitude = Mathf.Min(moveMagnitude, realWidth);
 
         move = direction.normalized * moveMagnitude;

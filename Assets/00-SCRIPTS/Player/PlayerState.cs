@@ -26,7 +26,8 @@ public class PLayerState :IState
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-    
+        player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
+
 
     }
 }
@@ -38,6 +39,7 @@ public class IdleState : PLayerState
     public override void Enter()
     {
         base.Enter();
+        player.rb.velocity=Vector2.zero;
 
     }
     public override void Exit()
@@ -50,7 +52,7 @@ public class IdleState : PLayerState
     public override void Update()
     {
         base.Update();
-        if (xInput != 0 || yInput != 0 || player.joyTick.GetMoveVector()!=Vector3.zero)
+        if (player.rb.velocity!=Vector2.zero || player.joyStick1.GetMoveVector()!=Vector3.zero)
         {
             stateMachine.ChangeState(player.moveState);
 
@@ -81,11 +83,10 @@ public class MoveState : PLayerState
     public override void Update()
     {
         base.Update();
-        // player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
-        player.rb.velocity = player.joyTick.GetMoveVector()*player.moveSpeed*Time.deltaTime;
+        // player.rb.velocity = player.joyStick1.GetMoveVector() * player.moveSpeed*Time.deltaTime;
 
         Debug.Log("move update");
-        if (xInput == 0 || yInput == 0)
+        if (player.rb.velocity==Vector2.zero)
         {
 
             stateMachine.ChangeState(player.idleState);

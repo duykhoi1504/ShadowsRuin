@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     public StateMachine stateMachine;
     public IdleState idleState;
     public MoveState moveState;
-    public MobileJoystick joyTick;
+    // public MobileJoystick joyTick;
+    public JoySticks joyStick1;
 
     private void Awake()
     {

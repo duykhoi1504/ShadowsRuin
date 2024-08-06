@@ -26,6 +26,7 @@ public class EnemyChaseState : EnemyState
         timer-=Time.deltaTime;
     
         Vector3 dir =(Player.Instance.transform.position-enemy.transform.position).normalized;
+        // enemy.transform.position+=dir*enemy.moveSpeed*Time.deltaTime; 
         enemy.SetVelocity(dir*enemy.moveSpeed*enemy.moveSpeed);
         if((Player.Instance.transform.position-enemy.transform.position).sqrMagnitude<2f || timer<0){
             // stateMachine.ChangeState(enemy.idleState);
