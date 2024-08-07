@@ -30,9 +30,11 @@ public class EnemyChaseState : EnemyState
         enemy.SetVelocity(dir*enemy.moveSpeed*enemy.moveSpeed);
         if((Player.Instance.transform.position-enemy.transform.position).sqrMagnitude<2f || timer<0){
             // stateMachine.ChangeState(enemy.idleState);
-            enemy.SetVelocity(Vector2.zero);
+            enemy.passAway();
+            enemy.passAwayPS.Play();
         }
     }
+   
     public override void Exit()
     {
         base.Exit();

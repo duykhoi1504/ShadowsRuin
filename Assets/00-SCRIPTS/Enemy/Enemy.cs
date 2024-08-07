@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    
     Rigidbody2D rb;
-
-    bool isChase;
-    bool isAttack;
-    StateMachine stateMachine;
-    public EnemyIdleState idleState;
-    public EnemyChaseState chaseState;
     public float moveSpeed = 3f;
     public float attackRadious;
     public float chaseRadious;
+    bool isChase;
+    bool isAttack;
+    public bool isSpawned=false;
 
+    [SerializeField] SpriteRenderer enemySprite;
+
+    [SerializeField] SpriteRenderer spawnIndicator;
+    public ParticleSystem passAwayPS;
+
+    StateMachine stateMachine;
+    public EnemyIdleState idleState;
+    public EnemyChaseState chaseState;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,15 +32,33 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
+        spawnIndicator.enabled=true;
+        enemySprite.enabled = false;
         stateMachine.InitState(idleState);
+
+
     }
 
     // Update is called once per frame
+    public void animIndicator(){
+                SetVelocity(Vector2.zero);
+        LeanTween.scale(spawnIndicator.gameObject, new Vector3(1, 1, 1), .3f)
+                .setLoopPingPong(4)
+                .setOnComplete(whenCompleteSpawn);
+    }
+    void whenCompleteSpawn()
+    {
+        spawnIndicator.enabled=false;
+        enemySprite.enabled = true;
+        isSpawned=true;
+
+    }
     void Update()
     {
+
         // Debug.draw(this.transform.position,attackRadious);
         stateMachine.state.Update();
-        
+
     }
     public void SetVelocity(Vector2 _Velocity)
     {
@@ -52,16 +74,25 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseRadious);
 
     }
-public bool IsDetectPlayer(){
+    public void passAway()
+    {
+        passAwayPS.transform.SetParent(null);
+        passAwayPS.Play();
+        Destroy(gameObject);
+    }
+
+    public bool IsDetectPlayer()
+    {
         Collider2D[] attackCd = Physics2D.OverlapCircleAll(transform.position, chaseRadious);
-        
+
         foreach (Collider2D hit in attackCd)
         {
             if (hit.GetComponent<Player>() != null)
             {
-               return true;
+                return true;
             }
         }
         return false;
     }
+
 }

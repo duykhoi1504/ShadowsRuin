@@ -17,10 +17,16 @@ public class EnemyIdleState : EnemyState
         base.Enter();
         Debug.Log("enterIdle");
         PatrolRandomPos();
+         enemy.animIndicator();
     }
     public override void Update()
     {
         base.Update();
+
+       
+        if(!enemy.isSpawned)return;
+
+
         if(enemy.IsDetectPlayer()){
             stateMachine.ChangeState(enemy.chaseState);
         }
