@@ -4,17 +4,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
-
-    public float moveSpeed = 5f;
-
+    [Header("Components info")]
+    public PlayerHealth playerHealth;
     public Rigidbody2D rb;
     public Collider2D cd;
+
+    
+    [Header("Move info")]
+    public float moveSpeed = 5f;
+
+    #region Statemachine 
     public StateMachine stateMachine;
     public IdleState idleState;
     public MoveState moveState;
+    #endregion
     // public MobileJoystick joyTick;
     public JoySticks joyStick1;
 
@@ -28,8 +35,8 @@ public class Player : MonoBehaviour
         {
             Instance = this;
         }
-        if (Instance != null)
-            rb = gameObject.GetComponent<Rigidbody2D>();
+        // if (Instance != null)
+        rb = gameObject.GetComponent<Rigidbody2D>();
         cd = gameObject.GetComponent<Collider2D>();
         stateMachine = new StateMachine();
         idleState = new IdleState(this, stateMachine);
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        playerHealth=GetComponent<PlayerHealth>();
         stateMachine.InitState(idleState);
     }
 
@@ -48,6 +56,10 @@ public class Player : MonoBehaviour
 
         stateMachine.state.Update();
 
+    }
+    public void TakeDamage(float _damage){
+     
+        playerHealth.TakeDamage(_damage);
     }
 
 
