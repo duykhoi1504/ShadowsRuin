@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,11 +8,16 @@ public class Enemy : MonoBehaviour
 
     [Header("Components info")]
     Rigidbody2D rb;
-    
+        [SerializeField] private TextMeshProUGUI textHealth;
+
     [Header("Move info")]
 
     public float moveSpeed = 3f;
     bool isChase;
+
+    [Header("Health info")]
+    [SerializeField] private float maxHealth;
+     private float  health;
 
 
     [Header("Attack info")]
@@ -47,21 +53,24 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
-    
+
+        health=maxHealth;
+        
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
 
 
     }
 
-    private void SetRenderersVisibility(bool visibility){
+    private void SetRenderersVisibility(bool visibility)
+    {
         spawnIndicator.enabled = visibility;
         enemySprite.enabled = !visibility;
     }
     // Update is called once per frame
     public void animIndicator(GameObject _gameObject)
     {
-       
+
         LeanTween.scale(_gameObject, new Vector3(1, 1, 1), .2f)
                 .setLoopPingPong(3)
                 .setOnComplete(whenCompleteSpawn);
@@ -74,7 +83,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // Debug.draw(this.transform.position,attackRadious);
-     
+        textHealth.text=health.ToString();
 
         stateMachine.state.Update();
     }
@@ -99,6 +108,12 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void TakeDamage(float _damage){
+        health-=_damage;
+        if(health<=0){
+            passAway();
+        }
+    }
     public bool IsDetectPlayer()
     {
         Collider2D[] attackCd = Physics2D.OverlapCircleAll(transform.position, chaseRadious);

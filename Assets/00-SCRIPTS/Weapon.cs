@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -9,10 +9,11 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float range;
     [SerializeField] private LayerMask enemyMask;
+
     [SerializeField] private Transform hitCheck;
     [SerializeField] private float hitRadius;
-
-
+    [SerializeField] private float attackDamage;
+    [SerializeField] private List<Enemy> damageEnemies=new List<Enemy>();
     [SerializeField] private float aimLerp;
 
     void Start()
@@ -23,9 +24,14 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AutoAim();
-        Attack();
 
+        AutoAim();
+       Attack();
+
+
+    }
+    public void StopAttack(){
+         damageEnemies.Clear();
     }
     private void AutoAim()
     {
@@ -60,7 +66,7 @@ public class Weapon : MonoBehaviour
                 float closetTargetDistance1 = (closetTargetChecked.transform.position - transform.position).sqrMagnitude;
                 
                 float closetTargetDistance = Vector2.Distance(closetTargetChecked.transform.position ,transform.position);
-                Debug.Log(closetTargetDistance1 + "   "+closetTargetDistance);
+        
 
                 if (closetTargetDistance < minDistancel)
                 {
@@ -72,13 +78,17 @@ public class Weapon : MonoBehaviour
         }
         return closetTarget;
     }
-    void Attack(){
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, hitRadius, enemyMask);
+    public void Attack(){
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(hitCheck.position, hitRadius, enemyMask);
         foreach (var hit in enemies)
         {
-            if (hit.GetComponent<Enemy>() != null){
-                hit.GetComponent<Enemy>().gameObject.SetActive(false);
+          
+            Enemy enemy = hit.GetComponent<Enemy>();
+            if(!damageEnemies.Contains(enemy)){
+                enemy.TakeDamage(attackDamage);
+                damageEnemies.Add(enemy);
             }
+        
             
         }
     }
