@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
 {
 
     [Header("Components info")]
-    Rigidbody2D rb;
-    [SerializeField] Collider2D cd;
+    protected Rigidbody2D rb;
+    protected Collider2D cd;
     [SerializeField] private TextMeshPro textHealth;
 
     public static Action<float, Vector2> OnDamageTaken;
@@ -65,6 +65,13 @@ public class Enemy : MonoBehaviour
 
     }
 
+    protected virtual void Update()
+    {
+        // Debug.draw(this.transform.position,attackRadious);
+        textHealth.text = health.ToString();
+
+        stateMachine.state.Update();
+    }
      protected virtual void SetRenderersVisibility(bool visibility)
     {
         spawnIndicator.enabled = visibility;
@@ -83,13 +90,6 @@ public class Enemy : MonoBehaviour
         SetRenderersVisibility(false);
         cd.enabled = true;
         isSpawned = true;
-    }
-    protected virtual void Update()
-    {
-        // Debug.draw(this.transform.position,attackRadious);
-        textHealth.text = health.ToString();
-
-        stateMachine.state.Update();
     }
     public virtual void SetVelocity(Vector2 _Velocity)
     {
@@ -139,12 +139,15 @@ public class Enemy : MonoBehaviour
     public Vector2 getEnemyDir(){
         Player player=Player.Instance;
         if(player==null) return Vector2.zero;
-        return (player.transform.position-this.gameObject.transform.position).normalized;
+        return (player.GetPosCenter()-(Vector2)this.gameObject.transform.position).normalized;
     }
     public float getDistanceEtoP(){
         Player player=Player.Instance;
         if(player==null) return Mathf.Infinity;
-        float distance=Vector2.Distance(this.gameObject.transform.position,player.transform.position);
+        float distance=Vector2.Distance(this.gameObject.transform.position,player.GetPosCenter());
         return distance;
+    }
+    public virtual void attack(){
+          Player.Instance.TakeDamage(attackDamage);
     }
 }

@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
      
         playerHealth.TakeDamage(_damage);
     }
-
+    public Vector2 GetPosCenter(){
+        return (Vector2)transform.position+cd.offset;
+    }
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
 
-    float maxTimer = 3f;
+    float maxTimer = 1f;
 
 
 
@@ -16,24 +16,27 @@ public class EnemyAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        
         stateTimer = maxTimer;
-        Player.Instance.TakeDamage(enemy.attackDamage);
+        // Player.Instance.TakeDamage(enemy.attackDamage);
+ 
     }
     public override void Update()
     {
         base.Update();
         enemy.SetVelocity(Vector2.zero);
-        if ((Player.Instance.transform.position - enemy.transform.position).magnitude > enemy.attackRadious)
+        if ((Player.Instance.transform.position - enemy.transform.position).magnitude > enemy.attackRadious && stateTimer <= 0)
         {
             stateMachine.ChangeState(enemy.chaseState);
             // enemy.passAway();
 
         }
-        if (stateTimer < 0)
+        if (stateTimer <= 0)
         {
             // //  Debug.Log("attacking " +enemy.attackDamage+ " to player  ");
             stateTimer = maxTimer;
-            Player.Instance.TakeDamage(enemy.attackDamage);
+             enemy.attack();
+            // Player.Instance.TakeDamage(enemy.attackDamage);
             // enemy.SetVelocity(Vector2.zero);
         }
     }
