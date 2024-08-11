@@ -10,9 +10,13 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private float bulletSpeed = 10f;
     private float bulletDamage;
 
+private void OnEnable() {
+     StartCoroutine(SelfDestruct());
+}
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class EnemyBullet : MonoBehaviour
     }
     public void shoot(float _damage, Vector2 _dir)
     {
+        Debug.Log("shottttttttttttttttttttttttttttt" + _damage);
         bulletDamage = _damage;
         transform.up = _dir;
         rigi.velocity = _dir * bulletSpeed;
@@ -31,7 +36,12 @@ public class EnemyBullet : MonoBehaviour
         if (other.TryGetComponent(out Player player))
         {
             player.TakeDamage(bulletDamage);
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+    IEnumerator SelfDestruct(){
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 }

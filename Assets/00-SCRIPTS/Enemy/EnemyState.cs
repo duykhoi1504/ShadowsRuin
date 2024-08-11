@@ -20,7 +20,7 @@ public class EnemyState : IState
     }
     public virtual void Update()
     {
-        Debug.Log("timer"+stateTimer);
+        // Debug.Log("timer"+stateTimer);
         stateTimer -= Time.deltaTime;
     }
     public virtual void Exit()
