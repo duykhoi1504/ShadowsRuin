@@ -6,33 +6,76 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public enum State
+    {
+        Idle,
+        Attack
+    }
+    private State state;
+    [Header("Components info")]
+    Animator anim;
+    BoxCollider2D cd;
+    [Header("Setting info")]
     [SerializeField] private float range;
     [SerializeField] private LayerMask enemyMask;
 
+    [Header("Elements info")]
     [SerializeField] private Transform hitCheck;
     [SerializeField] private float hitRadius;
+
+    [Header("Attack info")]
+    [SerializeField] private float AttackTimer;
+    [SerializeField] private float attackDelay;
+
     [SerializeField] private float attackDamage;
-    [SerializeField] private List<Enemy> damageEnemies=new List<Enemy>();
+    [SerializeField] private List<Enemy> damageEnemies = new List<Enemy>();
+    [Header("Animations info")]
     [SerializeField] private float aimLerp;
 
     void Start()
     {
-
+        anim=GetComponent<Animator>();
+        cd=GetComponentInChildren<BoxCollider2D>();
+        state=State.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        AutoAim();
-       Attack();
+        switch(state){
+            case State.Idle:
+            AutoAim();
+            break;
+            case State.Attack:
+            Attacking();
+            break;
+        }
+        // AutoAim();
+        // Attack();
 
 
     }
-    public void StopAttack(){
-         damageEnemies.Clear();
+
+
+    [NaughtyAttributes.Button]
+    public void StartAttack()
+    {
+        anim.Play("Attack");
+    
+         state=State.Attack;
+        damageEnemies.Clear();
+        anim.speed=1/attackDelay;
     }
+    public void Attacking(){
+        Attack();
+    }
+    public void StopAttack()
+    {
+         state=State.Idle;
+        damageEnemies.Clear();
+    }
+
     private void AutoAim()
     {
         Enemy enemyCloset = GetEnemyClosest();
@@ -40,19 +83,33 @@ public class Weapon : MonoBehaviour
 
 
         if (enemyCloset != null)
+        {
             targetUpVector = (enemyCloset.transform.position - transform.position).normalized;
-
+            transform.up=targetUpVector;
+            ManageAttackTimer();
+        }
         // Quaternion newRotation = Quaternion.LookRotation(transform.forward, dir);
         // transform.rotation = newRotation;
-            transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp );
+        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+        AttackTimer+=Time.deltaTime;
     }
+
+    void ManageAttackTimer(){
+        if(AttackTimer>=attackDelay){
+            AttackTimer=0;
+            StartAttack();
+        }
+    }
+
     private Enemy GetEnemyClosest()
     {
         Enemy closetTarget = null;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
-        foreach(var enemy in enemies)
+
+
+        foreach (var enemy in enemies)
             Debug.Log(enemy.name);
-        
+
         if (enemies.Length <= 0)
             return null;
 
@@ -63,10 +120,10 @@ public class Weapon : MonoBehaviour
             Enemy closetTargetChecked = hit.GetComponent<Enemy>();
             if (closetTargetChecked != null)
             {
-                float closetTargetDistance1 = (closetTargetChecked.transform.position - transform.position).sqrMagnitude;
-                
-                float closetTargetDistance = Vector2.Distance(closetTargetChecked.transform.position ,transform.position);
-        
+                // float closetTargetDistance1 = (closetTargetChecked.transform.position - transform.position).magnitude;
+
+                float closetTargetDistance = Vector2.Distance(closetTargetChecked.transform.position, transform.position);
+
 
                 if (closetTargetDistance < minDistancel)
                 {
@@ -78,18 +135,22 @@ public class Weapon : MonoBehaviour
         }
         return closetTarget;
     }
-    public void Attack(){
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(hitCheck.position, hitRadius, enemyMask);
+    public void Attack()
+    {
+        // Collider2D[] enemies = Physics2D.OverlapCircleAll(hitCheck.position, hitRadius, enemyMask);
+        Collider2D[] enemies = Physics2D.OverlapBoxAll(hitCheck.position, cd.bounds.size,hitCheck.localEulerAngles.z, enemyMask);
+
         foreach (var hit in enemies)
         {
-          
+
             Enemy enemy = hit.GetComponent<Enemy>();
-            if(!damageEnemies.Contains(enemy)){
+            if (!damageEnemies.Contains(enemy))
+            {
                 enemy.TakeDamage(attackDamage);
                 damageEnemies.Add(enemy);
             }
-        
-            
+
+
         }
     }
     void OnDrawGizmos()
@@ -101,30 +162,5 @@ public class Weapon : MonoBehaviour
         Gizmos.DrawWireSphere(hitCheck.transform.position, hitRadius);
 
     }
-// private Enemy GetEnemyClosest()
-// {
-//     Enemy closestTarget = null;
-//     Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
 
-//     if (enemies.Length <= 0)
-//         return null;
-
-//     float minDistance = range;
-
-//     foreach (var hit in enemies)
-//     {
-//         Enemy enemyComponent = hit.GetComponent<Enemy>();
-//         if (enemyComponent != null)
-//         {
-//             float distance = (enemyComponent.transform.position - transform.position).sqrMagnitude;
-//             if (distance < minDistance)
-//             {
-//                 closestTarget = enemyComponent;
-//                 minDistance = distance;
-//             }
-//         }
-//     }
-
-//     return closestTarget;
-// }
 }

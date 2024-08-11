@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+// ushort System;
 public class Enemy : MonoBehaviour
 {
 
     [Header("Components info")]
     Rigidbody2D rb;
-        [SerializeField] private TextMeshProUGUI textHealth;
+    [SerializeField] Collider2D cd;
+    [SerializeField] private TextMeshPro textHealth;
+
+    public static Action<float, Vector2> OnDamageTaken;
 
     [Header("Move info")]
 
@@ -17,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Health info")]
     [SerializeField] private float maxHealth;
-     private float  health;
+    private float health;
 
 
     [Header("Attack info")]
@@ -40,10 +44,10 @@ public class Enemy : MonoBehaviour
     public EnemyChaseState chaseState;
     public EnemyAttackState attackState;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        cd = GetComponent<Collider2D>();
         stateMachine = new StateMachine();
         idleState = new EnemyIdleState(this, stateMachine);
         chaseState = new EnemyChaseState(this, stateMachine);
@@ -51,70 +55,75 @@ public class Enemy : MonoBehaviour
 
 
     }
-    void Start()
+     protected virtual void Start()
     {
 
-        health=maxHealth;
-        
+        health = maxHealth;
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
 
 
     }
 
-    private void SetRenderersVisibility(bool visibility)
+     protected virtual void SetRenderersVisibility(bool visibility)
     {
         spawnIndicator.enabled = visibility;
         enemySprite.enabled = !visibility;
     }
     // Update is called once per frame
-    public void animIndicator(GameObject _gameObject)
+    public virtual void animIndicator(GameObject _gameObject)
     {
 
         LeanTween.scale(_gameObject, new Vector3(1, 1, 1), .2f)
                 .setLoopPingPong(3)
                 .setOnComplete(whenCompleteSpawn);
     }
-    private void whenCompleteSpawn()
+    protected virtual void whenCompleteSpawn()
     {
         SetRenderersVisibility(false);
+        cd.enabled = true;
         isSpawned = true;
     }
-    void Update()
+    protected virtual void Update()
     {
         // Debug.draw(this.transform.position,attackRadious);
-        textHealth.text=health.ToString();
+        textHealth.text = health.ToString();
 
         stateMachine.state.Update();
     }
-    public void SetVelocity(Vector2 _Velocity)
+    public virtual void SetVelocity(Vector2 _Velocity)
     {
         rb.velocity = _Velocity;
     }
-    void OnDrawGizmos()
+     protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadious);
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawWireSphere(transform.position, chaseRadious);
 
     }
-    public void passAway()
+    public virtual void passAway()
     {
         passAwayPS.transform.SetParent(null);
         passAwayPS.Play();
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
-    public void TakeDamage(float _damage){
-        health-=_damage;
-        if(health<=0){
+    public virtual void TakeDamage(float _damage)
+    {
+        health -= _damage;
+        OnDamageTaken?.Invoke(_damage, this.transform.position);
+        if (health <= 0)
+        {
             passAway();
         }
+
     }
-    public bool IsDetectPlayer()
+    public virtual bool IsDetectPlayer()
     {
         Collider2D[] attackCd = Physics2D.OverlapCircleAll(transform.position, chaseRadious);
 
@@ -127,5 +136,15 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
-
+    public Vector2 getEnemyDir(){
+        Player player=Player.Instance;
+        if(player==null) return Vector2.zero;
+        return (player.transform.position-this.gameObject.transform.position).normalized;
+    }
+    public float getDistanceEtoP(){
+        Player player=Player.Instance;
+        if(player==null) return Mathf.Infinity;
+        float distance=Vector2.Distance(this.gameObject.transform.position,player.transform.position);
+        return distance;
+    }
 }

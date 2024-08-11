@@ -20,6 +20,7 @@ public class EnemyState : IState
     }
     public virtual void Update()
     {
+        
         stateTimer -= Time.deltaTime;
     }
     public virtual void Exit()

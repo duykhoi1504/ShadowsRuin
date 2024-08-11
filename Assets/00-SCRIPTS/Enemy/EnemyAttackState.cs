@@ -22,6 +22,7 @@ public class EnemyAttackState : EnemyState
     public override void Update()
     {
         base.Update();
+        enemy.SetVelocity(Vector2.zero);
         if ((Player.Instance.transform.position - enemy.transform.position).magnitude > enemy.attackRadious)
         {
             stateMachine.ChangeState(enemy.chaseState);

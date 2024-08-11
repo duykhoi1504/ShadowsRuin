@@ -23,8 +23,10 @@ public class EnemyChaseState : EnemyState
     public override void Update()
     {
         base.Update();
+        
         timer-=Time.deltaTime;
-        if( timer<0){
+
+        if(timer<0){
             stateMachine.ChangeState(enemy.idleState);
         }
     
