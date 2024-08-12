@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     private State state;
     [Header("Components info")]
     Animator anim;
+    SpriteRenderer sprite;
     BoxCollider2D cd;
     [Header("Setting info")]
     [SerializeField] private float range;
@@ -34,6 +35,7 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
+        sprite=GetComponentInChildren<SpriteRenderer>();
         anim=GetComponent<Animator>();
         cd=GetComponentInChildren<BoxCollider2D>();
         state=State.Idle;
@@ -45,9 +47,12 @@ public class Weapon : MonoBehaviour
 
         switch(state){
             case State.Idle:
+            sprite.enabled=false;
             AutoAim();
             break;
             case State.Attack:
+            sprite.enabled=true;
+
             Attacking();
             break;
         }

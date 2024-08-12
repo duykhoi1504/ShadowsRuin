@@ -8,6 +8,8 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Rigidbody2D rigi;
     [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] private float timeToStop = 4f;
+
     private float bulletDamage;
 
 private void OnEnable() {
@@ -26,7 +28,7 @@ private void OnEnable() {
     }
     public void shoot(float _damage, Vector2 _dir)
     {
-        Debug.Log("shottttttttttttttttttttttttttttt" + _damage);
+        // Debug.Log("shottttttttttttttttttttttttttttt" + _damage);
         bulletDamage = _damage;
         transform.up = _dir;
         rigi.velocity = _dir * bulletSpeed;
@@ -35,13 +37,18 @@ private void OnEnable() {
     {
         if (other.TryGetComponent(out Player player))
         {
+      
+
             player.TakeDamage(bulletDamage);
             // Destroy(gameObject);
             gameObject.SetActive(false);
+           
+            // ObjectPooling_Manager<EnemyBullet>.Instant.ReturnObject(this);
         }
     }
     IEnumerator SelfDestruct(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeToStop);
         gameObject.SetActive(false);
+        
     }
 }

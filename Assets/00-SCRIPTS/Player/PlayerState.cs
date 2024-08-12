@@ -26,7 +26,8 @@ public class PLayerState :IState
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-        player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
+        // player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
+        player.rb.velocity = player.joyStick1.GetMoveVector().normalized * player.moveSpeed;
 
 
     }

@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigi: {fileID: 6743508632952335065}
-  bulletSpeed: 10
+  bulletSpeed: 5
+  timeToStop: 4
 --- !u!61 &1740800582434605482
 BoxCollider2D:
   m_ObjectHideFlags: 0

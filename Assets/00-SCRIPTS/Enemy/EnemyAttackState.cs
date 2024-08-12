@@ -19,7 +19,7 @@ public class EnemyAttackState : EnemyState
         
         stateTimer = maxTimer;
         // Player.Instance.TakeDamage(enemy.attackDamage);
- 
+    
     }
     public override void Update()
     {

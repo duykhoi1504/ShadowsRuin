@@ -6,6 +6,7 @@ using UnityEngine;
 // ushort System;
 public class Enemy : MonoBehaviour
 {
+    Player player;
 
     [Header("Components info")]
     protected Rigidbody2D rb;
@@ -61,13 +62,14 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
-
+        player=Player.Instance;
 
     }
 
     protected virtual void Update()
     {
         // Debug.draw(this.transform.position,attackRadious);
+        FlipController(enemySprite.transform);
         textHealth.text = health.ToString();
 
         stateMachine.state.Update();
@@ -149,5 +151,11 @@ public class Enemy : MonoBehaviour
     }
     public virtual void attack(){
           Player.Instance.TakeDamage(attackDamage);
+    }
+    public virtual void FlipController(Transform _transform){
+        if(player)
+        // transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:Vector2.one.With(x:-1);
+        _transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:new Vector2(-1,1  );
+
     }
 }
