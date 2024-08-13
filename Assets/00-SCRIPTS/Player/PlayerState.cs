@@ -7,20 +7,23 @@ public class PLayerState :IState
 {
     protected float xInput;
     protected float yInput;
+        private string aniBoolName;
     protected Player player;
+       protected bool triggerCalled;
     protected StateMachine stateMachine;
-    public PLayerState(Player _player, StateMachine _stateMachine)
+    public PLayerState(Player _player, StateMachine _stateMachine, string _animBoolName)
     {
         this.player = _player;
         this.stateMachine = _stateMachine;
+        this.aniBoolName=_animBoolName;
     }
     public virtual void Enter()
     {
-
+        player.anim.SetBool(aniBoolName,true);
     }
     public virtual void Exit()
     {
-
+          player.anim.SetBool(aniBoolName,false);
     }
     public virtual void Update()
     {
@@ -31,12 +34,16 @@ public class PLayerState :IState
 
 
     }
+      public virtual void AnimationFinishTrigger(){
+        triggerCalled=true;
+    }
 }
 public class IdleState : PLayerState
 {
-    public IdleState(Player _player, StateMachine _stateMachine) : base(_player, _stateMachine)
+    public IdleState(Player _player, StateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
+
     public override void Enter()
     {
         base.Enter();
@@ -64,10 +71,10 @@ public class IdleState : PLayerState
 public class MoveState : PLayerState
 
 {
-
-    public MoveState(Player _player, StateMachine _stateMachine) : base(_player, _stateMachine)
+    public MoveState(Player _player, StateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
+
     public override void Enter()
     {
         base.Enter();

@@ -56,6 +56,6 @@ public class DamageTextManager : MonoBehaviour
         damageTextInstance.transform.position = spawnTextPos;
         //    DamageText damageText= Instantiate(DamageTextPrefab,spawnText,quaternion.identity,transform);
         damageTextInstance.StartDamageText(_damage);
-        LeanTween.delayedCall(3f, () => damageTextPool.Release(damageTextInstance));
+        LeanTween.delayedCall(4f, () => damageTextPool.Release(damageTextInstance));
     }
 }

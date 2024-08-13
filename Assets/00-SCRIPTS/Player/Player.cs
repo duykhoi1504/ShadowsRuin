@@ -12,8 +12,9 @@ public class Player : MonoBehaviour
     public PlayerHealth playerHealth;
     public Rigidbody2D rb;
     public Collider2D cd;
+    public Animator anim;
+    public SpriteRenderer avatar;
 
-    
     [Header("Move info")]
     public float moveSpeed = 5f;
 
@@ -38,14 +39,16 @@ public class Player : MonoBehaviour
         // if (Instance != null)
         rb = gameObject.GetComponent<Rigidbody2D>();
         cd = gameObject.GetComponent<Collider2D>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        avatar=transform.GetChild(0).GetComponent<SpriteRenderer>();
         stateMachine = new StateMachine();
-        idleState = new IdleState(this, stateMachine);
-        moveState = new MoveState(this, stateMachine);
+        idleState = new IdleState(this, stateMachine, "Idle");
+        moveState = new MoveState(this, stateMachine, "Move");
 
     }
     private void Start()
     {
-        playerHealth=GetComponent<PlayerHealth>();
+        playerHealth = GetComponent<PlayerHealth>();
         stateMachine.InitState(idleState);
     }
 
@@ -53,16 +56,30 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // transform.position=Random.insideUnitCircle
-
+        FlipController(avatar.transform);
         stateMachine.state.Update();
 
     }
-    public void TakeDamage(float _damage){
-     
+    public void TakeDamage(float _damage)
+    {
+
         playerHealth.TakeDamage(_damage);
     }
-    public Vector2 GetPosCenter(){
-        return (Vector2)transform.position+cd.offset;
+    public Vector2 GetPosCenter()
+    {
+        return (Vector2)transform.position + cd.offset;
     }
+    public void FlipController(Transform _avatar)
+    {
+        if (rb.velocity.x > 0)
+        {
+            _avatar.localScale = new Vector3(1, 1, 1);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            _avatar.localScale = new Vector3(-1, 1, 1);
 
+        }
+    }
+  
 }

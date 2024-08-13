@@ -3,110 +3,46 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    public enum State
-    {
-        Idle,
-        Attack
-    }
-    private State state;
-    [Header("Components info")]
-    Animator anim;
-    SpriteRenderer sprite;
-    BoxCollider2D cd;
+
+
+    protected  SpriteRenderer sprite;
+
     [Header("Setting info")]
-    [SerializeField] private float range;
-    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] protected float range;
+    [SerializeField] protected LayerMask enemyMask;
 
     [Header("Elements info")]
-    [SerializeField] private Transform hitCheck;
-    [SerializeField] private float hitRadius;
+    // [SerializeField] protected Transform hitCheck;
+  
 
     [Header("Attack info")]
-    [SerializeField] private float AttackTimer;
-    [SerializeField] private float attackDelay;
+    [SerializeField] protected float AttackTimer;
+    [SerializeField] protected float attackDelay;
 
-    [SerializeField] private float attackDamage;
-    [SerializeField] private List<Enemy> damageEnemies = new List<Enemy>();
+    [SerializeField] protected float attackDamage;
     [Header("Animations info")]
-    [SerializeField] private float aimLerp;
+    [SerializeField] protected float aimLerp;
 
-    void Start()
+    protected virtual void Start()
     {
-        sprite=GetComponentInChildren<SpriteRenderer>();
-        anim=GetComponent<Animator>();
-        cd=GetComponentInChildren<BoxCollider2D>();
-        state=State.Idle;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        switch(state){
-            case State.Idle:
-            sprite.enabled=false;
-            AutoAim();
-            break;
-            case State.Attack:
-            sprite.enabled=true;
-
-            Attacking();
-            break;
-        }
         // AutoAim();
         // Attack();
-
-
     }
-
-
-    [NaughtyAttributes.Button]
-    public void StartAttack()
+    protected virtual void AutoAim()
     {
-        anim.Play("Attack");
-    
-         state=State.Attack;
-        damageEnemies.Clear();
-        anim.speed=1/attackDelay;
-    }
-    public void Attacking(){
-        Attack();
-    }
-    public void StopAttack()
-    {
-         state=State.Idle;
-        damageEnemies.Clear();
-    }
 
-    private void AutoAim()
-    {
-        Enemy enemyCloset = GetEnemyClosest();
-        Vector2 targetUpVector = Vector3.up;
-
-
-        if (enemyCloset != null)
-        {
-            targetUpVector = (enemyCloset.transform.position - transform.position).normalized;
-            transform.up=targetUpVector;
-            ManageAttackTimer();
-        }
-        // Quaternion newRotation = Quaternion.LookRotation(transform.forward, dir);
-        // transform.rotation = newRotation;
-        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
-        AttackTimer+=Time.deltaTime;
     }
-
-    void ManageAttackTimer(){
-        if(AttackTimer>=attackDelay){
-            AttackTimer=0;
-            StartAttack();
-        }
-    }
-
-    private Enemy GetEnemyClosest()
+    protected Enemy GetEnemyClosest()
     {
         Enemy closetTarget = null;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
@@ -140,31 +76,16 @@ public class Weapon : MonoBehaviour
         }
         return closetTarget;
     }
-    public void Attack()
-    {
-        // Collider2D[] enemies = Physics2D.OverlapCircleAll(hitCheck.position, hitRadius, enemyMask);
-        Collider2D[] enemies = Physics2D.OverlapBoxAll(hitCheck.position, cd.bounds.size,hitCheck.localEulerAngles.z, enemyMask);
 
-        foreach (var hit in enemies)
-        {
-
-            Enemy enemy = hit.GetComponent<Enemy>();
-            if (!damageEnemies.Contains(enemy))
-            {
-                enemy.TakeDamage(attackDamage);
-                damageEnemies.Add(enemy);
-            }
-
-
-        }
-    }
-    void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, range);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(hitCheck.transform.position, hitRadius);
+        // if (hitCheck == null)
+        //     return;
+        // Gizmos.color = Color.red;
+        // Gizmos.DrawWireSphere(hitCheck.transform.position, hitRadius);
 
     }
 

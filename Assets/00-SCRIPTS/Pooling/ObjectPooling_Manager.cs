@@ -20,17 +20,13 @@ public class ObjectPooling_Manager<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] private T Obj_prefab;
     [SerializeField] private List<T> List_obj = new List<T>();
 
-    private void Awake()
+  private void Awake()
     {
         if (_instant == null)
-        {
             _instant = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else if (_instant != this)
+        if (_instant.gameObject.GetInstanceID() != this.gameObject.GetInstanceID())
         {
             Destroy(this.gameObject);
-            return;
         }
     }
 

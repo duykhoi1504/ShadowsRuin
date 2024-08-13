@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.55
+      value: -8.87
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.82
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1241313798, guid: cd0a95fff546f30438063032c6aa5f69, type: 3}
     m_RemovedComponents:
     - {fileID: 4343664187005116517, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
     m_RemovedGameObjects: []
@@ -78,13 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e2cc53703579b4f88adda71b154142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cd: {fileID: 0}
   textHealth: {fileID: 4157894831876678143}
   moveSpeed: 1
   maxHealth: 50
   attackRadious: 1
   chaseRadious: 5
-  attackDamage: 1
+  attackDamage: 200
   isSpawned: 0
   enemySprite: {fileID: 4660902717405326134}
   spawnIndicator: {fileID: 1693571234397441902}

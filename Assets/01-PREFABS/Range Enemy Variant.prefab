@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Range Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3490072219255277352, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_Radius
       value: 0.49
@@ -135,17 +139,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716ce2d5814467d408f3e4d1ed5d0344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cd: {fileID: 0}
   textHealth: {fileID: 796576205706086874}
-  moveSpeed: 3
+  moveSpeed: 1
   maxHealth: 100
-  attackRadious: 4.54
+  attackRadious: 8.44
   chaseRadious: 11.04
-  attackDamage: 1
+  attackDamage: 20
   isSpawned: 0
   enemySprite: {fileID: 8219936649695068947}
   spawnIndicator: {fileID: 2683310401219110731}
   passAwayPS: {fileID: 1031661286202643507}
+  bullet: {fileID: 7634339314480661563, guid: 531364db18a07b64c8b63656f37e3c23, type: 3}
 --- !u!212 &8219936649695068947 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
