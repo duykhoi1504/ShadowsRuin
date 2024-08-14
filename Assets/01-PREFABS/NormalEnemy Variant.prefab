@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.87
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 5.01
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490072219255277352, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082527119435898943, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -83,11 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textHealth: {fileID: 4157894831876678143}
-  moveSpeed: 1
-  maxHealth: 50
-  attackRadious: 1
-  chaseRadious: 5
-  attackDamage: 200
+  moveSpeed: 2
+  maxHealth: 100
+  attackRadious: 1.6
+  chaseRadious: 10.2
+  attackDamage: 1
   isSpawned: 0
   enemySprite: {fileID: 4660902717405326134}
   spawnIndicator: {fileID: 1693571234397441902}

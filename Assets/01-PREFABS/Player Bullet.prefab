@@ -189,7 +189,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &2699375133750224694
 MonoBehaviour:
@@ -204,8 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigi: {fileID: 0}
-  bulletSpeed: 10
-  timeToStop: 4
+  timeToStop: 3
   enemyMask:
     serializedVersion: 2
     m_Bits: 128

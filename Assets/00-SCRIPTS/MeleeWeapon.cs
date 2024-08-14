@@ -105,10 +105,10 @@ public class MeleeWeapon : Weapon
             StartAttack();
         }
     }
-    protected override void OnDrawGizmos()
-    {   
-         Gizmos.color = Color.red;
-            Gizmos.matrix = Matrix4x4.TRS(HitDetectTransform.position, Quaternion.Euler(0f, 0f, HitDetectTransform.localEulerAngles.z), Vector3.one);
-            Gizmos.DrawWireCube(Vector3.zero, cd.bounds.size);
-    }
+    // protected override void OnDrawGizmos()
+    // {   
+    //      Gizmos.color = Color.red;
+    //         Gizmos.matrix = Matrix4x4.TRS(HitDetectTransform.position, Quaternion.Euler(0f, 0f, HitDetectTransform.localEulerAngles.z), Vector3.one);
+    //         Gizmos.DrawWireCube(Vector3.zero, cd.bounds.size);
+    // }
 }
