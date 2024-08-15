@@ -43,6 +43,8 @@ public class RangeEnemy : Enemy
     {
        
         EnemyBullet _bullet = ObjectPooling_Manager<EnemyBullet>.Instant.GetObject();
+        // EnemyBullet _bullet = GameManager.Instance.bulletPool.GetObject();
+
         _bullet.transform.position = transform.position;
         _bullet.transform.rotation = transform.rotation;
         _bullet.shoot(attackDamage, getEnemyDir());

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932779479
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84f07b27a38eda042b5858622cbeaf52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -131,18 +131,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283bf51504b2e614fb61c1a2974733b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 12.43
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  hitCheck: {fileID: 0}
-  hitRadius: 0.28
   AttackTimer: 0
-  attackDelay: 1
-  attackDamage: 25
+  attackDelay: 0.3
+  damage: 10
   aimLerp: 4
   shootingPoint: {fileID: 8119950195569468191}
-  damage: 20
+  shootSpeed: 20
 --- !u!95 &643576931529895218
 Animator:
   serializedVersion: 5
@@ -173,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2631450944497998277}
+  - component: {fileID: 6543548454073119081}
   - component: {fileID: 6238593611447164468}
   - component: {fileID: 1011001276514617657}
   - component: {fileID: 4267835693741455710}
@@ -192,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4078319783470011926}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -202,6 +201,18 @@ Transform:
   - {fileID: 5970246155560476423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6543548454073119081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078319783470011926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9b8a69d74b18448a7d91b9c2ac45e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6238593611447164468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +228,8 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   rb: {fileID: 0}
   cd: {fileID: 0}
+  anim: {fileID: 0}
+  avatar: {fileID: 0}
   moveSpeed: 10
   joyStick1: {fileID: 0}
 --- !u!114 &1011001276514617657
@@ -316,6 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6276808234354657971}
   - component: {fileID: 5800654309228787896}
+  - component: {fileID: 4180036394769247940}
   m_Layer: 6
   m_Name: Avatar
   m_TagString: Untagged
@@ -377,7 +391,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957310579
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 544204858, guid: daf1b4acdaf7d5d4497cb8be34af8b9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -390,6 +404,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &4180036394769247940
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281126618636320531}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06910d635e96b3540a0f31ba997b7e7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5540668413828122302
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +560,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932779479
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc3cab6f384647148aea1b149f1a488e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -551,7 +586,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hit Detection POS
   m_TagString: Untagged
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -564,7 +599,7 @@ Transform:
   m_GameObject: {fileID: 6355409637241243660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,7 +637,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030902743, y: -5.222746}
+  m_Offset: {x: 0.030902743, y: -0.16233754}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -613,7 +648,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.286885, y: 13.917801}
+  m_Size: {x: 3.286885, y: 13.57472}
   m_EdgeRadius: 0
 --- !u!1 &6933746605988565052
 GameObject:
@@ -693,16 +728,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b26fae51e2c22444b70b32a49ca0257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3.19
+  range: 2.38
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  hitCheck: {fileID: 6659383300507686843}
-  hitRadius: 0.27
   AttackTimer: 0
-  attackDelay: 2
-  attackDamage: 50
-  aimLerp: 5
+  attackDelay: 0.3
+  damage: 30
+  aimLerp: 2
+  HitDetectTransform: {fileID: 6659383300507686843}
   damageEnemies: []
 --- !u!95 &3394497667812442725
 Animator:

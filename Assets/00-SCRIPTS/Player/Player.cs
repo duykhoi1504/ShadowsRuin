@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         // transform.position=Random.insideUnitCircle
         FlipController(avatar.transform);
         stateMachine.state.Update();
@@ -81,5 +82,6 @@ public class Player : MonoBehaviour
 
         }
     }
+   
   
 }

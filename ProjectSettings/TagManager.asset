@@ -14,7 +14,7 @@ TagManager:
   - UI
   - player
   - enemy
-  - 
+  - pickups
   - 
   - 
   - 
@@ -39,11 +39,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: ground
+    uniqueID: 2665751203
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: ground
-    uniqueID: 2665751203
+  - name: pickups
+    uniqueID: 1945354471
     locked: 0
   - name: player
     uniqueID: 1932779479

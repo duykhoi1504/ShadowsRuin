@@ -6,7 +6,7 @@ public class RangeWeapon : Weapon
 {
     [Header("Elements info")]
     [SerializeField] Transform shootingPoint;
-    [SerializeField] float damage;
+    // [SerializeField] float damage;
     [SerializeField] float shootSpeed;
 
 
@@ -51,10 +51,12 @@ public class RangeWeapon : Weapon
     void Shoot()
     {
         PlayerBullet _bullet = ObjectPooling_Manager<PlayerBullet>.Instant.GetObject();
+        // PlayerBullet _bullet = GameManager.Instance.playerbulletPool.GetObject();
+
         _bullet.transform.position = transform.position;
         _bullet.transform.rotation = transform.rotation;
-
-        _bullet.shoot(damage,shootSpeed,transform.up);
+        float damageA=GetDamage(out bool isCriticalHit);
+        _bullet.Shoot(damageA,shootSpeed,transform.up,isCriticalHit);
          _bullet.gameObject.SetActive(true);
     }
 

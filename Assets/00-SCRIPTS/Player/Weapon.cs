@@ -22,7 +22,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float AttackTimer;
     [SerializeField] protected float attackDelay;
 
-    [SerializeField] protected float attackDamage;
+    [SerializeField] protected float damage;
     [Header("Animations info")]
     [SerializeField] protected float aimLerp;
 
@@ -76,7 +76,14 @@ public abstract class Weapon : MonoBehaviour
         }
         return closetTarget;
     }
-
+    protected float GetDamage(out bool isCriticalHit){
+        isCriticalHit = false;
+        if(Random.Range(0,100)<=50){
+            isCriticalHit=true;
+            return damage*2;
+        }
+        return damage;
+    }
     protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object

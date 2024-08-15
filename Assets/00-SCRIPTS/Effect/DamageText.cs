@@ -21,10 +21,11 @@ public class DamageText : MonoBehaviour
 
     }
     [NaughtyAttributes.Button]
-    public void StartDamageText(float _damage){
+    public void StartDamageText(float _damage,bool isCriticalHit){
 
-        anim.Play("Animate");
        textMP.text="-"+ _damage.ToString();
+       textMP.color=isCriticalHit ? Color.yellow : Color.red;
+        anim.Play("Animate");
     }
     public void StopFLoating(){
         this.gameObject.SetActive(false);

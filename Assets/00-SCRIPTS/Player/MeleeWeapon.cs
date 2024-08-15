@@ -53,7 +53,7 @@ public class MeleeWeapon : Weapon
         if (enemyCloset != null)
         {
             targetUpVector = (enemyCloset.transform.position - transform.position).normalized;
-            transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+            transform.up = targetUpVector;
             ManageAttackTimer();
         }
         // Quaternion newRotation = Quaternion.LookRotation(transform.forward, dir);
@@ -71,8 +71,10 @@ public class MeleeWeapon : Weapon
 
             Enemy enemy = hit.GetComponent<Enemy>();
             if (!damageEnemies.Contains(enemy))
-            {
-                enemy.TakeDamage(attackDamage);
+            {   
+                 float damageA=GetDamage(out bool isCriticalHit);
+                
+                enemy.TakeDamage(damageA,isCriticalHit);
                 damageEnemies.Add(enemy);
             }
 

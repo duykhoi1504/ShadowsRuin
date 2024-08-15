@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     protected Collider2D cd;
     [SerializeField] private TextMeshPro textHealth;
 
-    public static Action<float, Vector2> OnDamageTaken;
+    public static Action<float, Vector2,bool> OnDamageTaken;
+    public static Action<Vector2> OnPassAway;
+
 
     [Header("Move info")]
 
@@ -109,16 +111,18 @@ public class Enemy : MonoBehaviour
     }
     public virtual void passAway()
     {
+
+        OnPassAway?.Invoke(transform.position);
         passAwayPS.transform.SetParent(null);
         passAwayPS.Play();
         // Destroy(gameObject);
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float _damage)
+    public virtual void TakeDamage(float _damage,bool isCriticalHit)
     {
         health -= _damage;
-        OnDamageTaken?.Invoke(_damage, this.transform.position);
+        OnDamageTaken?.Invoke(_damage, this.transform.position,isCriticalHit);
         if (health <= 0)
         {
             passAway();

@@ -48,14 +48,14 @@ public class DamageTextManager : MonoBehaviour
         Destroy(damageText.gameObject);
     }
 
-    private void InstantiteDamageText(float _damage, Vector2 _transform)
+    private void InstantiteDamageText(float _damage, Vector2 _transform,bool isCriticalHit)
     {
         DamageText damageTextInstance = damageTextPool.Get();
 
         Vector2 spawnTextPos = _transform + Vector2.up * 1.5f;
         damageTextInstance.transform.position = spawnTextPos;
         //    DamageText damageText= Instantiate(DamageTextPrefab,spawnText,quaternion.identity,transform);
-        damageTextInstance.StartDamageText(_damage);
+        damageTextInstance.StartDamageText(_damage,isCriticalHit);
         LeanTween.delayedCall(4f, () => damageTextPool.Release(damageTextInstance));
     }
 }
