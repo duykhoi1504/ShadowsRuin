@@ -51,7 +51,8 @@ public class EnemyIdleState : EnemyState
         base.Exit();
     }
     private Vector3 PatrolRandomPos(){
-        targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
+        // targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
+        targetPos=Player.Instance.gameObject.transform.position;
         return targetPos;
     }
     
