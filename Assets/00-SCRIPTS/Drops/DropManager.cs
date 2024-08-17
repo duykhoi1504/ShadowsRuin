@@ -19,7 +19,7 @@ public class DropManager :ObjectPoolingX<DroppableBase>
     }
     private void OnDestroy()
     {
-        Enemy.OnPassAway += EnemyPassAwayCallBack;
+        Enemy.OnPassAway -=EnemyPassAwayCallBack;
 
     }
 

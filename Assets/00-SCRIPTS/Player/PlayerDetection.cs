@@ -5,13 +5,16 @@ using UnityEngine;
 public class PlayerDetection : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Collider2D playerCD;
+    [SerializeField] CircleCollider2D playerCD;
     Player player;
+    [SerializeField]float rangeCollect;
 
     void Start()
     {
+        playerCD=transform.GetChild(2).GetComponent<CircleCollider2D>();
         player=Player.Instance;
-        playerCD=transform.GetChild(3).GetComponent<Collider2D>();
+        playerCD.radius=rangeCollect;
+        // playerCD=transform.GetChild(3).GetComponent<Collider2D>();
     }
 
     // Update is called once per frame

@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigi: {fileID: 0}
-  timeToStop: 3
+  timeToStop: 5
   enemyMask:
     serializedVersion: 2
     m_Bits: 128

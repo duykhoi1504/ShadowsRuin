@@ -38,10 +38,15 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            // Time.timeScale = 0;
-            SceneManager.LoadScene(0);
-
+            PassAway();
         }
+    }
+    void PassAway()
+    {
+        // Time.timeScale = 0;
+        // SceneManager.LoadScene(0);
+        GameManager.Instance.ChangeState(GameState.GAMEOVER);
+
     }
     private void UpdateGUI()
     {

@@ -18,9 +18,9 @@ public class MeleeWeapon : Weapon
     private State state;
     [SerializeField] List<Enemy> damageEnemies = new List<Enemy>();
 
-     protected override  void Start()
+       void Start()
     {
-        base.Start();
+        
         anim = GetComponent<Animator>();
         cd = GetComponentInChildren<BoxCollider2D>();
 

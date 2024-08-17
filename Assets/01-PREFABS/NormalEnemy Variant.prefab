@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490072219255277352, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5082527119435898943, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -70,9 +70,13 @@ PrefabInstance:
       objectReference: {fileID: -1241313798, guid: cd0a95fff546f30438063032c6aa5f69, type: 3}
     m_RemovedComponents:
     - {fileID: 4343664187005116517, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+    - {fileID: 4452476753797484608, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4614800930655655737}
     - targetCorrespondingSourceObject: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 72800480964375525}
@@ -82,6 +86,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
   m_PrefabInstance: {fileID: 3260694538761821198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4614800930655655737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58762722743650072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea86a068513701b45ae5c9fcdccfb1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitFXMat: {fileID: 2100000, guid: 43b67a181561efd4bbf1bee0877cb499, type: 2}
+  FlashDuration: 0.1
 --- !u!114 &72800480964375525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,12 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e2cc53703579b4f88adda71b154142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isKnocked: 0
+  knockSpeed: 10
   textHealth: {fileID: 4157894831876678143}
-  moveSpeed: 2
-  maxHealth: 100
+  moveSpeed: 1
+  maxHealth: 10
   attackRadious: 1.6
-  chaseRadious: 10.2
+  duration: 4
+  chaseRadious: 4.23
   attackDamage: 1
+  knockBackDuration: 0.1
   isSpawned: 0
   enemySprite: {fileID: 4660902717405326134}
   spawnIndicator: {fileID: 1693571234397441902}

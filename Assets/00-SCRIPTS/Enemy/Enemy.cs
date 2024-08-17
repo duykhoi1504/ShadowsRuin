@@ -7,13 +7,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Player player;
+    EntityFX fx;
+    [SerializeField] bool isKnocked = false;
+    [SerializeField] float knockSpeed = 10f;
+
 
     [Header("Components info")]
     protected Rigidbody2D rb;
     protected Collider2D cd;
     [SerializeField] private TextMeshPro textHealth;
 
-    public static Action<float, Vector2,bool> OnDamageTaken;
+    public static Action<float, Vector2, bool> OnDamageTaken;
     public static Action<Vector2> OnPassAway;
 
 
@@ -30,9 +34,13 @@ public class Enemy : MonoBehaviour
     [Header("Attack info")]
 
     public float attackRadious;
+    public float duration;
+
     public float chaseRadious;
     bool isAttack;
     public float attackDamage;
+    public float knockBackDuration;
+
     [Header("Spawn info")]
 
     public bool isSpawned = false;
@@ -47,8 +55,14 @@ public class Enemy : MonoBehaviour
     public EnemyChaseState chaseState;
     public EnemyAttackState attackState;
 
+    private void OnEnable()
+    {
+        isKnocked = false;
+        cd.enabled = false;
+    }
     protected virtual void Awake()
     {
+        fx = GetComponent<EntityFX>();
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<Collider2D>();
         stateMachine = new StateMachine();
@@ -58,28 +72,27 @@ public class Enemy : MonoBehaviour
 
 
     }
-     protected virtual void Start()
+    protected virtual void Start()
     {
+        cd.enabled = false;
 
         health = maxHealth;
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
-        player=Player.Instance;
+        // stateMachine.InitState(chaseState);
+
+        player = Player.Instance;
 
     }
 
     protected virtual void Update()
     {
         // Debug.draw(this.transform.position,attackRadious);
+
         FlipController(enemySprite.transform);
         textHealth.text = health.ToString();
 
         stateMachine.state.Update();
-    }
-     protected virtual void SetRenderersVisibility(bool visibility)
-    {
-        spawnIndicator.enabled = visibility;
-        enemySprite.enabled = !visibility;
     }
     // Update is called once per frame
     public virtual void animIndicator(GameObject _gameObject)
@@ -95,11 +108,18 @@ public class Enemy : MonoBehaviour
         cd.enabled = true;
         isSpawned = true;
     }
+    protected virtual void SetRenderersVisibility(bool visibility)
+    {
+        // cd.enabled = !visibility;
+        spawnIndicator.enabled = visibility;
+        enemySprite.enabled = !visibility;
+    }
     public virtual void SetVelocity(Vector2 _Velocity)
     {
+        if (isKnocked) return;
         rb.velocity = _Velocity;
     }
-     protected virtual void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
         Gizmos.color = Color.red;
@@ -112,21 +132,40 @@ public class Enemy : MonoBehaviour
     public virtual void passAway()
     {
 
+
         OnPassAway?.Invoke(transform.position);
         passAwayPS.transform.SetParent(null);
         passAwayPS.Play();
         // Destroy(gameObject);
+
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float _damage,bool isCriticalHit)
+    public virtual void TakeDamage(float _damage, bool isCriticalHit)
     {
+        // Check if the game object is active before starting the coroutine
+        if (gameObject.activeInHierarchy)
+        {
+            fx.StartCoroutine("FlashFX");
+            StartCoroutine("HitKnockBack");
+        }
         health -= _damage;
-        OnDamageTaken?.Invoke(_damage, this.transform.position,isCriticalHit);
+
+
+        OnDamageTaken?.Invoke(_damage, this.transform.position, isCriticalHit);
         if (health <= 0)
         {
             passAway();
         }
+
+    }
+    public IEnumerator HitKnockBack()
+    {
+        
+        isKnocked = true;
+        rb.velocity = getEnemyDir() * -knockSpeed;
+        yield return new WaitForSeconds(knockBackDuration);
+        isKnocked = false;
 
     }
     public virtual bool IsDetectPlayer()
@@ -142,24 +181,28 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
-    public Vector2 getEnemyDir(){
-        Player player=Player.Instance;
-        if(player==null) return Vector2.zero;
-        return (player.GetPosCenter()-(Vector2)this.gameObject.transform.position).normalized;
+    public Vector2 getEnemyDir()
+    {
+        Player player = Player.Instance;
+        if (player == null) return Vector2.zero;
+        return (player.GetPosCenter() - (Vector2)this.gameObject.transform.position).normalized;
     }
-    public float getDistanceEtoP(){
-        Player player=Player.Instance;
-        if(player==null) return Mathf.Infinity;
-        float distance=Vector2.Distance(this.gameObject.transform.position,player.GetPosCenter());
+    public float getDistanceEtoP()
+    {
+        Player player = Player.Instance;
+        if (player == null) return Mathf.Infinity;
+        float distance = Vector2.Distance(this.gameObject.transform.position, player.GetPosCenter());
         return distance;
     }
-    public virtual void attack(){
-          Player.Instance.TakeDamage(attackDamage);
+    public virtual void attack()
+    {
+        Player.Instance.TakeDamage(attackDamage);
     }
-    public virtual void FlipController(Transform _transform){
-        if(player)
-        // transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:Vector2.one.With(x:-1);
-        _transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:new Vector2(-1,1  );
+    public virtual void FlipController(Transform _transform)
+    {
+        if (player)
+            // transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:Vector2.one.With(x:-1);
+            _transform.localScale = player.transform.position.x > transform.position.x ? Vector2.one : new Vector2(-1, 1);
 
     }
 }

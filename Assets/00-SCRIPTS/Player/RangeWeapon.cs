@@ -10,9 +10,9 @@ public class RangeWeapon : Weapon
     [SerializeField] float shootSpeed;
 
 
-   protected override void Start()
+   void Start()
     {
-        base.Start();
+       
     }
     private void Update()
     {

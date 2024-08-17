@@ -30,9 +30,9 @@ public class EnemyIdleState : EnemyState
         if(!enemy.isSpawned)return;
 
 
-        if(enemy.IsDetectPlayer()){
+        // if(enemy.IsDetectPlayer()){
             stateMachine.ChangeState(enemy.chaseState);
-        }
+        // }
         
         dirPatrol=(targetPos-enemy.transform.position).normalized;
         
@@ -50,10 +50,10 @@ public class EnemyIdleState : EnemyState
     {
         base.Exit();
     }
-    private Vector3 PatrolRandomPos(){
+    private void PatrolRandomPos(){
         // targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
         targetPos=Player.Instance.gameObject.transform.position;
-        return targetPos;
+       
     }
     
 }

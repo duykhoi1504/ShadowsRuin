@@ -8,6 +8,7 @@ public class EnemyState : IState
     protected StateMachine stateMachine;
     protected bool triggerCalled;
     protected float stateTimer;
+       [SerializeField]protected float maxTimer = 3f;
 
     public EnemyState(Enemy _enemy, StateMachine _stateMachine)
     {

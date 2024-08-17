@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
 
-    float maxTimer = 1f;
+ 
 
 
 
@@ -17,7 +17,7 @@ public class EnemyAttackState : EnemyState
     {
         base.Enter();
         
-        stateTimer = maxTimer;
+        stateTimer = enemy.duration;
         // Player.Instance.TakeDamage(enemy.attackDamage);
     
     }

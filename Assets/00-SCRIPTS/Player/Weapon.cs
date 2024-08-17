@@ -8,40 +8,43 @@ public abstract class Weapon : MonoBehaviour
     // Start is called before the first frame update
 
 
-    protected  SpriteRenderer sprite;
+    // [Header("Elements info")]
+    // // [SerializeField] protected Transform hitCheck;
+    // protected SpriteRenderer sprite;
 
     [Header("Setting info")]
     [SerializeField] protected float range;
     [SerializeField] protected LayerMask enemyMask;
 
-    [Header("Elements info")]
-    // [SerializeField] protected Transform hitCheck;
-  
+
 
     [Header("Attack info")]
-    [SerializeField] protected float AttackTimer;
+    protected float AttackTimer;
     [SerializeField] protected float attackDelay;
 
     [SerializeField] protected float damage;
     [Header("Animations info")]
     [SerializeField] protected float aimLerp;
+    [Header("Upgrade info")]
 
-    protected virtual void Start()
-    {
-        sprite = GetComponentInChildren<SpriteRenderer>();
-       
-    }
+        public List<WeaponStats> stats;
+         public int levelWeapon;
+    [SerializeField] protected bool isStatsUpdate;
+   public Sprite icon;
 
-    // Update is called once per frame
-    void Update()
-    {
-        // AutoAim();
-        // Attack();
-    }
-    protected virtual void AutoAim()
-    {
+    // protected virtual void Start()
+    // {
+    //     // sprite = GetComponentInChildren<SpriteRenderer>();
 
+    // }
+
+    public void levelUpWeapon(){
+        if(levelWeapon<stats.Count-1){
+            levelWeapon++;
+            isStatsUpdate=true;
+        }
     }
+    protected virtual void AutoAim() { }
     protected Enemy GetEnemyClosest()
     {
         Enemy closetTarget = null;
@@ -76,14 +79,21 @@ public abstract class Weapon : MonoBehaviour
         }
         return closetTarget;
     }
-    protected float GetDamage(out bool isCriticalHit){
+
+    //Từ khóa out cho phép một phương thức trả về nhiều giá trị thông qua các tham số.
+    //không cần phải tạo thêm biến isCritical
+    //Khi gọi phương thức GetDamage(), ngoài việc nhận về giá trị float (damage), bạn cũng có thể nhận về giá trị bool (isCriticalHit) thông qua tham số out.
+    protected float GetDamage(out bool isCriticalHit)
+    {
         isCriticalHit = false;
-        if(Random.Range(0,100)<=50){
-            isCriticalHit=true;
-            return damage*2;
+        if (Random.Range(0, 100) <= 50)
+        {
+            isCriticalHit = true;
+            return damage * 2;
         }
         return damage;
     }
+
     protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
@@ -96,4 +106,10 @@ public abstract class Weapon : MonoBehaviour
 
     }
 
+}
+[System.Serializable]
+public class WeaponStats
+{
+    public float speed, damage, range, attackDelay,duration;
+    public string upgradeText;
 }

@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490072219255277352, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4343664187005116517, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: isSpawned
@@ -79,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 4343664187005116517, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: attackRadious
       value: 2.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452476753797484608, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      propertyPath: FlashDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5082527119435898943, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -147,12 +151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716ce2d5814467d408f3e4d1ed5d0344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isKnocked: 0
+  knockSpeed: 10
   textHealth: {fileID: 796576205706086874}
-  moveSpeed: 2
-  maxHealth: 100
-  attackRadious: 3.97
-  chaseRadious: 13.09
-  attackDamage: 20
+  moveSpeed: 1
+  maxHealth: 20
+  attackRadious: 1.59
+  duration: 10
+  chaseRadious: 3.9
+  attackDamage: 10
+  knockBackDuration: 0.1
   isSpawned: 0
   enemySprite: {fileID: 8219936649695068947}
   spawnIndicator: {fileID: 2683310401219110731}
