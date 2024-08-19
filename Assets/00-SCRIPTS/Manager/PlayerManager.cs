@@ -62,10 +62,10 @@ public class PlayerManager : MonoBehaviour
                 UIManager.Instance.levelUpButon[i].UpdateButtonDisplay(weaponToUpgrade[i].GetComponent<Weapon>());
 
             }
-            // else
-            // {
-            //     UIManager.Instance.levelUpButon[i].gameObject.SetActive(false); // Ẩn nút nếu không có vũ khí nào
-            // }
+            else
+            {
+                UIManager.Instance.levelUpButon[i].gameObject.SetActive(false); // Ẩn nút nếu không có vũ khí nào
+            }
         }
         // Cập nhật để ẩn hiển thị các nút vũ khí đã max cấp
         for (int i = 0; i < UIManager.Instance.levelUpButon.Length; i++)

@@ -24,7 +24,7 @@ public class SpinWeapon : Weapon
     private float attackCooldown = 0.1f; // Thay đổi thời gian này cho phù hợp
     void Start()
     {
-        SetStats();
+        // SetStats();
         // UIManager.Instance.levelUpButon[0].UpdateButtonDisplay(this);
 
         isHide = false;
