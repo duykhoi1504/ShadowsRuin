@@ -19,11 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("Move info")]
     public float moveSpeed = 5f;
-    [Header("Weapons info")]
 
-
-    public List<GameObject> unAssignedWeapons, assignedwWeapons;
-    public Transform weaponsParent;
     #region Statemachine 
     public StateMachine stateMachine;
     public IdleState idleState;
@@ -31,6 +27,9 @@ public class Player : MonoBehaviour
     #endregion
     // public MobileJoystick joyTick;
     public JoySticks joyStick1;
+
+
+
 
     private void Awake()
     {
@@ -47,6 +46,8 @@ public class Player : MonoBehaviour
         cd = gameObject.GetComponent<Collider2D>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         avatar = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+
         stateMachine = new StateMachine();
         idleState = new IdleState(this, stateMachine, "Idle");
         moveState = new MoveState(this, stateMachine, "Move");
@@ -54,8 +55,10 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        SetUpUnAssignedWeapons();
-        AddWeapon(Random.Range(0,unAssignedWeapons.Count));
+
+
+
+
         playerLevel = GetComponent<PlayerLevel>();
         playerHealth = GetComponent<PlayerHealth>();
         stateMachine.InitState(idleState);
@@ -63,36 +66,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+   
 
         // transform.position=Random.insideUnitCircle
         FlipController(avatar.transform);
         stateMachine.state.Update();
 
+
+
+
     }
 
-    public void AddWeapon(int indexRand){
-        if(indexRand <unAssignedWeapons.Count){
-            assignedwWeapons.Add(unAssignedWeapons[indexRand]);
-            unAssignedWeapons[indexRand].gameObject.SetActive(true);
-            unAssignedWeapons.RemoveAt(indexRand);
-        }
-    }
-      public void AddWeapon(Weapon weaponToAdd){
-     
-            weaponToAdd.gameObject.SetActive(true);
-            assignedwWeapons.Add(weaponToAdd.gameObject);
-            unAssignedWeapons.Remove(weaponToAdd.gameObject);
-        
-    }
-    void SetUpUnAssignedWeapons()
-    {
-        unAssignedWeapons = new List<GameObject>();
 
-        foreach (Transform weapon in weaponsParent)
-        {
-            unAssignedWeapons.Add(weapon.gameObject);
-        }
-    }
 
     public bool HasLevelUp()
     {

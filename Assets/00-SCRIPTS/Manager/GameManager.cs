@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 
-[RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
 
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     public GameState currentState;
-
-
-
-    // public UpgradeManager upgradeManager;
 
     [Header("BUTON")]
 
@@ -24,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject shopPanel;
 
     [SerializeField] private GameObject gameoverPanel;
+    //  Action onWaveComplete;
     private void Awake()
     {
         if (_instance == null)
@@ -43,6 +40,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
         Application.targetFrameRate = 60;
         ChangeState(GameState.MENU);
+
+
     }
     private void Update()
     {
@@ -58,6 +57,7 @@ public class GameManager : MonoBehaviour
         if (Player.Instance.HasLevelUp())
         {
             ChangeState(GameState.SHOP);
+             PlayerManager.Instance.SetRandomCard();
         }
     }
     public void ChangeState(GameState gameState)
@@ -66,25 +66,6 @@ public class GameManager : MonoBehaviour
         // handleStateChange();
         StartCoroutine(gameState.ToString() + "State");
     }
-    // private void handleStateChange()
-    // {
-    //     switch (currentState)
-    //     {
-    //         case GameState.MENU:
-    //             Debug.Log("menu state");
-    //             Time.timeScale = 0.0f;
-
-    //             break;
-    //         case GameState.GAMEPLAY:
-
-    //             Time.timeScale = 1f;
-    //             Debug.Log("gameplay state");
-    //             break;
-    //         case GameState.SHOP:
-    //             Time.timeScale = 0.0f;
-    //             Debug.Log("SHOP state");
-    //             break;
-    //     }
     IEnumerator MENUState()
     {
         Time.timeScale = 0f;
@@ -112,7 +93,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         shopPanel.SetActive(true);
-        // upgradeManager.setButtonUpgrade();
+        // UpgradeManager.Instance.setButtonUpgrade();
+   
         while (currentState == GameState.SHOP)
         {
             yield return null;
@@ -131,4 +113,23 @@ public class GameManager : MonoBehaviour
         gameoverPanel.SetActive(false);
 
     }
+    // private void handleStateChange()
+    // {
+    //     switch (currentState)
+    //     {
+    //         case GameState.MENU:
+    //             Debug.Log("menu state");
+    //             Time.timeScale = 0.0f;
+
+    //             break;
+    //         case GameState.GAMEPLAY:
+
+    //             Time.timeScale = 1f;
+    //             Debug.Log("gameplay state");
+    //             break;
+    //         case GameState.SHOP:
+    //             Time.timeScale = 0.0f;
+    //             Debug.Log("SHOP state");
+    //             break;
+    //     }
 }

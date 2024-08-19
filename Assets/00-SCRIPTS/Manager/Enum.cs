@@ -13,8 +13,13 @@ public enum Stats
 {
     Attack,
     AttackSpeed,
+    CriticalChange,
+    CriticalPercent,
+    MoveSpeed,
+    Range,
+    Amor,
+    Luck,
+    LifeSteal,
     Dodge,
-    Speed,
-    moveSpeed,
     MaxHealth,
 }

@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 using NaughtyAttributes;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 public class WaveManager : MonoBehaviour
 {
-
-    
     [SerializeField] private float distanceRanPos = 15f;
 
     // public float timeToSpawn;
-   private float spawnCounter;
-     private int currentWave;
+    private float spawnCounter;
+    private int currentWave;
     private float waveCounter;
     public List<Wave> waves = new List<Wave>();
     public List<GameObject> spawnEnemies = new List<GameObject>();
 
-
+    public float gameTimer;
+    public TextMeshProUGUI gameTimerText;
     void Start()
     {
 
@@ -29,6 +29,11 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //set game timer text
+        gameTimer += Time.deltaTime;
+        gameTimerText.text = ((int)gameTimer).ToString();
+        /////////////////////
+
         if (!Player.Instance.gameObject.activeSelf) return;
 
         if (currentWave < waves.Count)
@@ -65,6 +70,9 @@ public class WaveManager : MonoBehaviour
         return (Vector2)Player.Instance.transform.position + Random.insideUnitCircle * distanceRanPos;
     }
 }
+
+
+
 [System.Serializable]
 public class Wave
 {

@@ -24,8 +24,18 @@ public class UIManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+
+// public void SetButtonUpgrade(){
+//        for (int i = 0; i < levelUpButon.Length; i++)
+//         { 
+//             levelUpButon[i].SelectUpgrade();
+//             levelUpButon[i].button.onClick.RemoveAllListeners();
+//             levelUpButon[i].button.onClick.AddListener(() =>GameManager.Instance.ChangeState(GameState.GAMEPLAY));
+
+//         }
+// }
     public void StartGameButton() => gameManager.ChangeState(GameState.GAMEPLAY);
     public void SkipShopButton() => gameManager.ChangeState(GameState.GAMEPLAY);
-    public void GameOverButton() => SceneManager.LoadScene(0);
+    public void GameOverButton() => SceneManager.LoadScene(0);  
 
 }

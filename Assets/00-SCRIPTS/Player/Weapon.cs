@@ -27,23 +27,30 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float aimLerp;
     [Header("Upgrade info")]
 
-        public List<WeaponStats> stats;
-         public int levelWeapon;
+    public List<WeaponStats> stats;
+    public int levelWeapon;
     [SerializeField] protected bool isStatsUpdate;
-   public Sprite icon;
+    public Sprite icon;
 
-    // protected virtual void Start()
-    // {
-    //     // sprite = GetComponentInChildren<SpriteRenderer>();
 
-    // }
 
-    public void levelUpWeapon(){
-        if(levelWeapon<stats.Count-1){
+    public void levelUpWeapon()
+    {
+        if (levelWeapon < stats.Count - 1)
+        {
             levelWeapon++;
-            isStatsUpdate=true;
+            isStatsUpdate = true;
+            
+
         }
+        if(levelWeapon>=stats.Count-1){
+                PlayerManager.Instance.fullyLevelWeaon.Add(this);
+                PlayerManager.Instance.assignedwWeapons.Remove(this);
+
+            }
     }
+
+
     protected virtual void AutoAim() { }
     protected Enemy GetEnemyClosest()
     {
@@ -110,6 +117,6 @@ public abstract class Weapon : MonoBehaviour
 [System.Serializable]
 public class WeaponStats
 {
-    public float speed, damage, range, attackDelay,duration;
+    public float speed, damage, range, attackDelay, duration;
     public string upgradeText;
 }
