@@ -245,16 +245,18 @@ MonoBehaviour:
     range: 5
     attackDelay: 0.1
     duration: 0
+    amount: 0
     upgradeText: range1
   - speed: 100
     damage: 50
     range: 10
     attackDelay: 0.1
     duration: 0
+    amount: 0
     upgradeText: range2
   levelWeapon: 0
   isStatsUpdate: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 84f07b27a38eda042b5858622cbeaf52, type: 3}
   shootingPoint: {fileID: 8119950195569468191}
   shootSpeed: 30
 --- !u!95 &643576931529895218
@@ -499,13 +501,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4448293500737357817}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6548796796841985771}
-  m_Father: {fileID: 7504877252310743707}
+  m_Father: {fileID: 8430656621230870487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4615214396697537344
 GameObject:
@@ -5844,16 +5846,18 @@ MonoBehaviour:
     range: 10
     attackDelay: 0.1
     duration: 0.1
+    amount: 0
     upgradeText: melee1
   - speed: 50
     damage: 20
     range: 20
     attackDelay: 0.1
     duration: 0.1
+    amount: 0
     upgradeText: melee2
   levelWeapon: 0
   isStatsUpdate: 0
-  icon: {fileID: 0}
+  icon: {fileID: 5861012807272388905, guid: 233563d19f7857b4dbebb99a587109b6, type: 3}
   HitDetectTransform: {fileID: 6659383300507686843}
   damageEnemies: []
 --- !u!95 &3394497667812442725
@@ -5877,6 +5881,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8442937863942565017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8430656621230870487}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8430656621230870487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442937863942565017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1264092500459542453}
+  m_Father: {fileID: 7504877252310743707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8833913225004576404
 GameObject:
   m_ObjectHideFlags: 0
@@ -5894,7 +5930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7504877252310743707
 Transform:
   m_ObjectHideFlags: 0
@@ -5908,7 +5944,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1264092500459542453}
+  - {fileID: 8430656621230870487}
   m_Father: {fileID: 4866953737095205397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &769592083061742947
@@ -5936,29 +5972,35 @@ MonoBehaviour:
     range: 0
     attackDelay: 0
     duration: 5
+    amount: 1
     upgradeText: 
   - speed: 500
     damage: 50
     range: 0
     attackDelay: 0
     duration: 5
+    amount: 2
     upgradeText: 
   - speed: 700
     damage: 50
     range: 0
     attackDelay: 0
     duration: 5
+    amount: 3
     upgradeText: 
   - speed: 800
     damage: 50
     range: 0
     attackDelay: 0
     duration: 5
+    amount: 4
     upgradeText: 
   levelWeapon: 0
   isStatsUpdate: 0
   icon: {fileID: 21300000, guid: d84c5ca4b7d318a4990bf84e3155022e, type: 3}
   cd: {fileID: 4123905508841963124}
+  holder: {fileID: 4866953737095205397}
+  spinWeaponToSpawn: {fileID: 8833913225004576404}
 --- !u!61 &4123905508841963124
 BoxCollider2D:
   m_ObjectHideFlags: 0

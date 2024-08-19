@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour,ISkill
 {
     // Start is called before the first frame update
 
@@ -117,6 +117,6 @@ public abstract class Weapon : MonoBehaviour
 [System.Serializable]
 public class WeaponStats
 {
-    public float speed, damage, range, attackDelay, duration;
+    public float speed, damage, range, attackDelay, duration,amount;
     public string upgradeText;
 }

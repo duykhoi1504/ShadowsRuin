@@ -116,7 +116,7 @@ MonoBehaviour:
   knockSpeed: 10
   textHealth: {fileID: 4157894831876678143}
   moveSpeed: 1
-  maxHealth: 10
+  maxHealth: 100
   attackRadious: 1.6
   duration: 4
   chaseRadious: 4.23
