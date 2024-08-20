@@ -49,7 +49,7 @@ public class PlayerBullet : MonoBehaviour
         if (other.gameObject.GetComponent<Enemy>() != null)
         {
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(bulletDamage,isCriticalHit);
+            target.TakeDamage(bulletDamage,isCriticalHit,true);
             gameObject.SetActive(false);
 
         }

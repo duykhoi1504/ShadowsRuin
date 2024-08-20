@@ -17,8 +17,6 @@ public class WaveManager : MonoBehaviour
     public List<Wave> waves = new List<Wave>();
     public List<GameObject> spawnEnemies = new List<GameObject>();
 
-    public float gameTimer;
-    public TextMeshProUGUI gameTimerText;
     void Start()
     {
 
@@ -30,11 +28,10 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         //set game timer text
-        gameTimer += Time.deltaTime;
-        gameTimerText.text = ((int)gameTimer).ToString();
+       
         /////////////////////
 
-        if (!Player.Instance.gameObject.activeSelf) return;
+        if (!Player.Instant.gameObject.activeSelf) return;
 
         if (currentWave < waves.Count)
         {
@@ -67,7 +64,7 @@ public class WaveManager : MonoBehaviour
     }
     private Vector2 GetRandomPos()
     {
-        return (Vector2)Player.Instance.transform.position + Random.insideUnitCircle * distanceRanPos;
+        return (Vector2)Player.Instant.transform.position + Random.insideUnitCircle * distanceRanPos;
     }
 }
 

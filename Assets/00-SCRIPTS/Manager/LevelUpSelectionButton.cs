@@ -11,25 +11,28 @@ public class LevelUpSelectionButton : MonoBehaviour
     public Image weaponIcon;
     private Weapon assignedWeapon;
 
-   public  Button button;
-    private void Start() {
+    public Button button;
+    private void Start()
+    {
         button = GetComponent<Button>();
     }
     public void UpdateButtonDisplay(Weapon _weapon)
     {
+        upgradeDescText.color = Color.clear;
+
         if (_weapon.gameObject.activeSelf)
         {
 
 
             upgradeDescText.text = _weapon.stats[_weapon.levelWeapon].upgradeText;
             weaponIcon.sprite = _weapon.icon;
-          nameLevelText.text = $"{_weapon.name} - Lvl {_weapon.levelWeapon + 1}";
+            nameLevelText.text = $"{_weapon.name} - Lvl {_weapon.levelWeapon + 1}";
         }
         else
         {
 
+            upgradeDescText.color = Color.red;
             upgradeDescText.text = " Unblock " + _weapon.name;
-            upgradeDescText.color= Color.red;
 
             weaponIcon.sprite = _weapon.icon;
             nameLevelText.text = _weapon.name;
@@ -52,7 +55,7 @@ public class LevelUpSelectionButton : MonoBehaviour
                 PlayerManager.Instance.AddWeapon(assignedWeapon);
 
             }
-            GameManager.Instance.ChangeState(GameState.GAMEPLAY);
         }
+        GameManager.Instance.ChangeState(GameState.GAMEPLAY);
     }
 }

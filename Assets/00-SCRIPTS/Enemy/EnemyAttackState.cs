@@ -25,7 +25,7 @@ public class EnemyAttackState : EnemyState
     {
         base.Update();
         enemy.SetVelocity(Vector2.zero);
-        if ((Player.Instance.transform.position - enemy.transform.position).magnitude > enemy.attackRadious && stateTimer <= 0)
+        if ((Player.Instant.transform.position - enemy.transform.position).magnitude > enemy.attackRadious && stateTimer <= 0)
         {
             stateMachine.ChangeState(enemy.chaseState);
             // enemy.passAway();

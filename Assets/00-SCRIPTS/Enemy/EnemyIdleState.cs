@@ -52,7 +52,7 @@ public class EnemyIdleState : EnemyState
     }
     private void PatrolRandomPos(){
         // targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
-        targetPos=Player.Instance.gameObject.transform.position;
+        targetPos=Player.Instant.gameObject.transform.position;
        
     }
     

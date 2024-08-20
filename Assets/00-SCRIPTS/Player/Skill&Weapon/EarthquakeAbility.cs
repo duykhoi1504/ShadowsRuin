@@ -16,36 +16,57 @@ public class EarthquakeAbility : Weapon
 
     private void Start()
     {
+        SetStats();
         sp = GetComponentInChildren<SpriteRenderer>();
 
 
     }
     private void Update()
     {
+        Debug.Log(stats.Count + " EarthquakeAbility");
         //hoac 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
             sp.sprite = earthquakeSprite;
             Attack();
             lastAttackTime = Time.time;
-            StartCoroutine(EarthquakeFX(.5f));
+            StartCoroutine(EarthquakeFX(attackDelay));
             // LeanTween
 
         }
+
+        if (isStatsUpdate)
+        {
+            SetStats();
+            isStatsUpdate = false;
+        }
+
+    }
+    public override void SetStats()
+    {
+
+            damage = stats[levelWeapon].damage;
+            range = stats[levelWeapon].range;
+            // spinSpeed = stats[levelWeapon].speed;
+            // attackDelay = stats[levelWeapon].duration;
+            attackDelay = stats[levelWeapon].attackDelay;
+        
     }
 
     private IEnumerator EarthquakeFX(float x)
     {
         sp.sprite = earthquakeSprite;
-           // Scale lên (9, 9, 9)
-    LeanTween.scale(gameObject, new Vector3(10, 10, 10), x).setEase(LeanTweenType.easeOutBounce);
+        // Scale lên (9, 9, 9)
+        LeanTween.scale(gameObject, new Vector3(range, range, range), x).setEase(LeanTweenType.easeOutBounce);
 
         yield return new WaitForSeconds(x);
-           LeanTween.scale(gameObject, Vector3.zero, x).setEase(LeanTweenType.easeInBounce);
+        LeanTween.scale(gameObject, Vector3.zero, x).setEase(LeanTweenType.easeInBounce);
         sp.sprite = null;
 
 
     }
+
+
     public void Attack()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(HitDetectTransform.position, range, enemyMask);
@@ -56,11 +77,13 @@ public class EarthquakeAbility : Weapon
             if (enemy != null)
             {
                 float damageA = GetDamage(out bool isCriticalHit);
-                enemy.TakeDamage(damageA, isCriticalHit);
+                enemy.TakeDamage(damageA, isCriticalHit, true);
             }
         }
 
     }
+
+
     // private void OnTriggerEnter2D(Collider2D other) {
     //     if (other.gameObject.GetComponent<Enemy>()!=null){
     //          float damageA = GetDamage(out bool isCriticalHit);

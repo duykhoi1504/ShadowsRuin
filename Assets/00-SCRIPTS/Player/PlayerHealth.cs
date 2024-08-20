@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : Singleton<PlayerHealth>
 {
     // Start is called before the first frame update
     [Header("Health info")]
 
-    [SerializeField] private float maxHealth;
-    private float health;
+ public float maxHealth;
+    public float health;
     [Header("Components info")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -21,20 +21,26 @@ public class PlayerHealth : MonoBehaviour
         // slider=GetComponent<Slider>();
         health = maxHealth;
         healthSlider.value = 1;
-        UpdateGUI();
+        UpdateHPGUI();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        // UpdateHPGUI();
+            if(health>maxHealth){
+                health=maxHealth;
+            }
+
     }
     public void TakeDamage(float _damage)
     {
+
         float realDamage = Mathf.Min(_damage, health);
         health -= realDamage;
-        healthSlider.value = health / maxHealth;
-        UpdateGUI();
+        
+        UpdateHPGUI();
 
         if (health <= 0)
         {
@@ -48,8 +54,9 @@ public class PlayerHealth : MonoBehaviour
         GameManager.Instance.ChangeState(GameState.GAMEOVER);
 
     }
-    private void UpdateGUI()
+    public void UpdateHPGUI()
     {
+        healthSlider.value = health / maxHealth;
         healthText.text = health + " / " + maxHealth;
     }
 }

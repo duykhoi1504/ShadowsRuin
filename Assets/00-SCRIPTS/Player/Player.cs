@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerHealth), typeof(PlayerLevel))]
 public class Player : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
+    public static Player Instant { get; private set; }
     [Header("Components info")]
     public PlayerHealth playerHealth;
     public Rigidbody2D rb;
@@ -33,13 +33,13 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instant != null && Instant != this)
         {
             Destroy(this);
         }
         else
         {
-            Instance = this;
+            Instant = this;
         }
         // if (Instance != null)
         rb = gameObject.GetComponent<Rigidbody2D>();

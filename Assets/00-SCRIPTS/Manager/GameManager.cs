@@ -4,6 +4,8 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
+using System.Threading;
 
 
 public class GameManager : MonoBehaviour
@@ -13,6 +15,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     public GameState currentState;
 
+    [Header("Timer info")]
+
+    public float gameTimer;
+    public TextMeshProUGUI gameTimerText;
+     [Header("Gameover info")]
+    public TextMeshProUGUI timeSurvire;
+
     [Header("BUTON")]
 
     [SerializeField] private GameObject menuPanel;
@@ -20,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject shopPanel;
 
     [SerializeField] private GameObject gameoverPanel;
+
+
     //  Action onWaveComplete;
     private void Awake()
     {
@@ -46,18 +57,43 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         WaveComplete();
+        if (currentState == GameState.GAMEPLAY)
+        {
+            gameTimer += Time.deltaTime;
+            updateTimer(gameTimer);
+        }
     }
 
 
+    private void updateTimer(float time)
+    {
 
 
+        float minutes = Mathf.FloorToInt(time / 60f);
+        //chia lay du time= 60 % 60 du 0
+        float seconds = Mathf.FloorToInt(time % 60f);
+
+        gameTimerText.text = minutes.ToString() + ":" + seconds.ToString();
+    }
+    private void endLevel()
+    {
+
+
+        float minutes = Mathf.FloorToInt(gameTimer / 60f);
+        //chia lay du time= 60 % 60 du 0
+        float seconds = Mathf.FloorToInt(gameTimer % 60f);
+
+
+        timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString()+ " secs";
+    }
 
     public void WaveComplete()
     {
-        if (Player.Instance.HasLevelUp())
+        if (Player.Instant.HasLevelUp())
         {
             ChangeState(GameState.SHOP);
-             PlayerManager.Instance.SetRandomCard();
+            PlayerStatsManager.Instant.SetStatsRandButton();
+            PlayerManager.Instance.SetRandomCard();
         }
     }
     public void ChangeState(GameState gameState)
@@ -94,7 +130,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         shopPanel.SetActive(true);
         // UpgradeManager.Instance.setButtonUpgrade();
-   
+
         while (currentState == GameState.SHOP)
         {
             yield return null;
@@ -103,7 +139,9 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GAMEOVERState()
     {
+
         Time.timeScale = 0f;
+        endLevel();
         gameoverPanel.SetActive(true);
         // LeanTween.delayedCall(2,()=>SceneManager.LoadScene(0));
         while (currentState == GameState.GAMEOVER)

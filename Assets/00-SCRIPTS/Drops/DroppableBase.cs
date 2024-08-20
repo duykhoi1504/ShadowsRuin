@@ -11,16 +11,7 @@ public class DroppableBase : MonoBehaviour,ICollectable
     private void OnEnable() {
         collected=false;
     }
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void Collect(Player player)
 
     {

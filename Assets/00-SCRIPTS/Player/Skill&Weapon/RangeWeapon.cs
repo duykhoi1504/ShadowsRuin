@@ -32,7 +32,7 @@ public class RangeWeapon : Weapon
             ManageShootingTimer();
             return;
         }
-        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * 4f);
         // Quaternion newRotation = Quaternion.LookRotation(transform.forward, dir);
         // transform.rotation = newRotation;
 

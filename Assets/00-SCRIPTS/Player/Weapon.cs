@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour,ISkill
+public abstract class Weapon : MonoBehaviour, ISkill
 {
     // Start is called before the first frame update
 
@@ -24,7 +24,7 @@ public abstract class Weapon : MonoBehaviour,ISkill
 
     [SerializeField] protected float damage;
     [Header("Animations info")]
-    [SerializeField] protected float aimLerp;
+    // [SerializeField] protected float aimLerp;
     [Header("Upgrade info")]
 
     public List<WeaponStats> stats;
@@ -32,22 +32,21 @@ public abstract class Weapon : MonoBehaviour,ISkill
     [SerializeField] protected bool isStatsUpdate;
     public Sprite icon;
 
-
-
     public void levelUpWeapon()
     {
         if (levelWeapon < stats.Count - 1)
         {
             levelWeapon++;
             isStatsUpdate = true;
-            
 
-        }
-        if(levelWeapon>=stats.Count-1){
+
+            if (levelWeapon >= stats.Count - 1)
+            {
                 PlayerManager.Instance.fullyLevelWeaon.Add(this);
                 PlayerManager.Instance.assignedwWeapons.Remove(this);
 
             }
+        }
     }
 
 
@@ -58,8 +57,8 @@ public abstract class Weapon : MonoBehaviour,ISkill
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
 
 
-        foreach (var enemy in enemies)
-            Debug.Log(enemy.name);
+        // foreach (var enemy in enemies)
+        //     Debug.Log(enemy.name);
 
         if (enemies.Length <= 0)
             return null;
@@ -112,11 +111,12 @@ public abstract class Weapon : MonoBehaviour,ISkill
         // Gizmos.DrawWireSphere(hitCheck.transform.position, hitRadius);
 
     }
+    public virtual void SetStats() { }
 
 }
 [System.Serializable]
 public class WeaponStats
 {
-    public float speed, damage, range, attackDelay, duration,amount;
+    public float speed, damage, range, attackDelay, duration, amount;
     public string upgradeText;
 }

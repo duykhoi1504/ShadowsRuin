@@ -58,7 +58,7 @@ public class MeleeWeapon : Weapon
         }
         // Quaternion newRotation = Quaternion.LookRotation(transform.forward, dir);
         // transform.rotation = newRotation;
-        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+        transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * 4f);
         AttackTimer += Time.deltaTime;
     }
     public void Attack()
@@ -74,7 +74,7 @@ public class MeleeWeapon : Weapon
             {   
                  float damageA=GetDamage(out bool isCriticalHit);
                 
-                enemy.TakeDamage(damageA,isCriticalHit);
+                enemy.TakeDamage(damageA,isCriticalHit,true);
                 damageEnemies.Add(enemy);
             }
 

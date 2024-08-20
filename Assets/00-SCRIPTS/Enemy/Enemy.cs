@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
         stateMachine.InitState(idleState);
         // stateMachine.InitState(chaseState);
 
-        player = Player.Instance;
+        player = Player.Instant;
 
     }
 
@@ -141,13 +141,14 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float _damage, bool isCriticalHit)
+    public virtual void TakeDamage(float _damage, bool isCriticalHit,bool shouldKnockBack)
     {
         // Check if the game object is active before starting the coroutine
         if (gameObject.activeInHierarchy)
         {
             fx.StartCoroutine("FlashFX");
-            StartCoroutine("HitKnockBack");
+            if(shouldKnockBack)
+                StartCoroutine("HitKnockBack");
         }
         health -= _damage;
 
@@ -183,20 +184,20 @@ public class Enemy : MonoBehaviour
     }
     public Vector2 getEnemyDir()
     {
-        Player player = Player.Instance;
+        Player player = Player.Instant;
         if (player == null) return Vector2.zero;
         return (player.GetPosCenter() - (Vector2)this.gameObject.transform.position).normalized;
     }
     public float getDistanceEtoP()
     {
-        Player player = Player.Instance;
+        Player player = Player.Instant;
         if (player == null) return Mathf.Infinity;
         float distance = Vector2.Distance(this.gameObject.transform.position, player.GetPosCenter());
         return distance;
     }
     public virtual void attack()
     {
-        Player.Instance.TakeDamage(attackDamage);
+        Player.Instant.TakeDamage(attackDamage);
     }
     public virtual void FlipController(Transform _transform)
     {

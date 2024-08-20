@@ -24,7 +24,7 @@ public class SpinWeapon : Weapon
     private float attackCooldown = 0.1f; // Thay đổi thời gian này cho phù hợp
     void Start()
     {
-        // SetStats();
+        SetStats();
         // UIManager.Instance.levelUpButon[0].UpdateButtonDisplay(this);
 
         isHide = false;
@@ -79,7 +79,7 @@ public class SpinWeapon : Weapon
             }
         }
     }
-    private void SetStats()
+    public override void SetStats()
     {
         if (levelWeapon < stats.Count - 1)
         {
@@ -101,7 +101,7 @@ public class SpinWeapon : Weapon
             if (enemy != null)
             {
                 float damageA = GetDamage(out bool isCriticalHit);
-                enemy.TakeDamage(damageA, isCriticalHit);
+                enemy.TakeDamage(damageA, isCriticalHit,false);
             }
         }
     }

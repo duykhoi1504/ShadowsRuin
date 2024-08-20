@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour
             cardStore.RemoveAt(selectRand);
         }
 
-       // Cập nhật UI để hiển thị các vũ khí trong weaponToUpgrade
+        // Cập nhật UI để hiển thị các vũ khí trong weaponToUpgrade
         for (int i = 0; i < UIManager.Instance.levelUpButon.Length; i++)
         {
             if (i < weaponToUpgrade.Count)
@@ -81,6 +81,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     public void AddWeapon(int indexRand)
     {
+
         if (indexRand < unAssignedWeapons.Count)
         {
             assignedwWeapons.Add(unAssignedWeapons[indexRand]);

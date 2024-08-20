@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bfc4e329538438b42ae6d67d1b6c0bbb, type: 3}
+      objectReference: {fileID: 512395441, guid: 99282b7b85669d6468c44bee343b1941, type: 3}
     - target: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_SpriteSortPoint
       value: 1

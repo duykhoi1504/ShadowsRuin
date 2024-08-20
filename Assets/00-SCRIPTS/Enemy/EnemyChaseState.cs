@@ -30,10 +30,10 @@ public class EnemyChaseState : EnemyState
             stateMachine.ChangeState(enemy.idleState);
         }
     
-         dir =(Player.Instance.transform.position-enemy.transform.position).normalized;
+         dir =(Player.Instant.transform.position-enemy.transform.position).normalized;
         // enemy.transform.position+=dir*enemy.moveSpeed*Time.deltaTime; 
         enemy.SetVelocity(dir*enemy.moveSpeed*enemy.moveSpeed);
-        if((Player.Instance.transform.position-enemy.transform.position).magnitude<enemy.attackRadious){
+        if((Player.Instant.transform.position-enemy.transform.position).magnitude<enemy.attackRadious){
             stateMachine.ChangeState(enemy.attackState);
             // enemy.passAway();
             

@@ -6,21 +6,20 @@ using UnityEngine.UI;
 
 
 
-public class PlayerLevel : MonoBehaviour
+public class PlayerLevel : Singleton<PlayerLevel>
 {
     // Start is called before the first frame update
     [SerializeField] private int requireXP;
     [SerializeField] private int currentXP;
     [SerializeField] private int level;
     [SerializeField] private bool isLevelUp;
-    [SerializeField] Slider sliderXP;
-    [SerializeField] TextMeshProUGUI text;
+
     void Start()
     {
         isLevelUp = false;
         Exp.onCollected += UpdateCurrentXP;
         UpdateRequireXP();
-        UpdateGUI();
+        UIManager.Instance.UpdateXPGUI( currentXP, requireXP, level);
     }
     private void OnDestroy()
     {
@@ -36,11 +35,11 @@ public class PlayerLevel : MonoBehaviour
     {
         requireXP = (level + 1) * 5;
     }
-    void UpdateGUI()
-    {
-        sliderXP.value = (float)currentXP / requireXP;
-        text.text = "level " + (level + 1);
-    }
+    // void UpdateGUI()
+    // {
+    //     sliderXP.value = (float)currentXP / requireXP;
+    //     text.text = "level " + (level + 1);
+    // }
     private void UpdateCurrentXP(Exp exp)
     {
         currentXP++;
@@ -52,7 +51,7 @@ public class PlayerLevel : MonoBehaviour
             level++;
             UpdateRequireXP();
             // GameManager.Instance.ChangeState(GameState.SHOP);
-            
+
         }
         // UIManager.Instance.levelUpButon[0].UpdateButtonDisplay(PlayerManager.Instance.assignedwWeapons[0].GetComponent<Weapon>());
         // UIManager.Instance.levelUpButon[1].UpdateButtonDisplay(PlayerManager.Instance.unAssignedWeapons[0].GetComponent<Weapon>());
@@ -71,7 +70,7 @@ public class PlayerLevel : MonoBehaviour
         //     }
         // }
 
-        UpdateGUI();
+         UIManager.Instance.UpdateXPGUI( currentXP, requireXP, level);
 
     }
     public bool HasLevelUp()
