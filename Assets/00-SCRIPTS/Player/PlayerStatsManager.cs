@@ -26,8 +26,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
         //=======================MOVE SPEED================================
         for (int i = moveSpeed.Count - 1; i < moveSpeedCount; i++)
         {
-            
-            ConfigNewCostAndValue(ref newCost, ref newValue,moveSpeed, i);
+
+            ConfigNewCostAndValue(ref newCost, ref newValue, moveSpeed, i);
             moveSpeed.Add(new PlayerStatsValue(newCost, newValue));
         }
         //=======================MAX HEALTH================================
@@ -35,23 +35,26 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
 
         for (int i = maxHealth.Count - 1; i < maxHealthCount; i++)
         {
-            ConfigNewCostAndValue(ref newCost, ref newValue,maxHealth, i);
+            ConfigNewCostAndValue(ref newCost, ref newValue, maxHealth, i);
             maxHealth.Add(new PlayerStatsValue(newCost, newValue));
         }
         //=======================HEALTH================================
 
         for (int i = health.Count - 1; i < healthCount; i++)
         {
-            ConfigNewCostAndValue(ref newCost, ref newValue,health, i);
+            ConfigNewCostAndValue(ref newCost, ref newValue, health, i);
             health.Add(new PlayerStatsValue(newCost, newValue));
         }
 
     }
-    void ConfigNewCostAndValue(ref int newCost, ref float newValue,List<PlayerStatsValue> _list, int i)
+    void ConfigNewCostAndValue(ref int newCost, ref float newValue, List<PlayerStatsValue> _list, int i)
     {
         newCost = _list[i].cost + _list[1].cost;
         newValue = _list[i].value + (_list[1].value - _list[0].value);
     }
+
+
+
     public void SetStatsRandButton()
     {
         for (int i = 0; i < statsButton.Length; i++)
@@ -61,7 +64,14 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
             statsButton[i].UpgradePlayerStatsButtonDisplay(statValue.cost, statValue.value, randomStat.ToString(), randomStat);
         }
     }
+    public void updateStatsShopDisplayer()
+    {
+        for (int i = 0; i < statsButton.Length; i++)
+        {
 
+            statsButton[i].updateDisplayWhenClicked();
+        }
+    }
     private PlayerStatsValue GetRandomStatValue(PlayerStats stat)
     {
         List<PlayerStatsValue> statList = null;
@@ -82,7 +92,7 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
                 break;
             case PlayerStats.health:
                 statList = health;
-                
+
                 break;
         }
 

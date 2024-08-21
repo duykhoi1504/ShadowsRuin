@@ -4633,6 +4633,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &763624860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4448293500737357817, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+  m_PrefabInstance: {fileID: 717049820958382798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &763624862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763624860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420a872d824e3204599b0770db289a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &784774773
 GameObject:
   m_ObjectHideFlags: 0
@@ -27680,6 +27697,14 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1965394505}
+    - target: {fileID: 1071345650537224315, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071345650537224315, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2631450944497998277, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.37
@@ -27720,6 +27745,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2730564633394395285, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3149334718757860301, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -27727,6 +27756,18 @@ PrefabInstance:
     - target: {fileID: 4078319783470011926, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123905508841963124, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473142218248408040, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473142218248408040, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4650627183016999866, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_LocalScale.x
@@ -27748,12 +27789,20 @@ PrefabInstance:
       propertyPath: joyStick1
       value: 
       objectReference: {fileID: 704981601}
+    - target: {fileID: 7269983782951244998, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7308922267149331714, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7308922267149331714, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430656621230870487, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8675838881149953383, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
@@ -27835,6 +27884,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4078319783470011926, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
       insertIndex: 1
       addedObject: {fileID: 3308126398209320338}
+    - targetCorrespondingSourceObject: {fileID: 4448293500737357817, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 763624862}
   m_SourcePrefab: {fileID: 100100000, guid: 73ffdecdaa1447a4990fc8db68337d08, type: 3}
 --- !u!1001 &3280706494139874697
 PrefabInstance:

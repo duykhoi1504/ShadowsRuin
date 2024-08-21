@@ -33,6 +33,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (health > maxHealth)
         {
             health = maxHealth;
+            UpdateHPGUI();
         }
        
 

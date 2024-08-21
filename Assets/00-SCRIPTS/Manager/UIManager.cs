@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     GameManager gameManager;
     public LevelUpSelectionButton[] levelUpButon;
-
+   public GameObject ShopContainer;
     [Header("EXP BAR info")]
     [SerializeField] Slider sliderXP;
     [SerializeField] TextMeshProUGUI text;
@@ -59,14 +59,17 @@ public class UIManager : MonoBehaviour
     }
 
 
-}
-
 // public void SetButtonUpgrade(){
 //        for (int i = 0; i < levelUpButon.Length; i++)
 //         { 
 //             levelUpButon[i].SelectUpgrade();
+//             if( levelUpButon[i].isClicked)
+//             {
+//                 ShopContainer.SetActive(false);
+//             }
 //             levelUpButon[i].button.onClick.RemoveAllListeners();
 //             levelUpButon[i].button.onClick.AddListener(() =>GameManager.Instance.ChangeState(GameState.GAMEPLAY));
 
 //         }
 // }
+}

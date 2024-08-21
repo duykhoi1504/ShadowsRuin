@@ -89,7 +89,7 @@ public abstract class Weapon : MonoBehaviour, ISkill
     //Từ khóa out cho phép một phương thức trả về nhiều giá trị thông qua các tham số.
     //không cần phải tạo thêm biến isCritical
     //Khi gọi phương thức GetDamage(), ngoài việc nhận về giá trị float (damage), bạn cũng có thể nhận về giá trị bool (isCriticalHit) thông qua tham số out.
-    protected float GetDamage(out bool isCriticalHit)
+    public float GetDamage(out bool isCriticalHit)
     {
         isCriticalHit = false;
         if (Random.Range(0, 100) <= 50)

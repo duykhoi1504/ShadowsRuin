@@ -12,10 +12,18 @@ public class LevelUpSelectionButton : MonoBehaviour
     private Weapon assignedWeapon;
 
     public Button button;
+
     private void Start()
     {
+       
+
         button = GetComponent<Button>();
     }
+    // private void Update() {
+    //     if(isClicked){
+    //         gameObject.SetActive(false);
+    //     }
+    // }
     public void UpdateButtonDisplay(Weapon _weapon)
     {
         upgradeDescText.color = Color.clear;
@@ -43,6 +51,7 @@ public class LevelUpSelectionButton : MonoBehaviour
 
     public void SelectUpgrade()
     {
+       
         if (assignedWeapon != null)
         {
 
@@ -56,6 +65,7 @@ public class LevelUpSelectionButton : MonoBehaviour
 
             }
         }
-        GameManager.Instance.ChangeState(GameState.GAMEPLAY);
+        UIManager.Instance.ShopContainer.SetActive(false);
+        // GameManager.Instance.ChangeState(GameState.GAMEPLAY);
     }
 }

@@ -17,18 +17,16 @@ public class SpinWeapon : Weapon
     public GameObject spinWeaponToSpawn;
 
     
-
-    //controll OverlapCircleAll
     
-    private float lastAttackTime;
-    private float attackCooldown = 0.1f; // Thay đổi thời gian này cho phù hợp
+    // private float lastAttackTime;
+    // private float attackCooldown = 0.1f; // Thay đổi thời gian này cho phù hợp
     void Start()
     {
         SetStats();
         // UIManager.Instance.levelUpButon[0].UpdateButtonDisplay(this);
 
         isHide = false;
-        this.gameObject.SetActive(true);
+        // this.gameObject.SetActive(true);
         targetSize = this.transform.localScale;
         transform.localScale = Vector3.zero;
     }
@@ -41,11 +39,11 @@ public class SpinWeapon : Weapon
 
         //    this.transform.Rotate(0,0,spinSpeed*Time.deltaTime);
         //hoac 
-        if (Time.time >= lastAttackTime + attackCooldown)
-        {
-            Attack();
-            lastAttackTime = Time.time;
-        }
+        // if (Time.time >= lastAttackTime + attackCooldown)
+        // {
+        //     Attack();
+        //     lastAttackTime = Time.time;
+        // }
         //xoay
 
         this.transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z - (spinSpeed * Time.deltaTime));
@@ -91,20 +89,20 @@ public class SpinWeapon : Weapon
         }
     }
 
-    public void Attack()
-    {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(HitDetectTransform.position, range, enemyMask);
+    // public void Attack()
+    // {
+    //     Collider2D[] enemies = Physics2D.OverlapCircleAll(HitDetectTransform.position, range, enemyMask);
 
-        foreach (var hit in enemies)
-        {
-            Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                float damageA = GetDamage(out bool isCriticalHit);
-                enemy.TakeDamage(damageA, isCriticalHit,false);
-            }
-        }
-    }
+    //     foreach (var hit in enemies)
+    //     {
+    //         Enemy enemy = hit.GetComponent<Enemy>();
+    //         if (enemy != null)
+    //         {
+    //             float damageA = GetDamage(out bool isCriticalHit);
+    //             enemy.TakeDamage(damageA, isCriticalHit,false);
+    //         }
+    //     }
+    // }
     // private void OnTriggerEnter2D(Collider2D other)
     // {
     //     if (other.gameObject.GetComponent<Enemy>() != null)
