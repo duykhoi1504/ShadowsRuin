@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
                 StartCoroutine("HitKnockBack");
         }
         health -= _damage;
-
+        AudioManager.Instant.PlayerSFXPitch(CONTANST.enemyhurt);
 
         OnDamageTaken?.Invoke(_damage, this.transform.position, isCriticalHit);
         if (health <= 0)

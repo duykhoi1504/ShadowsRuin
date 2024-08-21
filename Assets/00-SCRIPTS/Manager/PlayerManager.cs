@@ -31,7 +31,11 @@ public class PlayerManager : MonoBehaviour
     {
         SetUpUnAssignedWeapons();
         //ran dom vũ khi ban đàu
-        AddWeapon(Random.Range(0, unAssignedWeapons.Count));
+
+        int randWeapon=Random.Range(0, unAssignedWeapons.Count);
+        Debug.Log("rane "+randWeapon);
+
+        AddWeapon(randWeapon);
     }
 
 

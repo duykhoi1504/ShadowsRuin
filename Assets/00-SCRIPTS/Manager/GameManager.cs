@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
             gameTimer += Time.deltaTime;
             updateTimer(gameTimer);
         }
+
+        
+
     }
 
 
@@ -139,7 +142,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GAMEOVERState()
     {
-
+        yield  return new WaitForSeconds(3f);
         Time.timeScale = 0f;
         endLevel();
         gameoverPanel.SetActive(true);

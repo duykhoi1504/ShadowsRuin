@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppableBase : MonoBehaviour,ICollectable
+public class DroppableBase : MonoBehaviour, ICollectable
 {
     // Start is called before the first frame update
     // Start is called before the first frame update
     [SerializeField] public bool collected;
     [SerializeField] float timer;
-    private void OnEnable() {
-        collected=false;
+    private void OnEnable()
+    {
+        collected = false;
     }
 
     public void Collect(Player player)
@@ -41,7 +42,10 @@ public class DroppableBase : MonoBehaviour,ICollectable
         Collected();
 
     }
-    protected virtual void Collected(){
+    protected virtual void Collected()
+    {
+    
+
         gameObject.SetActive(false);
     }
 }

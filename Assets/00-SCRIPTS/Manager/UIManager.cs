@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [Header("Coin BAR info")]
 
     [SerializeField] private TextMeshProUGUI coinText;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -34,7 +34,14 @@ public class UIManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    private void Update()
+    {
+        // if (PlayerHealth.Instant.hasPlayerDead())
+        // {
+        //     LeanTween.delayedCall(3f, () => gameManager.ChangeState(GameState.GAMEOVER));
+        // }
 
+    }
     public void StartGameButton() => gameManager.ChangeState(GameState.GAMEPLAY);
     public void SkipShopButton() => gameManager.ChangeState(GameState.GAMEPLAY);
     public void GameOverButton() => SceneManager.LoadScene(0);

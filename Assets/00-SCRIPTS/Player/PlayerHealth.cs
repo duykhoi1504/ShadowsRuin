@@ -10,11 +10,12 @@ public class PlayerHealth : Singleton<PlayerHealth>
     // Start is called before the first frame update
     [Header("Health info")]
 
- public float maxHealth;
+    public float maxHealth;
     public float health;
     [Header("Components info")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
+
 
     void Start()
     {
@@ -29,9 +30,11 @@ public class PlayerHealth : Singleton<PlayerHealth>
     void Update()
     {
         // UpdateHPGUI();
-            if(health>maxHealth){
-                health=maxHealth;
-            }
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+       
 
     }
     public void TakeDamage(float _damage)
@@ -39,7 +42,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
         float realDamage = Mathf.Min(_damage, health);
         health -= realDamage;
-        
+
         UpdateHPGUI();
 
         if (health <= 0)
@@ -47,16 +50,24 @@ public class PlayerHealth : Singleton<PlayerHealth>
             PassAway();
         }
     }
+
     void PassAway()
     {
         // Time.timeScale = 0;
         // SceneManager.LoadScene(0);
+
+        VFXManager.Instant.SpawnVFX("playerdead", this.transform.position);  
+        AudioManager.Instant.PlaySFX(CONTANST.explosion);
+        Player.Instant.gameObject.SetActive(false);
         GameManager.Instance.ChangeState(GameState.GAMEOVER);
 
+        // StartCoroutine(waitForEffect());
     }
+
     public void UpdateHPGUI()
     {
         healthSlider.value = health / maxHealth;
         healthText.text = health + " / " + maxHealth;
     }
+
 }

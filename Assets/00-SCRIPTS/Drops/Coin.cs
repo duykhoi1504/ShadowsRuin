@@ -9,6 +9,9 @@ public class Coin : DroppableBase
     protected override void Collected()
     {
         base.Collected();
+            AudioManager.Instant.SFXVolumn(.5f);
+
+        AudioManager.Instant.PlaySFX(CONTANST.pickupcoin);
         onCollectedCoin?.Invoke(coinCount);
     }
 }

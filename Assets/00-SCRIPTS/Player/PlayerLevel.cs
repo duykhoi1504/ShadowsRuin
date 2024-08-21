@@ -77,6 +77,7 @@ public class PlayerLevel : Singleton<PlayerLevel>
     {
         if (isLevelUp)
         {
+            AudioManager.Instant.PlaySFX(CONTANST.powerup);
             isLevelUp = false;
             // Player.Instance.activeWeapon.levelUpWeapon();
             return true;
