@@ -7,7 +7,8 @@ public enum GameState
     GAMEPLAY,
     PAUSE,
     SHOP,
-    GAMEOVER
+    GAMEOVER,
+    INVENTORY,
 }
 public enum Stats
 {

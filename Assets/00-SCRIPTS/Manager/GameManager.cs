@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject shopPanel;
+    [SerializeField] private GameObject inventoryPanel;
+
 
     [SerializeField] private GameObject gameoverPanel;
 
@@ -139,6 +141,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         shopPanel.SetActive(false);
+    }
+
+    IEnumerator INVENTORYState(){
+        Time.timeScale = 0f;
+        inventoryPanel.SetActive(true);
+        // UpgradeManager.Instance.setButtonUpgrade();
+
+        while (currentState == GameState.INVENTORY)
+        {
+            yield return null;
+        }
+        inventoryPanel.SetActive(false);
     }
     IEnumerator GAMEOVERState()
     {
