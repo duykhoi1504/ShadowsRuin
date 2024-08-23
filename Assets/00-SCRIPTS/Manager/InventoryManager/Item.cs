@@ -10,7 +10,15 @@ public class Item : ScriptableObject
 {
     public string name;
     public int quantity;
-    public Sprite image;
+    public int value;
 
-    
+    public Sprite image;
+    public ItemType itemType;
+
+ 
+}
+
+public enum ItemType{
+    Postion,
+    Mana,
 }

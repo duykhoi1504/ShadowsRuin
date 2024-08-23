@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PLayerState :IState
 {
-    protected float xInput;
-    protected float yInput;
+    // protected float xInput;
+    // protected float yInput;
         private string aniBoolName;
     protected Player player;
        protected bool triggerCalled;
@@ -27,9 +27,11 @@ public class PLayerState :IState
     }
     public virtual void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+        // xInput = Input.GetAxisRaw("Horizontal");
+        // yInput = Input.GetAxisRaw("Vertical");
         // player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
+
+        
         player.rb.velocity = player.joyStick1.GetMoveVector().normalized * player.moveSpeed;
 
 

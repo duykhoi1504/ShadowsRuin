@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
     public Weapon activeWeapon;
 
     [Header("Move info")]
+    private float xInput;
+    private float yInput;
     public float moveSpeed = 5f;
+     public Vector3 currentDir;
 
     #region Statemachine 
     public StateMachine stateMachine;
@@ -27,7 +30,7 @@ public class Player : MonoBehaviour
     #endregion
     // public MobileJoystick joyTick;
     public JoySticks joyStick1;
-
+   
 
 
 
@@ -66,8 +69,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-   
 
+        // xInput = Input.GetAxisRaw("Horizontal");
+        // yInput = Input.GetAxisRaw("Vertical");
+        // rb.velocity = new Vector3(xInput, yInput).normalized * moveSpeed;
+if(getDir()!=Vector2.zero){
+    currentDir=getDir();
+}
         // transform.position=Random.insideUnitCircle
         FlipController(avatar.transform);
         stateMachine.state.Update();
@@ -77,7 +85,14 @@ public class Player : MonoBehaviour
 
     }
 
+    public Vector2 getDir()
+    {
 
+        // Vector2 dir = new Vector2(xInput, yInput);
+        // return dir;
+        return joyStick1.GetMoveVector().normalized;
+
+    }
 
     public bool HasLevelUp()
     {

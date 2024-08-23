@@ -5,10 +5,12 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     [SerializeField] Item item;
+    [SerializeField] private int quantity;
    private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<Player>() != null){
-            InventoryManager.Instant.AddItem(item);
+            InventoryManager.Instant.AddItem(item,quantity);
             this.gameObject.SetActive(false);   
+            
         }
    }
 }

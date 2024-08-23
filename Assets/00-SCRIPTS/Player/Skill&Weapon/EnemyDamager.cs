@@ -14,9 +14,17 @@ public class EnemyDamager : MonoBehaviour
     {
         if (other.GetComponent<Enemy>() != null)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            float damageA = weapon.GetDamage(out bool isCriticalHit);
-            enemy.TakeDamage(damageA, isCriticalHit, false);
+            if (weapon != weapon)
+            {
+                Enemy enemy = other.GetComponent<Enemy>();
+                float damageA = weapon.GetDamage(out bool isCriticalHit);
+                enemy.TakeDamage(damageA, isCriticalHit, false);
+            }
+            else
+            {
+                Enemy enemy = other.GetComponent<Enemy>();
+                enemy.TakeDamage(20, true, false);
+            }
         }
     }
 }

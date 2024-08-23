@@ -16,4 +16,23 @@ public class ItemSlot : MonoBehaviour
         Destroy(gameObject);
 
     }
+    public void UseItem(){
+               
+
+        item.quantity--;
+        switch(item.itemType){
+            case ItemType.Postion:
+            PlayerHealth.Instant.health+=item.value;
+            break;
+            case ItemType.Mana:
+            Player.Instant.moveSpeed+=item.value;
+            break;
+        } 
+        if(item.quantity<=0){
+            item.quantity=0;
+            RemmoveItem();
+        }
+        InventoryManager.Instant.ListItems();
+        
+    }
 }
