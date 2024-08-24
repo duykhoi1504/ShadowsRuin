@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,16 +20,22 @@ public class Player : MonoBehaviour
     private float xInput;
     private float yInput;
     public float moveSpeed = 5f;
-     public Vector3 currentDir;
+
+    public float dashSpeed = 5f;
+    public float dashDuration = .5f;
+
+    public Vector3 currentDir;
 
     #region Statemachine 
     public StateMachine stateMachine;
-    public IdleState idleState;
-    public MoveState moveState;
+    public PlayerIdleState idleState;
+    public PlayerMoveState moveState;
+    public PlayerDashState dashState;
+
     #endregion
     // public MobileJoystick joyTick;
     public JoySticks joyStick1;
-   
+    public bool isBusy;
 
 
 
@@ -52,48 +57,64 @@ public class Player : MonoBehaviour
 
 
         stateMachine = new StateMachine();
-        idleState = new IdleState(this, stateMachine, "Idle");
-        moveState = new MoveState(this, stateMachine, "Move");
+        idleState = new PlayerIdleState(this, stateMachine, "Idle");
+        moveState = new PlayerMoveState(this, stateMachine, "Move");
+        dashState = new PlayerDashState(this, stateMachine, "Move");
+
+
 
     }
     private void Start()
     {
 
-
-
-
         playerLevel = GetComponent<PlayerLevel>();
         playerHealth = GetComponent<PlayerHealth>();
+
         stateMachine.InitState(idleState);
     }
     // Update is called once per frame
     private void Update()
     {
-
         // xInput = Input.GetAxisRaw("Horizontal");
         // yInput = Input.GetAxisRaw("Vertical");
         // rb.velocity = new Vector3(xInput, yInput).normalized * moveSpeed;
-if(getDir()!=Vector2.zero){
-    currentDir=getDir();
-}
+        if (getDir() != Vector2.zero)
+        {
+            currentDir = getDir();
+        }
         // transform.position=Random.insideUnitCircle
         FlipController(avatar.transform);
         stateMachine.state.Update();
-
-
-
-
     }
-
+    public IEnumerator BusyFor(float seconds)
+    {
+        isBusy = true;
+        yield return new WaitForSeconds(seconds);
+        isBusy = false;
+    }
     public Vector2 getDir()
     {
-
         // Vector2 dir = new Vector2(xInput, yInput);
         // return dir;
         return joyStick1.GetMoveVector().normalized;
 
     }
+    #region Velocity
+    public void SetZeroVelocity()
+    {
+        // if(isKnocked){return;}
+        rb.velocity = new Vector2(0, 0);
+    }
+    public void SetVelocity(float _xVelocity, float _yVelocity)
+    {
+        // if(isKnocked){return;}
 
+        rb.velocity = new Vector2(_xVelocity, _yVelocity);
+
+    }
+
+
+    #endregion
     public bool HasLevelUp()
     {
         return playerLevel.HasLevelUp();

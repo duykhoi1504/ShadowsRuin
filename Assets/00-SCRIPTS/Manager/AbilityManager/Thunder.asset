@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe247c9f252a3c4fbe67a1d9014c520, type: 3}
-  m_Name: fireball
+  m_Script: {fileID: 11500000, guid: 92866459da3ed29439cb0c0031348aa2, type: 3}
+  m_Name: Thunder
   m_EditorClassIdentifier: 
-  name: fireball
-  image: {fileID: 1098286324429101383, guid: d324cc73e0e562f4eb709a519e9c6bfa, type: 3}
-  unClock: 1
+  name: thunder
+  image: {fileID: 21300000, guid: 6b54b0949a11e014a9715885efb98d96, type: 3}
+  unClock: 0
   vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
-  coolDown: 2
+  coolDown: 0.5
   coolDownTimer: 0
-  duration: 3
+  duration: 1

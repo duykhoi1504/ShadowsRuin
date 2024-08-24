@@ -15,7 +15,7 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("enterIdle");
+        // Debug.Log("enterIdle");
 
         PatrolRandomPos();
       

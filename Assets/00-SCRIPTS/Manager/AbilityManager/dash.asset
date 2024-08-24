@@ -17,4 +17,7 @@ MonoBehaviour:
   unClock: 1
   vfx: {fileID: 8115794210291554264, guid: 481556f15408ac54a9b895e3b893a19f, type: 3}
   coolDown: 2
-  coolDownTimer: -0.007520807
+  duration: 1
+  dashSpeed: 271.48
+  isDashing: 1
+  coolDownTimer: 0.1958075

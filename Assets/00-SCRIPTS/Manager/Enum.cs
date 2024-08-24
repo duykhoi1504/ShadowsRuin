@@ -10,6 +10,11 @@ public enum GameState
     GAMEOVER,
     INVENTORY,
 }
+public enum AbilityType
+{
+    Dash,
+    FireBall
+}
 public enum Stats
 {
     Attack,

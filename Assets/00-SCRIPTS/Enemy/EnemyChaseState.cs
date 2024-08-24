@@ -17,7 +17,7 @@ public class EnemyChaseState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("enterChase");
+        // Debug.Log("enterChase");
         timer=maxTimer;
     }
     public override void Update()

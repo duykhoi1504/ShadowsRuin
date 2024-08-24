@@ -66,14 +66,15 @@ public class InventoryManager : Singleton<InventoryManager>
     }
     public void AddItem(Item item, int quantity)
     {
-        if(items.Contains(item)){
-            item.quantity+=quantity;
-        }else{
-        items.Add(item);
-        // item.quantity=item.quantity<=0?1:1;
-        item.quantity=1;
-
-
+        if (items.Contains(item))
+        {
+            item.quantity += quantity;
+        }
+        else
+        {
+            items.Add(item);
+            // item.quantity=item.quantity<=0?1:1;
+            // item.quantity = 1;
         }
         // foreach (Item a in items)
         // {

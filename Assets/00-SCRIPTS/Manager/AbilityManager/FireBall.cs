@@ -8,8 +8,9 @@ public class FireBall : Ability
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject vfx;
-    [SerializeField] private float coolDown;
+
     public float coolDownTimer;
+
 
 
     private void OnEnable()
@@ -21,16 +22,13 @@ public class FireBall : Ability
 
         if (coolDownTimer <= 0)
         {
-            coolDownTimer = coolDown;
+            coolDownTimer = CoolDown;
             GameObject fx = Instantiate(vfx, Player.Instant.transform.position, Quaternion.identity);
-
-
-
-
             // Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // worldPoint.z = 0;
             // Vector2 dir = worldPoint - Player.Instant.transform.position;
             fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * 10f;
+            Destroy(fx,Duration);
 
         }
     }
@@ -42,4 +40,9 @@ public class FireBall : Ability
             coolDownTimer -= deltaTime;
         }
     }
+
+    // public override bool CanUseSkill()
+    // {
+    //     return false;   
+    // }
 }
