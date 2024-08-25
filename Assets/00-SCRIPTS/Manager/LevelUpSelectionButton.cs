@@ -15,8 +15,6 @@ public class LevelUpSelectionButton : MonoBehaviour
 
     private void Start()
     {
-       
-
         button = GetComponent<Button>();
     }
     // private void Update() {

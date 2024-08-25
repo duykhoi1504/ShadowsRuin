@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8299999
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -112,6 +112,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3283286902125353750, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       insertIndex: 2
       addedObject: {fileID: 6102336621698860446}
+    - targetCorrespondingSourceObject: {fileID: 6319725697727226741, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4992399203453172120}
+    - targetCorrespondingSourceObject: {fileID: 6319725697727226741, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 851650776202347632}
   m_SourcePrefab: {fileID: 100100000, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
 --- !u!114 &796576205706086874 stripped
 MonoBehaviour:
@@ -153,6 +159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKnocked: 0
   knockSpeed: 10
+  rb: {fileID: 0}
+  cd: {fileID: 0}
+  anim: {fileID: 0}
   textHealth: {fileID: 796576205706086874}
   moveSpeed: 1
   maxHealth: 20
@@ -166,6 +175,44 @@ MonoBehaviour:
   spawnIndicator: {fileID: 2683310401219110731}
   passAwayPS: {fileID: 1031661286202643507}
   bullet: {fileID: 7634339314480661563, guid: 531364db18a07b64c8b63656f37e3c23, type: 3}
+--- !u!1 &5208892247136196446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6319725697727226741, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+  m_PrefabInstance: {fileID: 2305173335583405099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4992399203453172120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208892247136196446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c1953a72b48a74e9536665dbb8720c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &851650776202347632
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208892247136196446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60e2fd4032edeaa4b82d97cc0eeb0e7d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &8219936649695068947 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}

@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class EnemyDamager : MonoBehaviour
 {
+    [Header("Weapon")]
+      [SerializeField] private Weapon weapon;
+    [Header("ability")]
+    [SerializeField] private Ability ability;
+    [SerializeField] private float knockSpeed;
 
-    Weapon weapon;
+
     private void Start()
     {
         weapon = GetComponentInParent<Weapon>();
+
+
     }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<Enemy>() != null)
         {
-            if (weapon != weapon)
+            if (weapon != null)
             {
                 Enemy enemy = other.GetComponent<Enemy>();
                 float damageA = weapon.GetDamage(out bool isCriticalHit);
@@ -22,8 +31,19 @@ public class EnemyDamager : MonoBehaviour
             }
             else
             {
+                other.GetComponent<Enemy>().knockSpeed=knockSpeed;
+                float damageA = !ability?100:ability.Damage;
+                bool isCriticalHit = false;
+                if (Random.Range(0, 100) <= 50)
+                {
+                 isCriticalHit = true;
+
+                    damageA = damageA * 2;
+                }
                 Enemy enemy = other.GetComponent<Enemy>();
-                enemy.TakeDamage(20, true, false);
+                enemy.TakeDamage(damageA, isCriticalHit, true);
+                other.GetComponent<Enemy>().knockSpeed=10f;
+
             }
         }
     }

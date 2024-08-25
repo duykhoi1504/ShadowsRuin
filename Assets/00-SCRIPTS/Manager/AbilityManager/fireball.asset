@@ -15,7 +15,14 @@ MonoBehaviour:
   name: fireball
   image: {fileID: 1098286324429101383, guid: d324cc73e0e562f4eb709a519e9c6bfa, type: 3}
   unClock: 1
-  vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
   coolDown: 2
-  coolDownTimer: 0
   duration: 3
+  damage: 5
+  level: 0
+  abilityStats:
+  - desceiption: 
+    value: 0
+  - desceiption: 
+    value: 0
+  vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
+  coolDownTimer: 0

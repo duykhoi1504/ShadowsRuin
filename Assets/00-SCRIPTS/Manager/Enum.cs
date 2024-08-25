@@ -13,7 +13,9 @@ public enum GameState
 public enum AbilityType
 {
     Dash,
-    FireBall
+    FireBall,
+    Thunder,
+    PushAway
 }
 public enum Stats
 {

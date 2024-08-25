@@ -8,10 +8,11 @@ public class EnemyIdleState : EnemyState
     Vector3 targetPos;
     float distanceRanPos;
     Vector3 dirPatrol;
-  
-    public EnemyIdleState(Enemy _enemy, StateMachine _stateMachine) : base(_enemy, _stateMachine)
+
+    public EnemyIdleState(Enemy _enemy, StateMachine _stateMachine, string _aniBoolName) : base(_enemy, _stateMachine, _aniBoolName)
     {
     }
+
     public override void Enter()
     {
         base.Enter();

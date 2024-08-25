@@ -15,9 +15,15 @@ MonoBehaviour:
   name: dash
   image: {fileID: -4693932192084691647, guid: 5fcaa73b845b43e45965f29558bd1ff3, type: 3}
   unClock: 1
-  vfx: {fileID: 8115794210291554264, guid: 481556f15408ac54a9b895e3b893a19f, type: 3}
-  coolDown: 2
+  coolDown: 0.1
   duration: 1
+  damage: 0
+  level: 0
+  abilityStats:
+  - desceiption: 
+    value: 0
+  - desceiption: 
+    value: 0
   dashSpeed: 271.48
   isDashing: 1
-  coolDownTimer: 0.1958075
+  coolDownTimer: 0

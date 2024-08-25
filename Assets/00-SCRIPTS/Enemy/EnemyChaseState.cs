@@ -10,10 +10,10 @@ public class EnemyChaseState : EnemyState
 
    float timer;
 
-    public EnemyChaseState(Enemy _enemy, StateMachine _stateMachine) : base(_enemy, _stateMachine)
+    public EnemyChaseState(Enemy _enemy, StateMachine _stateMachine, string _aniBoolName) : base(_enemy, _stateMachine, _aniBoolName)
     {
-    
     }
+
     public override void Enter()
     {
         base.Enter();

@@ -13,8 +13,10 @@ public class FireBall : Ability
 
 
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         coolDownTimer = 0f;
     }
     public override void Use()
@@ -28,7 +30,7 @@ public class FireBall : Ability
             // worldPoint.z = 0;
             // Vector2 dir = worldPoint - Player.Instant.transform.position;
             fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * 10f;
-            Destroy(fx,Duration);
+            Destroy(fx, Duration);
 
         }
     }
@@ -39,6 +41,11 @@ public class FireBall : Ability
         {
             coolDownTimer -= deltaTime;
         }
+    }
+
+    public override void SetStatsForUpGrade()
+    {
+        throw new System.NotImplementedException();
     }
 
     // public override bool CanUseSkill()

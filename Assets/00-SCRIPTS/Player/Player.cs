@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         }
         // transform.position=Random.insideUnitCircle
         FlipController(avatar.transform);
-        stateMachine.state.Update();
+        stateMachine.currentState.Update();
     }
     public IEnumerator BusyFor(float seconds)
     {

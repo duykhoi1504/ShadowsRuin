@@ -9,12 +9,15 @@ public class Enemy : MonoBehaviour
     Player player;
     EntityFX fx;
     [SerializeField] bool isKnocked = false;
-    [SerializeField] float knockSpeed = 10f;
+
+    public float knockSpeed = 10f;
 
 
     [Header("Components info")]
-    protected Rigidbody2D rb;
-    protected Collider2D cd;
+    public Rigidbody2D rb;
+    public Collider2D cd;
+    public Animator anim;
+
     [SerializeField] private TextMeshPro textHealth;
 
     public static Action<float, Vector2, bool> OnDamageTaken;
@@ -57,18 +60,20 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        knockSpeed = 10f;
         isKnocked = false;
         cd.enabled = false;
     }
     protected virtual void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         fx = GetComponent<EntityFX>();
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<Collider2D>();
         stateMachine = new StateMachine();
-        idleState = new EnemyIdleState(this, stateMachine);
-        chaseState = new EnemyChaseState(this, stateMachine);
-        attackState = new EnemyAttackState(this, stateMachine);
+        idleState = new EnemyIdleState(this, stateMachine, "idle");
+        chaseState = new EnemyChaseState(this, stateMachine, "move");
+        attackState = new EnemyAttackState(this, stateMachine, "attack");
 
 
     }
@@ -92,7 +97,7 @@ public class Enemy : MonoBehaviour
         FlipController(enemySprite.transform);
         textHealth.text = health.ToString();
 
-        stateMachine.state.Update();
+        stateMachine.currentState.Update();
     }
     // Update is called once per frame
     public virtual void animIndicator(GameObject _gameObject)
@@ -119,6 +124,7 @@ public class Enemy : MonoBehaviour
         if (isKnocked) return;
         rb.velocity = _Velocity;
     }
+    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     protected virtual void OnDrawGizmos()
     {
         // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
@@ -141,28 +147,31 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void TakeDamage(float _damage, bool isCriticalHit,bool shouldKnockBack)
+    public virtual void TakeDamage(float _damage, bool isCriticalHit, bool shouldKnockBack)
     {
         // Check if the game object is active before starting the coroutine
         if (gameObject.activeInHierarchy)
         {
             fx.StartCoroutine("FlashFX");
-            if(shouldKnockBack)
+            if (shouldKnockBack)
                 StartCoroutine("HitKnockBack");
         }
-        health -= _damage;
+        health -= _damage;  
         AudioManager.Instant.PlayerSFXPitch(CONTANST.enemyhurt);
 
         OnDamageTaken?.Invoke(_damage, this.transform.position, isCriticalHit);
         if (health <= 0)
         {
+            
             passAway();
+     
         }
 
     }
+
     public IEnumerator HitKnockBack()
     {
-        
+
         isKnocked = true;
         rb.velocity = getEnemyDir() * -knockSpeed;
         yield return new WaitForSeconds(knockBackDuration);

@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class StateMachine 
 {
-    public IState state;
+    public IState currentState;
     public void InitState(IState _state){
-        state=_state;
-        state.Enter();
+        currentState=_state;
+        currentState.Enter();
     }
     public void ChangeState(IState _newState){
-        state.Exit();
-        state=_newState;
-        state.Enter();
+        currentState.Exit();
+        currentState=_newState;
+        currentState.Enter();
     }
 
 

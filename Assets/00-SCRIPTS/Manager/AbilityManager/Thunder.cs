@@ -8,10 +8,13 @@ public class Thunder : Ability
     [SerializeField] private GameObject vfx;
 
     public float coolDownTimer;
-      [SerializeField] private float distance;
+    [SerializeField] private float distance;
 
-    private void OnEnable()
+    public float Distance { get => distance; set => distance = value; }
+
+    protected override void OnEnable()
     {
+         base.OnEnable();
         coolDownTimer = 0f;
     }
     public override void Use()
@@ -45,5 +48,10 @@ public class Thunder : Ability
         {
             coolDownTimer -= deltaTime;
         }
+    }
+
+    public override void SetStatsForUpGrade()
+    {
+        throw new System.NotImplementedException();
     }
 }

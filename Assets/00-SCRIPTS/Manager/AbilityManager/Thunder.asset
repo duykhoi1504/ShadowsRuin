@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Thunder
   m_EditorClassIdentifier: 
   name: thunder
-  image: {fileID: 21300000, guid: 6b54b0949a11e014a9715885efb98d96, type: 3}
-  unClock: 0
-  vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
+  image: {fileID: 3417001947327018488, guid: 4a2fa19f367feda4d87aa7de39375771, type: 3}
+  unClock: 1
   coolDown: 0.5
-  coolDownTimer: 0
   duration: 1
+  damage: 50
+  vfx: {fileID: 411043980872126998, guid: 2405f4c8c1cc66944b95593bbdb3b0b5, type: 3}
+  coolDownTimer: 0
+  distance: 3.6

@@ -7,13 +7,13 @@ using UnityEngine;
 public class Dash : Ability
 {
     // Start is called before the first frame update
-    [SerializeField] private GameObject vfx;
     [SerializeField] private float dashSpeed;
     public bool isDashing = false;
     public float coolDownTimer;
-
-    private void OnEnable()
+    
+      protected override  void OnEnable()
     {
+        base.OnEnable();
         coolDownTimer = 0f;
 
     }
@@ -41,6 +41,11 @@ public class Dash : Ability
             coolDownTimer -= deltaTime;
 
         }
+    }
+
+    public override void SetStatsForUpGrade()
+    {
+        throw new System.NotImplementedException();
     }
     // public override bool CanUseSkill()
     // {
