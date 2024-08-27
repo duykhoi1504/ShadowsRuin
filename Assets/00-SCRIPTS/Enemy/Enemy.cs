@@ -80,13 +80,13 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         cd.enabled = false;
+        player = Player.Instant;
 
         health = maxHealth;
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
         // stateMachine.InitState(chaseState);
-
-        player = Player.Instant;
+    
 
     }
 
@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
     {
         // Debug.draw(this.transform.position,attackRadious);
 
-        FlipController(enemySprite.transform);
+        FlipController(this.transform);
         textHealth.text = health.ToString();
 
         stateMachine.currentState.Update();

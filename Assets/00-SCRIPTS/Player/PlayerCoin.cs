@@ -14,17 +14,22 @@ public class PlayerCoin :Singleton<PlayerCoin>
 
         Coin.onCollectedCoin += AddCoin;
     }
-    private void Update() {
-        UIManager.Instance.UpdateCoinGUI(currentCoin);
-    }
     private void OnDestroy()
     {
         Coin.onCollectedCoin -= AddCoin;
 
     }
+    private void Update() {
+        UIManager.Instance.UpdateCoinGUI(currentCoin);
+    }
     public void AddCoin(int _coinToAdd)
     {
         currentCoin += _coinToAdd;
+        
+    }
+    public void ReduceCoin(int _coinToAdd)
+    {
+        currentCoin -= _coinToAdd;
         
     }
 }

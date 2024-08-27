@@ -16,19 +16,6 @@ public class InventoryManager : Singleton<InventoryManager>
     {
 
     }
-
-    // public void checkQuantityZero()
-    // {
-    //     foreach (Item item in items)
-    //     {
-    //         if (item.quantity <= 0)
-    //         {
-    //             item.quantity = 0;
-    //             RemmoveItem(item);
-
-    //         }
-    //     }
-    // }
     public void ListItems()
     {
         GameManager.Instance.ChangeState(GameState.INVENTORY);
@@ -58,7 +45,6 @@ public class InventoryManager : Singleton<InventoryManager>
             //     RemmoveItem(items[i]);
             // }
         }
-
     }
     public void CloseInventory()
     {
@@ -91,8 +77,6 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         items.Remove(item);
     }
-
-
     public void EnableItemRemove()
     {
         if (EnableRemove.isOn)

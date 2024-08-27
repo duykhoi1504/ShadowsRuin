@@ -10,7 +10,7 @@ public class FireBall : Ability
     [SerializeField] private GameObject vfx;
 
     public float coolDownTimer;
-
+    public float speed;
 
 
     protected override void OnEnable()
@@ -29,7 +29,7 @@ public class FireBall : Ability
             // Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // worldPoint.z = 0;
             // Vector2 dir = worldPoint - Player.Instant.transform.position;
-            fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * 10f;
+            fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * speed;
             Destroy(fx, Duration);
 
         }
@@ -45,7 +45,10 @@ public class FireBall : Ability
 
     public override void SetStatsForUpGrade()
     {
-        throw new System.NotImplementedException();
+           if(level>=abilityStats.Count){
+             level=abilityStats.Count-1;
+        }
+        speed=abilityStats[level].value;
     }
 
     // public override bool CanUseSkill()

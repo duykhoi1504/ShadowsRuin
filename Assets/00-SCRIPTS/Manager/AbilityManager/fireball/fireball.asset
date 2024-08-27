@@ -14,15 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: fireball
   image: {fileID: 1098286324429101383, guid: d324cc73e0e562f4eb709a519e9c6bfa, type: 3}
-  unClock: 1
+  unClock: 0
   coolDown: 2
   duration: 3
   damage: 5
   level: 0
+  abilityType: 1
   abilityStats:
   - desceiption: 
-    value: 0
+    value: 5
+    cost: 10
   - desceiption: 
-    value: 0
+    value: 10
+    cost: 20
+  - desceiption: 
+    value: 15
+    cost: 30
+  - desceiption: 
+    value: 20
+    cost: 40
   vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
   coolDownTimer: 0
+  speed: 40

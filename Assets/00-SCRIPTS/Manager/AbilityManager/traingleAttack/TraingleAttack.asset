@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a15be0bbd64d041b63a114fc47e08c, type: 3}
+  m_Name: TraingleAttack
+  m_EditorClassIdentifier: 
+  name: traingle
+  image: {fileID: -96461886030738025, guid: 233563d19f7857b4dbebb99a587109b6, type: 3}
+  unClock: 1
+  coolDown: 0.5
+  duration: 1
+  damage: 50
+  level: 0
+  abilityType: 4
+  abilityStats:
+  - desceiption: 
+    value: 10
+    cost: 5
+  - desceiption: 
+    value: 20
+    cost: 5
+  - desceiption: 
+    value: 30
+    cost: 5
+  vfx: {fileID: 411043980872126998, guid: 87287585155e46244b48460ce473d8dd, type: 3}
+  coolDownTimer: -0.016422186
+  distance: 10
+  speed: 10

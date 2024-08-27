@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public float gameTimer;
     public TextMeshProUGUI gameTimerText;
-     [Header("Gameover info")]
+    [Header("Gameover info")]
     public TextMeshProUGUI timeSurvire;
 
     [Header("BUTON")]
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameoverPanel;
 
+    public static Action OnNewGame;
 
     //  Action onWaveComplete;
     private void Awake()
@@ -65,8 +66,6 @@ public class GameManager : MonoBehaviour
             updateTimer(gameTimer);
         }
 
-        
-
     }
 
 
@@ -89,14 +88,15 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(gameTimer % 60f);
 
 
-        timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString()+ " secs";
+        timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString() + " secs";
     }
 
-    public void WaveComplete()
+      public void WaveComplete()
     {
         if (Player.Instant.HasLevelUp())
         {
             ChangeState(GameState.SHOP);
+            UIManager.Instance.ShopContainer.SetActive(true);
             PlayerStatsManager.Instant.SetStatsRandButton();
             PlayerManager.Instance.SetRandomCard();
         }
@@ -118,7 +118,19 @@ public class GameManager : MonoBehaviour
         }
         menuPanel.SetActive(false);
     }
+    IEnumerator NEWGAMEState()
+    {
+        Time.timeScale = 1f;
+        gamePanel.SetActive(true);
 
+        AbilityManager.Instant.ListAbilitysUse();
+
+        while (currentState == GameState.NEWGAME)
+        {
+            yield return null;
+        }
+        gamePanel.SetActive(false);
+    }
     IEnumerator GAMEPLAYState()
     {
         Time.timeScale = 1f;
@@ -134,6 +146,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         shopPanel.SetActive(true);
+        
         // UpgradeManager.Instance.setButtonUpgrade();
 
         while (currentState == GameState.SHOP)
@@ -143,7 +156,8 @@ public class GameManager : MonoBehaviour
         shopPanel.SetActive(false);
     }
 
-    IEnumerator INVENTORYState(){
+    IEnumerator INVENTORYState()
+    {
         Time.timeScale = 0f;
         inventoryPanel.SetActive(true);
         // UpgradeManager.Instance.setButtonUpgrade();
@@ -156,9 +170,10 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GAMEOVERState()
     {
-        yield  return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
         endLevel();
+        OnNewGame?.Invoke();
         gameoverPanel.SetActive(true);
         // LeanTween.delayedCall(2,()=>SceneManager.LoadScene(0));
         while (currentState == GameState.GAMEOVER)

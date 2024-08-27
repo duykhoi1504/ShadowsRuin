@@ -19,13 +19,17 @@ MonoBehaviour:
   duration: 1
   damage: 100
   level: 0
+  abilityType: 3
   abilityStats:
   - desceiption: scale 2
     value: 1
+    cost: 40
   - desceiption: scale 4
     value: 2
+    cost: 60
   - desceiption: scale 5
-    value: 4
+    value: 3
+    cost: 80
   vfx: {fileID: 8363353122148639658, guid: 38be6ff6fb453e94aacee5ccc73b19b4, type: 3}
-  coolDownTimer: -0.0032541063
-  scaleBoom: 6
+  coolDownTimer: 0
+  scaleBoom: 1

@@ -16,6 +16,7 @@ public class Thunder : Ability
     {
          base.OnEnable();
         coolDownTimer = 0f;
+             SetStatsForUpGrade();
     }
     public override void Use()
     {
@@ -52,6 +53,9 @@ public class Thunder : Ability
 
     public override void SetStatsForUpGrade()
     {
-        throw new System.NotImplementedException();
+          if(level>=abilityStats.Count){
+             level=abilityStats.Count-1;
+        }
+        distance=abilityStats[level].value;
     }
 }

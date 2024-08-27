@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
         // }
 
     }
-    public void StartGameButton() => gameManager.ChangeState(GameState.GAMEPLAY);
+    public void StartGameButton() => gameManager.ChangeState(GameState.NEWGAME);
     public void SkipShopButton() => gameManager.ChangeState(GameState.GAMEPLAY);
     public void GameOverButton() => SceneManager.LoadScene(0);
 

@@ -19,6 +19,7 @@ public class PushAway : Ability
          base.OnEnable();
         coolDownTimer = 0f;
          Time.timeScale=1f;
+         SetStatsForUpGrade();
     }
     public override void Use()
     {
@@ -44,7 +45,7 @@ public class PushAway : Ability
         }
     }
     public override void SetStatsForUpGrade(){
-        level++;
+
         if(level>=abilityStats.Count){
              level=abilityStats.Count-1;
         }

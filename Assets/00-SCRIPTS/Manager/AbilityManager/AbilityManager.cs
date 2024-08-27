@@ -3,122 +3,141 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using TMPro;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 
 
 public class AbilityManager : Singleton<AbilityManager>
 {
 
-    [System.Serializable]
 
-    public class AbilityData
-    {
-        public Ability ability;
-        public AbilityType type;
-    }
-    public List<AbilityData> abilityDatas = new List<AbilityData>();
-    public List<GameObject> abilityButton = new List<GameObject>();
+
+    // public List<AbilityData> abilityDatas = new List<AbilityData>();
+    [Header("Inventpry Info")]
+    [SerializeField] Transform ParentInventoryAbilityInfo;
+
+    [SerializeField] GameObject abilitySlotInv;
+    public List<AbilitySlot> abilityButton = new List<AbilitySlot>();
+
+
+    [Header("Ability info")]
+
+    public List<Ability> abilities = new List<Ability>();
+    public List<AbilityUseSlot> abilityUseButton = new List<AbilityUseSlot>();
+
     // public List<AbilityData> Slots = new List<AbilityData>();
-    Ability dash, fireBall, pushAway;
+    // Ability dash, fireBall, pushAway;
+
+
     private void Start()
     {
-ConfigAbility();
+        // ConfigAbility();
+        ResetAbilities();
     }
+
 
     private void Update()
     {
-        foreach (var a in abilityDatas)
+        foreach (var a in abilities)
         {
-            a.ability.UpdateCoolDownTimer(Time.deltaTime);
+            a.UpdateCoolDownTimer(Time.deltaTime);
 
         }
-        // for (int i = 0; i < abilityButton.Count; i++)
-        // {
-        //     GameObject button = abilityButton[i];
 
-        //     for (int j = 0; j < abilityDatas.Count; j++)
-        //     {
-        //         if (!Slots.Contains(abilityDatas[j]))
-        //         {
-        //             if (abilityDatas[j].ability.UnClock)
-        //             {
-
-        //                 Slots.Add(abilityDatas[j]);
-        //                 button.transform.GetChild(0).GetComponent<Image>().sprite = abilityDatas[j].ability.Image;
-        //                 button.transform.GetComponent<Button>().onClick.AddListener(() => abilityDatas[j].ability.Use());
-        //                 break;
-        //             }
-        //         }
-        //         else
-        //         {
-        //             continue;
-        //         }
-        //     }
-
-        // }
     }
 
+    #region ability inventory
 
-    public void UseAbility(int index)
+    //update display upgrade ability in inventory
+    public void ListAbilitys()
     {
-        if (index >= abilityDatas.Count)
+        // Clear the existing ability buttons
+        foreach (AbilitySlot button in abilityButton)
         {
-            Debug.LogWarning("Khong tim thay ki nang");
-            return;
+            Destroy(button.gameObject);
         }
-        if (abilityDatas[index].ability.UnClock == false)
+        abilityButton.Clear();
+
+        // Create new ability buttons
+        for (int i = 0; i < abilities.Count; i++)
         {
-            Debug.LogWarning("ki nang chua mo khoa: " + abilityDatas[index].ability.name);
-            return;
-        }
-        abilityDatas[index].ability.Use();
-    }
-
-    public void UpgradeAbilityStats(AbilityType type)
-    {
-        switch (type)
-        {
-            case AbilityType.Dash:
-
-                dash.Level++;
-                break;
-            case AbilityType.FireBall:
-
-                fireBall.Level++;
-                break;
-            case AbilityType.PushAway:
-
-                pushAway.SetStatsForUpGrade();
-                
-                break;
-            default:
-                Debug.Log("khong co skill for update");
-                break;
+            GameObject slot = Instantiate(abilitySlotInv, ParentInventoryAbilityInfo.transform.position, Quaternion.identity, ParentInventoryAbilityInfo.transform);
+            AbilitySlot slotComponent = slot.GetComponent<AbilitySlot>();
+            slotComponent.ConfgiAbilitySLot(abilities[i]);
+            slotComponent.Ability = abilities[i];
+            abilityButton.Add(slotComponent);
         }
     }
-    private void ConfigAbility()
+    #endregion
+
+
+
+    #region ability
+
+
+    //update display upgrade ability in Game
+    public void ListAbilitysUse()
     {
-        foreach (var a in abilityDatas)
+        List<Ability> valiableAbility = new List<Ability>();
+        for (int i = 0; i < abilityUseButton.Count; i++)
         {
-            switch (a.type)
+            if (abilities.Count < i) { return; }
+            int randAb;
+            do
             {
-                case AbilityType.Dash:
-                    dash = a.ability;
-                    break;
-                case AbilityType.FireBall:
-                    fireBall = a.ability;
-
-                    break;
-                case AbilityType.PushAway:
-                    pushAway = a.ability;
-                    break;
-                default:
-                    break;
+                randAb = Random.Range(0, abilities.Count );
             }
+            while (valiableAbility.Contains(abilities[randAb]));
+
+
+            valiableAbility.Add(abilities[randAb]);
+
+            abilityUseButton[i].UpgradeDisplayAbilityUse(valiableAbility[i]);
+            abilityUseButton[i].Ability = valiableAbility[i];
+            abilityUseButton[i].Ability.UnClock=true;
+        }
+
+    }
+
+    // // use ability in game by index
+    // public void UseAbilityByIndex(int index)
+    // {
+    //     if (index >= abilities.Count)
+    //     {
+    //         Debug.LogWarning("Khong tim thay ki nang");
+    //         return;
+    //     }
+    //     if (abilities[index].UnClock == false)
+    //     {
+    //         Debug.LogWarning("ki nang chua mo khoa: " + abilities[index].name);
+    //         return;
+    //     }
+    //     abilities[index].Use();
+    // }
+    public void UseAbility(Ability _ability)
+    {
+        Ability ability = abilities.Find(ad => ad == _ability);
+        if (ability != null)
+        {
+            // The _ability is found in the abilityDatas list
+            ability.Use();
+        }
+        else
+        {
+            Debug.LogWarning($"Ability {_ability.name} not found in abilityDatas list.");
         }
     }
+    public void UpgradeAbilityStats(Ability ability)
+    {
+        ability.Level++;
+        ability.SetStatsForUpGrade();
+
+    }
+
+
     public void OnButtonDown()
     {
         // Khi nhấn giữ nút, làm chậm thời gian
@@ -132,5 +151,16 @@ ConfigAbility();
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
+    public void ResetAbilities()
+    {
+        foreach (var a in abilities)
+        {
+            a.ResetData();
+        }
 
+        // Reconfigure abilities if necessary
+        // ConfigAbility();
+    }
+
+    #endregion
 }

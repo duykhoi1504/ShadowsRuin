@@ -8,9 +8,9 @@ public class RangeEnemy : Enemy
 {
     [SerializeField] EnemyBullet bullet;
 
-//cách 1 objectpooling
+    //cách 1 objectpooling
     // public List<EnemyBullet> bulletList = new List<EnemyBullet>();
-//cach 2 dung script ObjectPooling
+    //cach 2 dung script ObjectPooling
     // ObjectPooling<EnemyBullet> bulletPool;
 
     protected override void Awake()
@@ -41,14 +41,14 @@ public class RangeEnemy : Enemy
     // [NaughtyAttributes.Button]
     private void Shooting()
     {
-       
+
         EnemyBullet _bullet = ObjectPooling_Manager<EnemyBullet>.Instant.GetObject();
         // EnemyBullet _bullet = GameManager.Instance.bulletPool.GetObject();
 
         _bullet.transform.position = transform.position;
         _bullet.transform.rotation = transform.rotation;
         _bullet.shoot(attackDamage, getEnemyDir());
-         _bullet.gameObject.SetActive(true);
+        _bullet.gameObject.SetActive(true);
         ////=======================================
         //  EnemyBullet _bullet = bulletPool.GetObject();
         // _bullet.transform.position = transform.position;
@@ -60,7 +60,7 @@ public class RangeEnemy : Enemy
         // _bullet.gameObject.transform.rotation = transform.rotation;
         // _bullet.gameObject.SetActive(true);
         // _bullet.shoot(attackDamage, getEnemyDir());
-        
+
     }
     public override void attack()
     {

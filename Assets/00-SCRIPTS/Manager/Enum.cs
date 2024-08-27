@@ -8,6 +8,8 @@ public enum GameState
     PAUSE,
     SHOP,
     GAMEOVER,
+    NEWGAME,
+
     INVENTORY,
 }
 public enum AbilityType
@@ -15,7 +17,8 @@ public enum AbilityType
     Dash,
     FireBall,
     Thunder,
-    PushAway
+    PushAway,
+    TraingleAttack,
 }
 public enum Stats
 {
