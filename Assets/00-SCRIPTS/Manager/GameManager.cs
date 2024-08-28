@@ -27,12 +27,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject shopPanel;
+    [SerializeField] private GameObject optionPanel;
+
     [SerializeField] private GameObject inventoryPanel;
 
 
     [SerializeField] private GameObject gameoverPanel;
 
-    public static Action OnNewGame;
+    // public static Action OnNewGame;
 
     //  Action onWaveComplete;
     private void Awake()
@@ -173,7 +175,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
         endLevel();
-        OnNewGame?.Invoke();
+        // OnNewGame?.Invoke();
         gameoverPanel.SetActive(true);
         // LeanTween.delayedCall(2,()=>SceneManager.LoadScene(0));
         while (currentState == GameState.GAMEOVER)
@@ -183,6 +185,19 @@ public class GameManager : MonoBehaviour
         gameoverPanel.SetActive(false);
 
     }
+
+        IEnumerator OPTIONState()
+    {
+        Time.timeScale = 0f;
+        optionPanel.SetActive(true);
+        while (currentState == GameState.OPTION)
+        {
+            yield return null;
+        }
+        optionPanel.SetActive(false);
+
+    }
+
     // private void handleStateChange()
     // {
     //     switch (currentState)
