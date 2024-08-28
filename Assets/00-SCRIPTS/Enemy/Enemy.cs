@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
     public bool isSpawned = false;
 
     public SpriteRenderer enemySprite;
+    public Transform enemyAvatar;
+
 
     public SpriteRenderer spawnIndicator;
     public ParticleSystem passAwayPS;
@@ -66,19 +68,21 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        fx = GetComponent<EntityFX>();
-        rb = GetComponent<Rigidbody2D>();
-        cd = GetComponent<Collider2D>();
-        stateMachine = new StateMachine();
-        idleState = new EnemyIdleState(this, stateMachine, "idle");
-        chaseState = new EnemyChaseState(this, stateMachine, "move");
-        attackState = new EnemyAttackState(this, stateMachine, "attack");
+        anim            = GetComponentInChildren<Animator>();
+        fx              = GetComponent<EntityFX>();
+        rb              = GetComponent<Rigidbody2D>();
+        cd              = GetComponent<Collider2D>();
+        stateMachine    = new StateMachine();
+        idleState       = new EnemyIdleState    (this, stateMachine, "idle");
+        chaseState      = new EnemyChaseState   (this, stateMachine, "move");
+        attackState     = new EnemyAttackState  (this, stateMachine, "attack");
 
 
     }
     protected virtual void Start()
     {
+        knockSpeed = 10f;
+
         cd.enabled = false;
         player = Player.Instant;
 
@@ -94,7 +98,7 @@ public class Enemy : MonoBehaviour
     {
         // Debug.draw(this.transform.position,attackRadious);
 
-        FlipController(this.transform);
+        FlipController(enemyAvatar);
         textHealth.text = health.ToString();
 
         stateMachine.currentState.Update();
@@ -210,9 +214,12 @@ public class Enemy : MonoBehaviour
     }
     public virtual void FlipController(Transform _transform)
     {
-        if (player)
-            // transform.localScale=player.transform.position.x>transform.position.x?Vector2.one:Vector2.one.With(x:-1);
-            _transform.localScale = player.transform.position.x > transform.position.x ? Vector2.one : new Vector2(-1, 1);
-
+         if (player)
+    {
+        Debug.Log($"Player X: {player.transform.position.x}, Enemy X: {transform.position.x}");
+        Vector3 scale = _transform.localScale;
+        scale.x = player.transform.position.x > transform.position.x ? 1 : -1;
+        _transform.localScale = scale;
+    }
     }
 }

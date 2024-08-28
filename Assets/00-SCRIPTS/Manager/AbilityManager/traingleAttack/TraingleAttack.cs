@@ -21,37 +21,38 @@ public class TraingleAttack : Ability
     protected override void OnEnable()
     {
         base.OnEnable();
+        speed = abilityStats[level].value;
         coolDownTimer = 0f;
         SetStatsForUpGrade();
     }
 
 
-public override void Use()
-
-{
-    Vector3 playerDir = Player.Instant.currentDir;
-    Vector3[] directions = new Vector3[NumShots];
-
-    float angleOffset = 60f / (NumShots - 1); // Khoảng cách góc giữa các tia
-    Debug.Log("huong" + Quaternion.Euler(0, 0, 30) * Vector3.right);
-    for (int i = 0; i < NumShots; i++)
+    public override void Use()
     {
-        float angle = (i - (NumShots - 1)/2) * angleOffset; // Tính góc của mỗi tia
-        directions[i] = Quaternion.Euler(0, 0, angle) * Vector3.right; // Tạo vector hướng của mỗi tia
-    }
+        Vector3 playerDir = Player.Instant.currentDir;
+        Vector3[] directions = new Vector3[NumShots];
 
-    if (coolDownTimer <= 0)
-    {
-        coolDownTimer = CoolDown;
-        foreach (Vector3 dir in directions)
+        float angleOffset = 60f / (NumShots - 1); // Khoảng cách góc giữa các tia
+
+        for (int i = 0; i < NumShots; i++)
         {
-            GameObject fx = Instantiate(vfx, Player.Instant.transform.position, Quaternion.identity);
-            fx.GetComponent<Rigidbody2D>().velocity = dir * Speed;
-            fx.transform.up=dir;
-            Destroy(fx, Duration);
+            float angle = (i - (NumShots - 1) / 2) * angleOffset; // Tính góc của mỗi tia
+            directions[i] = Quaternion.Euler(0, 0, angle) * playerDir; // Tạo vector hướng của mỗi tia
         }
-    }
-    ///==========================Giai thich==========================
+
+
+        if (coolDownTimer <= 0)
+        {
+            coolDownTimer = CoolDown;
+            foreach (Vector3 dir in directions)
+            {
+                GameObject fx = Instantiate(vfx, Player.Instant.transform.position, Quaternion.identity);
+                fx.GetComponent<Rigidbody2D>().velocity = dir * Speed;
+                fx.transform.up = dir;
+                Destroy(fx, Duration);
+            }
+        }
+        ///==========================Giai thich==========================
         //       num=4
         // angle=60/3=20;
         // i=0 =>  (i-(num-1)/2) * angle
@@ -59,8 +60,8 @@ public override void Use()
         // i=1 => 	1-1.5  *20=-10
         // i=2 => 	2-1.5  *20=10
         // i=3 => 	3-1.5  *20=30
-    ///==============================================================
-}
+        ///==============================================================
+    }
 
     public override void UpdateCoolDownTimer(float deltaTime)
     {
@@ -72,11 +73,22 @@ public override void Use()
 
     public override void SetStatsForUpGrade()
     {
+
+
         if (level >= abilityStats.Count)
         {
             level = abilityStats.Count - 1;
         }
-        speed+= abilityStats[level].value;
-        NumShots=(int) abilityStats[level].value;
+        speed += abilityStats[level].value;
+        NumShots = (int)abilityStats[level].value;
+
+        if (vfx.GetComponent<EnemyDamager>() != null )
+        {
+            if(Level==0){}
+            vfx.GetComponent<EnemyDamager>().KnockSpeed =0 ;
+
+            if(Level >=1)
+            vfx.GetComponent<EnemyDamager>().KnockSpeed =abilityStats[level].value ;
+        }
     }
 }

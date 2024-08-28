@@ -9,11 +9,12 @@ public class AbilitySlot : MonoBehaviour
 {
     // [SerializeField] private AbilityType abilityType;
     [SerializeField] private Ability ability;
-    [SerializeField] Transform levelPanel => transform.GetChild(2).GetComponent<Transform>();
     [SerializeField] Image levelDot;
     [SerializeField] List<Image> levelDots = new List<Image>();
     [SerializeField] Image image => transform.GetChild(0).GetComponent<Image>();
-    [SerializeField] TextMeshProUGUI text => GetComponentInChildren<TextMeshProUGUI>();
+    [SerializeField] Transform levelPanel => transform.GetChild(1).GetComponent<Transform>();
+    [SerializeField] TextMeshProUGUI text => transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+    [SerializeField] TextMeshProUGUI cost => transform.GetChild(3).GetComponent<TextMeshProUGUI>();
 
     public Ability Ability { get => ability; set => ability = value; }
 
@@ -42,20 +43,20 @@ public class AbilitySlot : MonoBehaviour
         ability = _ab;
     }
 
-private void BuyUpgradeAbility()
-{
-    int cost = ability.abilityStats[ability.Level].cost;
-    if (PlayerCoin.Instant.CurrentCoin >= cost && ability.UnClock && ability.Level <= ability.abilityStats.Count - 1)
+    private void BuyUpgradeAbility()
     {
-        AbilityManager.Instant.UpgradeAbilityStats(ability);
-        PlayerCoin.Instant.ReduceCoin(cost);
-        UpgradeDisplayAbility();
+        int cost = ability.abilityStats[ability.Level+1].cost;
+        if (PlayerCoin.Instant.CurrentCoin >= cost && ability.UnClock && ability.Level <= ability.abilityStats.Count - 1)
+        {
+            AbilityManager.Instant.UpgradeAbilityStats(ability);
+            PlayerCoin.Instant.ReduceCoin(cost);
+            UpgradeDisplayAbility();
+        }
+        else
+        {
+            Debug.LogWarning("Cannot upgrade ability: Insufficient coins or ability is already at maximum level.");
+        }
     }
-    else
-    {
-        Debug.LogWarning("Cannot upgrade ability: Insufficient coins or ability is already at maximum level.");
-    }
-}
 
     public void UpgradeDisplayAbility()
     {
@@ -70,9 +71,11 @@ private void BuyUpgradeAbility()
         }
         else
         {
-            int currentLevel = ability.Level ;
-            int maxLevel = ability.abilityStats.Count-1;
+            int currentLevel = ability.Level;
+            int maxLevel = ability.abilityStats.Count - 1;
+
             
+
             // Clear the existing level dots
             foreach (Image dot in levelDots)
             {
@@ -90,6 +93,9 @@ private void BuyUpgradeAbility()
             if (currentLevel >= maxLevel)
             {
                 button.enabled = false;
+                cost.text = "MAX";
+            }else{
+                cost.text = ability.abilityStats[currentLevel+1].cost.ToString();
             }
         }
     }

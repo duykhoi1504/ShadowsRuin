@@ -5388,6 +5388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420a872d824e3204599b0770db289a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  ability: {fileID: 0}
+  knockSpeed: 0
 --- !u!1 &784774773
 GameObject:
   m_ObjectHideFlags: 0
@@ -6890,7 +6893,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10348,13 +10351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219bcdad312fef142b164b591d7d14a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityDatas:
-  - name: dash
-    ability: {fileID: 11400000, guid: 54b3fd7904b981147a3463d9c5685f59, type: 2}
-  - name: fireball
-    ability: {fileID: 11400000, guid: 159a95e67e9c9bf44a2f540396842073, type: 2}
-  - name: thunder
-    ability: {fileID: 11400000, guid: ad7ad44cf47b858468a7e91ea7024f53, type: 2}
+  ParentInventoryAbilityInfo: {fileID: 0}
+  abilitySlotInv: {fileID: 0}
+  abilityButton: []
+  abilities: []
+  abilityUseButton: []
 --- !u!1001 &1712012164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10573,7 +10574,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13188,7 +13189,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -20,14 +20,12 @@ public class RangeEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        // bulletPool = new ObjectPooling<EnemyBullet>(bullet, 3, transform);
     }
 
     // Update is called once per frame
-    protected override void Update()
+   protected override void Update()
     {
         base.Update();
-
     }
     protected override void OnDrawGizmos()
     {

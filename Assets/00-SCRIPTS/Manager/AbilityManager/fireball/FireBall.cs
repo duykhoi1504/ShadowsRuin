@@ -29,6 +29,7 @@ public class FireBall : Ability
             // Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // worldPoint.z = 0;
             // Vector2 dir = worldPoint - Player.Instant.transform.position;
+
             fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * speed;
             Destroy(fx, Duration);
 

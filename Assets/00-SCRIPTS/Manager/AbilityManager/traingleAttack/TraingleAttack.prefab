@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  ability: {fileID: 11400000, guid: 159a95e67e9c9bf44a2f540396842073, type: 2}
+  ability: {fileID: 11400000, guid: d2396374986b2a34dab77119267dc90b, type: 2}
   knockSpeed: 0
 --- !u!1 &4238640793629031330
 GameObject:
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

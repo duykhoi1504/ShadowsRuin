@@ -23,14 +23,14 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     {
         int newCost = 0;
         float newValue = 0;
-        //=======================MOVE SPEED================================
+        //=========================MOVE SPEED==============================
         for (int i = moveSpeed.Count - 1; i < moveSpeedCount; i++)
         {
 
             ConfigNewCostAndValue(ref newCost, ref newValue, moveSpeed, i);
             moveSpeed.Add(new PlayerStatsValue(newCost, newValue));
         }
-        //=======================MAX HEALTH================================
+        //=========================MAX HEALTH==============================
 
 
         for (int i = maxHealth.Count - 1; i < maxHealthCount; i++)
@@ -38,7 +38,7 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
             ConfigNewCostAndValue(ref newCost, ref newValue, maxHealth, i);
             maxHealth.Add(new PlayerStatsValue(newCost, newValue));
         }
-        //=======================HEALTH================================
+        //===========================HEALTH================================
 
         for (int i = health.Count - 1; i < healthCount; i++)
         {

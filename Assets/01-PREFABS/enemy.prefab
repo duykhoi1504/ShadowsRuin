@@ -5192,14 +5192,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba128fd3af2f3b4296b978204a4b5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isKnocked: 0
+  knockSpeed: 10
+  rb: {fileID: 0}
+  cd: {fileID: 0}
+  anim: {fileID: 0}
   textHealth: {fileID: 1509725370558283249}
   moveSpeed: 0
   maxHealth: 100
   attackRadious: 2.38
+  duration: 0
   chaseRadious: 7.08
   attackDamage: 1
+  knockBackDuration: 0
   isSpawned: 0
   enemySprite: {fileID: 7921420782820702008}
+  enemyAvatar: {fileID: 0}
   spawnIndicator: {fileID: 4233549094617879392}
   passAwayPS: {fileID: 1273582555849236504}
 --- !u!50 &3679383823973701531
@@ -5430,7 +5438,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5514,7 +5522,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

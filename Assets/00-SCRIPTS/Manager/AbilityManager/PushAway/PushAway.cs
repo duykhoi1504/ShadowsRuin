@@ -50,6 +50,10 @@ public class PushAway : Ability
              level=abilityStats.Count-1;
         }
         scaleBoom=abilityStats[level].value;
+         if (vfx.GetComponent<EnemyDamager>() != null && Level >=1)
+        {
+            vfx.GetComponent<EnemyDamager>().KnockSpeed =abilityStats[level].value ;
+        }
     }
 }
 

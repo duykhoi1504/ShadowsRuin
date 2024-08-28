@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: PushAway
   image: {fileID: 4867283697779050822, guid: e421583bccc04a940aea90c0c0d6a2b7, type: 3}
-  unClock: 1
+  unClock: 0
   coolDown: 0.5
   duration: 1
   damage: 100
@@ -23,7 +23,7 @@ MonoBehaviour:
   abilityStats:
   - desceiption: scale 2
     value: 1
-    cost: 40
+    cost: 0
   - desceiption: scale 4
     value: 2
     cost: 60

@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.93
+      value: 11.92
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.01
+      value: 6.33
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -133,6 +133,7 @@ MonoBehaviour:
   knockBackDuration: 0.1
   isSpawned: 0
   enemySprite: {fileID: 4660902717405326134}
+  enemyAvatar: {fileID: 7766619274406296625}
   spawnIndicator: {fileID: 1693571234397441902}
   passAwayPS: {fileID: 4390161904873733142}
 --- !u!212 &1693571234397441902 stripped
@@ -159,6 +160,11 @@ ParticleSystem:
 --- !u!212 &4660902717405326134 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+  m_PrefabInstance: {fileID: 3260694538761821198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7766619274406296625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5082527119435898943, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
   m_PrefabInstance: {fileID: 3260694538761821198}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8859844226217951099 stripped

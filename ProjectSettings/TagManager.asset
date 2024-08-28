@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -39,23 +40,32 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: ground
-    uniqueID: 2665751203
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2665751203
+    locked: 0
+  - name: WalkInFront
+    uniqueID: 1541080459
+    locked: 0
+  - name: Colision
+    uniqueID: 323130417
     locked: 0
   - name: pickups
     uniqueID: 1945354471
     locked: 0
-  - name: player
-    uniqueID: 1932779479
-    locked: 0
   - name: enemy
     uniqueID: 2168267193
     locked: 0
+  - name: player
+    uniqueID: 1932779479
+    locked: 0
   - name: ForceGround
     uniqueID: 3337656717
+    locked: 0
+  - name: Decor
+    uniqueID: 3141511051
     locked: 0
   - name: Top
     uniqueID: 1689931045

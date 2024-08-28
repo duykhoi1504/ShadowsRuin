@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4
+      value: 26.92
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.21
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: 2657529992079879653, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -165,13 +165,14 @@ MonoBehaviour:
   textHealth: {fileID: 796576205706086874}
   moveSpeed: 1
   maxHealth: 20
-  attackRadious: 8.04
+  attackRadious: 2.92
   duration: 0.2
-  chaseRadious: 3.9
+  chaseRadious: 7.15
   attackDamage: 10
   knockBackDuration: 0.1
   isSpawned: 0
   enemySprite: {fileID: 8219936649695068947}
+  enemyAvatar: {fileID: 6446161331591746580}
   spawnIndicator: {fileID: 2683310401219110731}
   passAwayPS: {fileID: 1031661286202643507}
   bullet: {fileID: 7634339314480661563, guid: 531364db18a07b64c8b63656f37e3c23, type: 3}
@@ -213,6 +214,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &6446161331591746580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5082527119435898943, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
+  m_PrefabInstance: {fileID: 2305173335583405099}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &8219936649695068947 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7921420782820702008, guid: 573cb91ef9772a14bbc35d1977b4e0f2, type: 3}
