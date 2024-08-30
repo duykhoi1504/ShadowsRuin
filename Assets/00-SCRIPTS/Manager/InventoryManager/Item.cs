@@ -9,6 +9,8 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string name;
+    public int cost;
+
     public int quantity;
     public int value;
 

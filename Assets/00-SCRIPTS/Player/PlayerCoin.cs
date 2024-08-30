@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class PlayerCoin :Singleton<PlayerCoin>
+public class PlayerCoin : Singleton<PlayerCoin>
 {
-    [SerializeField] int currentCoin=0;
+    [SerializeField] int currentCoin = 0;
+    [SerializeField] int currenDiamond = 50;
 
     public int CurrentCoin { get => currentCoin; set => currentCoin = value; }
+    public int CurrenDiamond { get => currenDiamond; set => currenDiamond = value; }
 
     private void Start()
     {
@@ -19,17 +21,20 @@ public class PlayerCoin :Singleton<PlayerCoin>
         Coin.onCollectedCoin -= AddCoin;
 
     }
-    private void Update() {
+    private void Update()
+    {
         UIManager.Instance.UpdateCoinGUI(currentCoin);
+        if(UIManager.Instance.diamondText!=null)
+        UIManager.Instance.UpdateDiamondGUI(CurrenDiamond);
     }
     public void AddCoin(int _coinToAdd)
     {
         currentCoin += _coinToAdd;
-        
+
     }
     public void ReduceCoin(int _coinToAdd)
     {
         currentCoin -= _coinToAdd;
-        
+
     }
 }

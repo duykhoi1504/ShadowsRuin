@@ -42,8 +42,8 @@ public abstract class Weapon : MonoBehaviour, ISkill
 
             if (levelWeapon >= stats.Count - 1)
             {
-                PlayerManager.Instance.fullyLevelWeaon.Add(this);
-                PlayerManager.Instance.assignedwWeapons.Remove(this);
+                PlayerWeaponManager.Instant.fullyLevelWeaon.Add(this);
+                PlayerWeaponManager.Instant.assignedwWeapons.Remove(this);
 
             }
         }

@@ -8,7 +8,6 @@ public enum PlayerStats
     moveSpeed,
     maxHealth,
     pickUpRange,
-    maxWeapons,
     health,
 }
 public class PlayerStatsManager : Singleton<PlayerStatsManager>
@@ -17,8 +16,17 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
     public int moveSpeedCount, maxHealthCount, healthCount, pickUpRangeCount, maxWeaponsCount;
 
 
+
     public PlayerStatsUpgradeDisplay[] statsButton;
 
+
+private void OnEnable() {
+    GameManager.Instance.onPlayerLevelUp+=SetStatsRandButton;
+}
+private void OnDestroy() {
+    GameManager.Instance.onPlayerLevelUp-=SetStatsRandButton;
+    
+}
     private void Start()
     {
         int newCost = 0;
@@ -72,6 +80,8 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
             statsButton[i].updateDisplayWhenClicked();
         }
     }
+
+
     private PlayerStatsValue GetRandomStatValue(PlayerStats stat)
     {
         List<PlayerStatsValue> statList = null;
@@ -86,9 +96,6 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
                 break;
             case PlayerStats.pickUpRange:
                 statList = pickUpRange;
-                break;
-            case PlayerStats.maxWeapons:
-                statList = maxWeapons;
                 break;
             case PlayerStats.health:
                 statList = health;

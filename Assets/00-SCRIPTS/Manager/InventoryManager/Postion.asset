@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Postion
   m_EditorClassIdentifier: 
   name: Postion
+  cost: 0
   quantity: 1
   value: 10
-  image: {fileID: 21300000, guid: e94f320ab74e4ef44adc1f51c3bdadf5, type: 3}
+  image: {fileID: 21300000, guid: 1e410f319da9c8a41b6daf8649d438d4, type: 3}
   itemType: 0

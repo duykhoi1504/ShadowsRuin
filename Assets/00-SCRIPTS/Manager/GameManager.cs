@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     public GameState currentState;
+    public Action onPlayerLevelUp;
 
     [Header("Timer info")]
 
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject optionPanel;
+
 
     [SerializeField] private GameObject inventoryPanel;
 
@@ -99,8 +101,11 @@ public class GameManager : MonoBehaviour
         {
             ChangeState(GameState.SHOP);
             UIManager.Instance.ShopContainer.SetActive(true);
-            PlayerStatsManager.Instant.SetStatsRandButton();
-            PlayerManager.Instance.SetRandomCard();
+            onPlayerLevelUp?.Invoke();
+
+
+            // PlayerStatsManager.Instant.SetStatsRandButton();
+            // PlayerWeaponManager.Instant.SetRandomCard();
         }
     }
     public void ChangeState(GameState gameState)

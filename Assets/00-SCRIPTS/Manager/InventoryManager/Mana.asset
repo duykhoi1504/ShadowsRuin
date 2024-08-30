@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Mana
   m_EditorClassIdentifier: 
   name: Mana
+  cost: 50
   quantity: 0
   value: 10
-  image: {fileID: 21300000, guid: 67dfe615e31dbf84d8d503f6d5e3e5b7, type: 3}
+  image: {fileID: 21300000, guid: c1a9d36c8f16d614788e9996071c5f0b, type: 3}
   itemType: 1

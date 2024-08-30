@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
 {
     // Start is called before the first frame update
-    public static PlayerManager Instance { get; private set; }
+
     [Header("Weapons info")]
     public Transform weaponsParent;
     public List<Weapon> unAssignedWeapons, assignedwWeapons;
@@ -15,24 +15,23 @@ public class PlayerManager : MonoBehaviour
     public List<Weapon> fullyLevelWeaon = new List<Weapon>();
 
 
-    //   public LevelUpSelectionButton[] levelUpButon;
-    private void Awake()
+    public LevelUpSelectionButton[] levelUpButon;
+    private void OnEnable()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
+       
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.onPlayerLevelUp -= SetRandomCard;
+
     }
     void Start()
     {
+         GameManager.Instance.onPlayerLevelUp += SetRandomCard;
         SetUpUnAssignedWeapons();
         //ran dom vũ khi ban đàu
 
-        int randWeapon=Random.Range(0, unAssignedWeapons.Count);
+        int randWeapon = Random.Range(0, unAssignedWeapons.Count);
         // Debug.Log("rane "+randWeapon);
 
         AddWeapon(randWeapon);
@@ -42,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetRandomCard()
     {
+
         weaponToUpgrade.Clear();
         List<Weapon> cardStore = new List<Weapon>();
         cardStore.AddRange(unAssignedWeapons);

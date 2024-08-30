@@ -59,7 +59,7 @@ public class LevelUpSelectionButton : MonoBehaviour
             }
             else
             {
-                PlayerManager.Instance.AddWeapon(assignedWeapon);
+                PlayerWeaponManager.Instant.AddWeapon(assignedWeapon);
 
             }
         }
