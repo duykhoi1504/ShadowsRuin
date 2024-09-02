@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2fc2c8a5367914fbdfe9c66d60f22c, type: 3}
+  m_Name: quest 1
+  m_EditorClassIdentifier: 
+  name: quest 1
+  desc: dasdas
+  questGoal: 23
+  diamond: 12
+  reward:
+  - item: {fileID: 11400000, guid: 156b518e9a981564db552198d4cf7017, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: d1ccaddee13813c4689ba1c3d4a449bd, type: 2}
+    quantity: 2

@@ -44,8 +44,6 @@ public class DroppableBase : MonoBehaviour, ICollectable
     }
     protected virtual void Collected()
     {
-    
-
         gameObject.SetActive(false);
     }
 }

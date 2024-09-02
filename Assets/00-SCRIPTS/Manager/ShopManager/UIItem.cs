@@ -18,8 +18,19 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] Button plusButton;
     [SerializeField] Button minusButton;
     Item item;
+
+    void OnCompleteW()
+    {
+        quantity.color = Color.red;
+        LeanTween.scale(quantity.gameObject, Vector3.one, .1f)
+        .setDelay(.1f)
+        .setEase(LeanTweenType.easeInOutCirc)
+        .setOnComplete(() => quantity.color = Color.white);
+
+    }
     private void Start()
     {
+
         amount = 0;
         plusButton.onClick.AddListener(() => PlusItems());
         minusButton.onClick.AddListener(() => MinusItems());
@@ -38,8 +49,12 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void BuyItem()
     {
-        if (PlayerCoin.Instant.CurrenDiamond < item.cost*amount) return;
-
+        if (PlayerCoin.Instant.CurrenDiamond < item.cost * amount)
+        {
+            LeanTween.scale(quantity.gameObject, Vector3.one * 2, .1f).setDelay(.1f).setEase(LeanTweenType.easeInBounce).setOnComplete(OnCompleteW);
+        }
+        else
+        {
             if (PlayerCoin.Instant.CurrenDiamond <= 0)
             {
                 PlayerCoin.Instant.CurrenDiamond = 0;
@@ -50,8 +65,8 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 PlayerCoin.Instant.CurrenDiamond -= item.cost * amount;
             }
             InventoryManager.Instant.AddItem(item, amount);
-        
 
+        }
 
 
     }
@@ -63,7 +78,7 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void MinusItems()
     {
-        if (amount < 0)
+        if (amount <= 0)
         {
             amount = 0;
         }

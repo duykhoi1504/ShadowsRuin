@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     public float knockBackDuration;
 
     [Header("Spawn info")]
-
+    public int scoreToAdd;
     public bool isSpawned = false;
 
     public SpriteRenderer enemySprite;
@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        
         knockSpeed = 10f;
         isKnocked = false;
         cd.enabled = false;
@@ -147,7 +148,7 @@ public class Enemy : MonoBehaviour
         passAwayPS.transform.SetParent(null);
         passAwayPS.Play();
         // Destroy(gameObject);
-
+        PlayerScore.Instant.AddScore(scoreToAdd);
         gameObject.SetActive(false);
     }
 

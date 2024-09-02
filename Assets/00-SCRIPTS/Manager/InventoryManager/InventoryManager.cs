@@ -30,6 +30,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
         for (int i = 0; i < items.Count; i++)
         {
+            if (items[i].quantity <= 0) return;
             GameObject slot = Instantiate(itemSlot, inventoryHolder);
             // inventorySlot.Add(slot.transform);
             slot.GetComponent<ItemSlot>().AddItem(items[i]);
@@ -59,6 +60,7 @@ public class InventoryManager : Singleton<InventoryManager>
         else
         {
             items.Add(item);
+            item.quantity += quantity;
             // item.quantity=item.quantity<=0?1:1;
             // item.quantity = 1;
         }

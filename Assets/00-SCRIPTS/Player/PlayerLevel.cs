@@ -17,13 +17,13 @@ public class PlayerLevel : Singleton<PlayerLevel>
     void Start()
     {
         isLevelUp = false;
-        Exp.onCollected += UpdateCurrentXP;
+        Exp.onCollectedEXP += UpdateCurrentXP;
         UpdateRequireXP();
         UIManager.Instance.UpdateXPGUI( currentXP, requireXP, level);
     }
     private void OnDestroy()
     {
-        Exp.onCollected -= UpdateCurrentXP;
+        Exp.onCollectedEXP -= UpdateCurrentXP;
 
     }
     // Update is called once per frame

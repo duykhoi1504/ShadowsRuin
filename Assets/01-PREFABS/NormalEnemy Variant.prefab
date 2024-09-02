@@ -131,6 +131,7 @@ MonoBehaviour:
   chaseRadious: 4.23
   attackDamage: 1
   knockBackDuration: 0.1
+  scoreToAdd: 5
   isSpawned: 0
   enemySprite: {fileID: 4660902717405326134}
   enemyAvatar: {fileID: 7766619274406296625}

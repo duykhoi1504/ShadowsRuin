@@ -16,9 +16,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider sliderXP;
     [SerializeField] TextMeshProUGUI text;
     [Header("Coin BAR info")]
-
     [SerializeField] private TextMeshProUGUI coinText;
+   [Header("diamon info")]
     public TextMeshProUGUI diamondText;
+    [Header("Score BAR info")]
+
+    [SerializeField] private TextMeshProUGUI scoreText;
 
 
     private void Awake()
@@ -60,6 +63,10 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinGUI(int _currentCoin)
     {
         coinText.text = _currentCoin.ToString();
+    }
+      public void UpdateScoreGUI(int _currentScore)
+    {
+        scoreText.text = _currentScore.ToString();
     }
        public void UpdateDiamondGUI(int _currentDiamond)
     {

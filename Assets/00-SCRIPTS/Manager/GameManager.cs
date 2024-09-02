@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameTimerText;
     [Header("Gameover info")]
     public TextMeshProUGUI timeSurvire;
+    public TextMeshProUGUI totalScore;
+
 
     [Header("BUTON")]
 
@@ -75,8 +77,6 @@ public class GameManager : MonoBehaviour
 
     private void updateTimer(float time)
     {
-
-
         float minutes = Mathf.FloorToInt(time / 60f);
         //chia lay du time= 60 % 60 du 0
         float seconds = Mathf.FloorToInt(time % 60f);
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString() + " secs";
     }
 
-      public void WaveComplete()
+    public void WaveComplete()
     {
         if (Player.Instant.HasLevelUp())
         {
@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         gamePanel.SetActive(true);
-
         AbilityManager.Instant.ListAbilitysUse();
+        PlayerScore.Instant.ResetScore();
 
         while (currentState == GameState.NEWGAME)
         {
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         shopPanel.SetActive(true);
-        
+
         // UpgradeManager.Instance.setButtonUpgrade();
 
         while (currentState == GameState.SHOP)
@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
         endLevel();
+        totalScore.text = PlayerScore.Instant.Score.ToString();
         // OnNewGame?.Invoke();
         gameoverPanel.SetActive(true);
         // LeanTween.delayedCall(2,()=>SceneManager.LoadScene(0));
@@ -191,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-        IEnumerator OPTIONState()
+    IEnumerator OPTIONState()
     {
         Time.timeScale = 0f;
         optionPanel.SetActive(true);
