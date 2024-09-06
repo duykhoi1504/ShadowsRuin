@@ -17,6 +17,7 @@ public class Ability : ScriptableObject
     [SerializeField] private Sprite image;
     [SerializeField] private bool unClock = false;
     [SerializeField] private float coolDown;
+     [SerializeField] protected  float coolDownTimer;
     [SerializeField] private float duration;
     [SerializeField] private float damage;
     [SerializeField] protected int level;
@@ -32,6 +33,7 @@ public class Ability : ScriptableObject
     public float Duration { get => duration; set => duration = value; }
     public float Damage { get => damage; set => damage = value; }
     public int Level { get => level; set => level = value; }
+    public float CoolDownTimer { get => coolDownTimer; set => coolDownTimer = value; }
 
     protected virtual void OnEnable()
     {

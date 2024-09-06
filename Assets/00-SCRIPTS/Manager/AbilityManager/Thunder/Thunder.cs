@@ -7,7 +7,7 @@ public class Thunder : Ability
     // Start is called before the first frame update
     [SerializeField] private GameObject vfx;
 
-    public float coolDownTimer;
+    // public float coolDownTimer;
     [SerializeField] private float distance;
 
     public float Distance { get => distance; set => distance = value; }

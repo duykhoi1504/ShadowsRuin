@@ -60,7 +60,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         VFXManager.Instant.SpawnVFX("playerdead", this.transform.position);  
         AudioManager.Instant.PlaySFX(CONTANST.explosion);
         Player.Instant.gameObject.SetActive(false);
-        GameManager.Instance.ChangeState(GameState.GAMEOVER);
+        GameManager.Instant.ChangeState(GameState.GAMEOVER);
 
         // StartCoroutine(waitForEffect());
     }

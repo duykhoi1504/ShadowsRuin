@@ -35,7 +35,7 @@ public class UpgradeManager : MonoBehaviour
             upgradeContainer[i].ButtonUpgradeSetUp(null,RandomStat.ToString() , RandomStatName);
             upgradeContainer[i].button.onClick.RemoveAllListeners();
             upgradeContainer[i].button.onClick.AddListener(() => GetActionToPerform(stats,RandomStat));
-            upgradeContainer[i].button.onClick.AddListener(() =>GameManager.Instance.ChangeState(GameState.GAMEPLAY));
+            upgradeContainer[i].button.onClick.AddListener(() =>GameManager.Instant.ChangeState(GameState.GAMEPLAY));
 
         }
     }

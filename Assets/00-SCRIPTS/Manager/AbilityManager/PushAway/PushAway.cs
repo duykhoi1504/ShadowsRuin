@@ -9,7 +9,7 @@ public class PushAway : Ability
     // Start is called before the first frame update
     [SerializeField] private GameObject vfx;
 
-    public float coolDownTimer;
+    // public float coolDownTimer;
     [SerializeField] private float scaleBoom;
 
     public float ScaleBoom { get => scaleBoom; set => scaleBoom = value; }

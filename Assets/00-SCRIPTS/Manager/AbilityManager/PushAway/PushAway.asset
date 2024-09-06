@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: PushAway
   image: {fileID: 4867283697779050822, guid: e421583bccc04a940aea90c0c0d6a2b7, type: 3}
-  unClock: 0
-  coolDown: 0.5
+  unClock: 1
+  coolDown: 5
+  coolDownTimer: -0.010966573
   duration: 1
   damage: 100
   level: 0
@@ -31,5 +32,4 @@ MonoBehaviour:
     value: 3
     cost: 80
   vfx: {fileID: 8363353122148639658, guid: 38be6ff6fb453e94aacee5ccc73b19b4, type: 3}
-  coolDownTimer: 0
   scaleBoom: 1

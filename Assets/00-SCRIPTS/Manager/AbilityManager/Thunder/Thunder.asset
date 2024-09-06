@@ -15,7 +15,8 @@ MonoBehaviour:
   name: thunder
   image: {fileID: 3417001947327018488, guid: 4a2fa19f367feda4d87aa7de39375771, type: 3}
   unClock: 1
-  coolDown: 0.5
+  coolDown: 5
+  coolDownTimer: 1.0116882
   duration: 1
   damage: 50
   level: 0
@@ -31,5 +32,4 @@ MonoBehaviour:
     value: 6
     cost: 50
   vfx: {fileID: 411043980872126998, guid: 2405f4c8c1cc66944b95593bbdb3b0b5, type: 3}
-  coolDownTimer: 0
   distance: 2

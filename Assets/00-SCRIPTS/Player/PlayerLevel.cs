@@ -19,7 +19,7 @@ public class PlayerLevel : Singleton<PlayerLevel>
         isLevelUp = false;
         Exp.onCollectedEXP += UpdateCurrentXP;
         UpdateRequireXP();
-        UIManager.Instance.UpdateXPGUI( currentXP, requireXP, level);
+        UIManager.Instant.UpdateXPGUI( currentXP, requireXP, level);
     }
     private void OnDestroy()
     {
@@ -70,7 +70,7 @@ public class PlayerLevel : Singleton<PlayerLevel>
         //     }
         // }
 
-         UIManager.Instance.UpdateXPGUI( currentXP, requireXP, level);
+         UIManager.Instant.UpdateXPGUI( currentXP, requireXP, level);
 
     }
     public bool HasLevelUp()

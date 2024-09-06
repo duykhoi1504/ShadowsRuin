@@ -8,11 +8,13 @@ using TMPro;
 using System.Threading;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
+    [SerializeField]private GameContentSO gameContentSO;
 
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
+
+    public GameContentSO GameContentSO { get => gameContentSO; set => gameContentSO = value; }
+
     public GameState currentState;
     public Action onPlayerLevelUp;
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject optionPanel;
+    [SerializeField] private GameObject pausePanel;
 
 
     [SerializeField] private GameObject inventoryPanel;
@@ -41,18 +44,7 @@ public class GameManager : MonoBehaviour
     // public static Action OnNewGame;
 
     //  Action onWaveComplete;
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
 
     private void Start()
     {
@@ -71,7 +63,7 @@ public class GameManager : MonoBehaviour
             gameTimer += Time.deltaTime;
             updateTimer(gameTimer);
         }
-
+        
     }
 
 
@@ -100,7 +92,7 @@ public class GameManager : MonoBehaviour
         if (Player.Instant.HasLevelUp())
         {
             ChangeState(GameState.SHOP);
-            UIManager.Instance.ShopContainer.SetActive(true);
+            UIManager.Instant.ShopContainer.SetActive(true);
             onPlayerLevelUp?.Invoke();
 
 
@@ -130,13 +122,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gamePanel.SetActive(true);
         AbilityManager.Instant.ListAbilitysUse();
-        PlayerScore.Instant.ResetScore();
-
+        if (PlayerScore.Instant)
+        {
+            PlayerScore.Instant.ResetScore();
+        }
+        ChangeState(GameState.GAMEPLAY);
         while (currentState == GameState.NEWGAME)
         {
             yield return null;
         }
-        gamePanel.SetActive(false);
+        // gamePanel.SetActive(false);
     }
     IEnumerator GAMEPLAYState()
     {
@@ -201,6 +196,17 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         optionPanel.SetActive(false);
+
+    }
+       IEnumerator PAUSEState()
+    {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+        while (currentState == GameState.PAUSE)
+        {
+            yield return null;
+        }
+        pausePanel.SetActive(false);
 
     }
 

@@ -49,20 +49,20 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void BuyItem()
     {
-        if (PlayerCoin.Instant.CurrenDiamond < item.cost * amount)
+        if (GameManager.Instant.GameContentSO.Diamond < item.cost * amount)
         {
             LeanTween.scale(quantity.gameObject, Vector3.one * 2, .1f).setDelay(.1f).setEase(LeanTweenType.easeInBounce).setOnComplete(OnCompleteW);
         }
         else
         {
-            if (PlayerCoin.Instant.CurrenDiamond <= 0)
+            if (GameManager.Instant.GameContentSO.Diamond <= 0)
             {
-                PlayerCoin.Instant.CurrenDiamond = 0;
+                GameManager.Instant.GameContentSO.Diamond = 0;
             }
             else
             {
 
-                PlayerCoin.Instant.CurrenDiamond -= item.cost * amount;
+                GameManager.Instant.GameContentSO.Diamond -= item.cost * amount;
             }
             InventoryManager.Instant.AddItem(item, amount);
 

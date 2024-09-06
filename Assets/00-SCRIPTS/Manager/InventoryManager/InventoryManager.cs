@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InventoryManager : Singleton<InventoryManager>
 {
     public List<Item> items;
+    public List<Item> ownedAbility;
     // public List<Transform> inventorySlot;
     public GameObject itemSlot;
     public Transform inventoryHolder;
@@ -14,11 +15,11 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void Start()
     {
-
+        
     }
     public void ListItems()
     {
-        GameManager.Instance.ChangeState(GameState.INVENTORY);
+        GameManager.Instant.ChangeState(GameState.INVENTORY);
         // checkQuantityZero();
 
         // inventorySlot = new List<Transform>();
@@ -49,7 +50,7 @@ public class InventoryManager : Singleton<InventoryManager>
     }
     public void CloseInventory()
     {
-        GameManager.Instance.ChangeState(GameState.GAMEPLAY);
+        GameManager.Instant.ChangeState(GameState.GAMEPLAY);
     }
     public void AddItem(Item item, int quantity)
     {

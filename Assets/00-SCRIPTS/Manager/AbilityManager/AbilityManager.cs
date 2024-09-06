@@ -41,6 +41,7 @@ public class AbilityManager : Singleton<AbilityManager>
 
     private void Update()
     {
+        
         foreach (var a in abilities)
         {
             a.UpdateCoolDownTimer(Time.deltaTime);
@@ -79,28 +80,31 @@ public class AbilityManager : Singleton<AbilityManager>
 
 
     //update display upgrade ability in Game
-    public void ListAbilitysUse()
+   public void ListAbilitysUse()
+{
+    List<Ability> availableAbilities = new List<Ability>(abilities); // Clone the abilities list
+
+    // Loop through the ability use buttons
+    for (int i = 0; i < abilityUseButton.Count; i++)
     {
-        List<Ability> valiableAbility = new List<Ability>();
-        for (int i = 0; i < abilityUseButton.Count; i++)
+        if (availableAbilities.Count == 0) 
         {
-            if (abilities.Count < i) { return; }
-            int randAb;
-            do
-            {
-                randAb = Random.Range(0, abilities.Count );
-            }
-            while (valiableAbility.Contains(abilities[randAb]));
-
-
-            valiableAbility.Add(abilities[randAb]);
-
-            abilityUseButton[i].UpgradeDisplayAbilityUse(valiableAbility[i]);
-            abilityUseButton[i].Ability = valiableAbility[i];
-            abilityUseButton[i].Ability.UnClock=true;
+            Debug.LogWarning("No available abilities left to assign.");
+            break; // Exit if no abilities are left
         }
 
+        int randomIndex = Random.Range(0, availableAbilities.Count);
+        Ability selectedAbility = availableAbilities[randomIndex];
+
+        // Update the button display and ability
+        abilityUseButton[i].UpgradeDisplayAbilityUse(selectedAbility);
+        abilityUseButton[i].Ability = selectedAbility;
+        abilityUseButton[i].Ability.UnClock = true;
+
+        // Remove the selected ability from the list to avoid duplicates
+        availableAbilities.RemoveAt(randomIndex);
     }
+}
 
     // // use ability in game by index
     // public void UseAbilityByIndex(int index)

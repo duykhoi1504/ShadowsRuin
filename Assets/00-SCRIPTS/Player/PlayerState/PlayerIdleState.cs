@@ -25,7 +25,7 @@ public class PlayerIdleState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.rb.velocity != Vector2.zero || player.joyStick1.GetMoveVector() != Vector3.zero)
+        if (xInput!=0 || yInput!=0 || player.joyStick1.GetMoveVector() != Vector3.zero)
         {
             stateMachine.ChangeState(player.moveState);
 

@@ -5,14 +5,15 @@ using System;
 public class PlayerCoin : Singleton<PlayerCoin>
 {
     [SerializeField] int currentCoin = 0;
-    [SerializeField] int currenDiamond = 50;
+    // [SerializeField] int currenDiamond ;
 
     public int CurrentCoin { get => currentCoin; set => currentCoin = value; }
-    public int CurrenDiamond { get => currenDiamond; set => currenDiamond = value; }
+    // public int CurrenDiamond { get => currenDiamond; set => currenDiamond = value; }
 
     private void Start()
     {
-        UIManager.Instance.UpdateCoinGUI(currentCoin);
+        // currenDiamond=GameManager.Instant.GameContentSO.Diamond;
+        UIManager.Instant.UpdateCoinGUI(currentCoin);
 
         Coin.onCollectedCoin += AddCoin;
     }
@@ -23,9 +24,9 @@ public class PlayerCoin : Singleton<PlayerCoin>
     }
     private void Update()
     {
-        UIManager.Instance.UpdateCoinGUI(currentCoin);
-        if(UIManager.Instance.diamondText!=null)
-        UIManager.Instance.UpdateDiamondGUI(CurrenDiamond);
+        UIManager.Instant.UpdateCoinGUI(currentCoin);
+        // if(UIManager.Instance.diamondText!=null)
+        // UIManager.Instance.UpdateDiamondGUI(CurrenDiamond);
     }
     public void AddCoin(int _coinToAdd)
     {

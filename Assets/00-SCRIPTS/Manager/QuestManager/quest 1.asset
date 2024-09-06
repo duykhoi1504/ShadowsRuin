@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: quest 1
   desc: dasdas
-  questGoal: 23
+  questGoal: 1
   diamond: 12
+  isComplete: 0
+  isRecieved: 0
   reward:
   - item: {fileID: 11400000, guid: 156b518e9a981564db552198d4cf7017, type: 2}
     quantity: 1

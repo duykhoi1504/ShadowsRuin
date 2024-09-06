@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     [Header("Move info")]
     private float xInput;
-    private float yInput;
+    // private float yInput;
     public float moveSpeed = 5f;
 
     public float dashSpeed = 5f;
@@ -94,9 +94,9 @@ public class Player : MonoBehaviour
     }
     public Vector2 getDir()
     {
-        // Vector2 dir = new Vector2(xInput, yInput);
-        // return dir;
-        return joyStick1.GetMoveVector().normalized;
+        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y);
+        return dir;
+        // return joyStick1.GetMoveVector().normalized;
 
     }
     #region Velocity

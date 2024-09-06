@@ -9,6 +9,7 @@ public class CharacterData :ScriptableObject
    public Sprite Sprite;
    public int PurchasePrice;
    [HorizontalLine]
+
    [SerializeField] private float attack;
    [SerializeField] private float attackSpeed;
 

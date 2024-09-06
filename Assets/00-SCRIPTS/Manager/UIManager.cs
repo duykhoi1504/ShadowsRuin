@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public static UIManager Instance;
-    GameManager gameManager;
+
+
     public LevelUpSelectionButton[] levelUpButon;
     public GameObject ShopContainer;
     [Header("EXP BAR info")]
@@ -17,58 +17,52 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     [Header("Coin BAR info")]
     [SerializeField] private TextMeshProUGUI coinText;
-   [Header("diamon info")]
+    [Header("diamon info")]
     public TextMeshProUGUI diamondText;
     [Header("Score BAR info")]
 
     [SerializeField] private TextMeshProUGUI scoreText;
 
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-            Destroy(gameManager);
-    }
+
 
     void Start()
     {
-        gameManager = GameManager.Instance;
 
     }
 
     private void Update()
     {
-
+        if (diamondText != null)
+            UpdateDiamondGUI(GameManager.Instant.GameContentSO.Diamond);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseButton();
+        }
     }
-    public void StartGameButton() => gameManager.ChangeState(GameState.NEWGAME);
-    
-    public void SkipShopButton() => gameManager.ChangeState(GameState.GAMEPLAY);
-    public void GameOverButton() => SceneManager.LoadScene(1);
+    public void StartGameButton() => GameManager.Instant.ChangeState(GameState.NEWGAME);
+
+    public void SkipShopButton() => GameManager.Instant.ChangeState(GameState.GAMEPLAY);
+    public void ReTryButton() => SceneManager.LoadScene(1);
     public void BackToLobby() => SceneManager.LoadScene(0);
-    
-    public void OptionButton() => gameManager.ChangeState(GameState.OPTION);
-    public void MenuButton() => gameManager.ChangeState(GameState.MENU);
-    
-    
 
-    public void ExitButon() {
-        Application.Quit();
-    }
+    public void OptionButton() => GameManager.Instant.ChangeState(GameState.OPTION);
+    public void MenuButton() => GameManager.Instant.ChangeState(GameState.MENU);
+    public void PauseButton() => GameManager.Instant.ChangeState(GameState.PAUSE);
+
+
+    public void ExitButon() => Application.Quit();
 
 
     public void UpdateCoinGUI(int _currentCoin)
     {
         coinText.text = _currentCoin.ToString();
     }
-      public void UpdateScoreGUI(int _currentScore)
+    public void UpdateScoreGUI(int _currentScore)
     {
         scoreText.text = _currentScore.ToString();
     }
-       public void UpdateDiamondGUI(int _currentDiamond)
+    public void UpdateDiamondGUI(int _currentDiamond)
     {
         diamondText.text = _currentDiamond.ToString();
     }

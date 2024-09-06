@@ -11,7 +11,7 @@ public class Dash : Ability
 
     [SerializeField] private float dashSpeed;
     public bool isDashing = false;
-    public float coolDownTimer;
+    // public float coolDownTimer;
 
     protected override void OnEnable()
     {

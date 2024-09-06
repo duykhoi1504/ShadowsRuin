@@ -10,6 +10,7 @@ public class PlayerState : IState
     private string aniBoolName;
     protected Player player;
     protected bool triggerCalled;
+       protected float xInput,yInput;
 
     protected float stateTimer;
     [SerializeField] protected float maxTimer = 3f;
@@ -32,7 +33,9 @@ public class PlayerState : IState
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
-
+        xInput=Input.GetAxisRaw("Horizontal");
+        yInput=Input.GetAxisRaw("Vertical");
+        
 
         // player.rb.velocity = new Vector3(xInput, yInput).normalized * player.moveSpeed;
 

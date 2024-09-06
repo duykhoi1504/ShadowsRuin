@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AbilitySlot : MonoBehaviour
 {
     // [SerializeField] private AbilityType abilityType;
+
     [SerializeField] private Ability ability;
     [SerializeField] Image levelDot;
     [SerializeField] List<Image> levelDots = new List<Image>();
@@ -24,9 +25,7 @@ public class AbilitySlot : MonoBehaviour
         button = GetComponent<Button>();
         UpgradeDisplayAbility();
         button.onClick.RemoveAllListeners();
-
-
-        button.onClick.AddListener(() => BuyUpgradeAbility());
+         button.onClick.AddListener(() => BuyUpgradeAbility());
 
     }
     public void UpgradeAbility()

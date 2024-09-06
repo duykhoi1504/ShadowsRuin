@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: traingle
   image: {fileID: -96461886030738025, guid: 233563d19f7857b4dbebb99a587109b6, type: 3}
-  unClock: 1
-  coolDown: 0.5
+  unClock: 0
+  coolDown: 3
+  coolDownTimer: 0
   duration: 2
   damage: 10
   level: 0
@@ -31,6 +32,5 @@ MonoBehaviour:
     value: 7
     cost: 10
   vfx: {fileID: 411043980872126998, guid: 87287585155e46244b48460ce473d8dd, type: 3}
-  coolDownTimer: -0.018478554
   distance: 10
-  speed: 21
+  speed: 4

@@ -26,9 +26,13 @@ public class PlayerMoveState : PlayerState
     {
         base.Update();
         // player.rb.velocity = player.joyStick1.GetMoveVector() * player.moveSpeed*Time.deltaTime;
-         player.rb.velocity = player.joyStick1.GetMoveVector().normalized * player.moveSpeed;
+        //  player.rb.velocity = player.joyStick1.GetMoveVector().normalized * player.moveSpeed;
+        Vector2 movement=new Vector2(xInput,yInput);
 
-        if (player.rb.velocity==Vector2.zero)
+         player.rb.velocity =movement.normalized * player.moveSpeed;
+
+
+        if (xInput==0 && yInput==0)
         {
 
             stateMachine.ChangeState(player.idleState);

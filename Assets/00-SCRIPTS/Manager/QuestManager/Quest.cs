@@ -17,7 +17,8 @@ public class Quest : ScriptableObject
     [SerializeField] private int questGoal;
     // [SerializeField] private int gold;
     [SerializeField] private int diamond;
-
+    [SerializeField] bool isComplete = false;
+    [SerializeField] bool isRecieved = false;
 
     [SerializeField] private List <ItemReWard> reward;
 
@@ -28,6 +29,8 @@ public class Quest : ScriptableObject
     public int QuestGoal { get => questGoal; set => questGoal = value; }
     public int Diamond { get => diamond; set => diamond = value; }
     public List<ItemReWard> Reward { get => reward; set => reward = value; }
+    public bool IsComplete { get => isComplete; set => isComplete = value; }
+    public bool IsRecieved { get => isRecieved; set => isRecieved = value; }
 }
 [System.Serializable]
 public struct ItemReWard{

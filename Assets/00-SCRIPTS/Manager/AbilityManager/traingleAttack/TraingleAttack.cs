@@ -9,7 +9,7 @@ public class TraingleAttack : Ability
     // Start is called before the first frame update
     [SerializeField] private GameObject vfx;
 
-    public float coolDownTimer;
+    // public float coolDownTimer;
     [SerializeField] private float distance;
     [SerializeField] private float speed;
 
@@ -79,7 +79,7 @@ public class TraingleAttack : Ability
         {
             level = abilityStats.Count - 1;
         }
-        speed += abilityStats[level].value;
+        speed = abilityStats[level].value;
         NumShots = (int)abilityStats[level].value;
 
         if (vfx.GetComponent<EnemyDamager>() != null )
