@@ -11,7 +11,7 @@ public class AbilityUseSlot : MonoBehaviour
 
     [SerializeField] Image image => transform.GetChild(0).GetComponent<Image>();
     [SerializeField] Image cooldown => transform.GetChild(1).GetComponent<Image>();
-    [SerializeField] TextMeshProUGUI text => transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+    [SerializeField] TextMeshProUGUI text => transform.GetChild(2)?.GetComponent<TextMeshProUGUI>();
 
 
     public Ability Ability { get => ability; set => ability = value; }
@@ -105,8 +105,8 @@ public class AbilityUseSlot : MonoBehaviour
     public void UpgradeDisplayAbilityUse(Ability _ability)
     {
         ConfgiAbilitySLot(_ability);
-
-        text.text = _ability.name;
         image.sprite = _ability.Image;
+        if(text)
+            text.text = _ability.name;
     }
 }

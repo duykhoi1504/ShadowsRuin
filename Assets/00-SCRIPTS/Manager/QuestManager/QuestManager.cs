@@ -25,6 +25,7 @@ public class QuestManager : Singleton<QuestManager>
         canOpen = false;
         LoadLastResetDate();
         CheckForReset();
+       
     }
      private void OnDestroy() {
         Enemy.OnPassAway -= AddGoal;

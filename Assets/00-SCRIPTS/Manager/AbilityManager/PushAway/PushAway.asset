@@ -16,9 +16,9 @@ MonoBehaviour:
   image: {fileID: 4867283697779050822, guid: e421583bccc04a940aea90c0c0d6a2b7, type: 3}
   unClock: 1
   coolDown: 5
-  coolDownTimer: -0.010966573
+  coolDownTimer: -0.0088946
   duration: 1
-  damage: 100
+  damage: 50
   level: 0
   abilityType: 3
   abilityStats:

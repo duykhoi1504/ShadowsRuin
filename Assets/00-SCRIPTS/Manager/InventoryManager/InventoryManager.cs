@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 public class InventoryManager : Singleton<InventoryManager>
@@ -13,9 +13,13 @@ public class InventoryManager : Singleton<InventoryManager>
     public Toggle EnableRemove;
 
 
-    private void Start()
-    {
-        
+    // [Button]
+    // public void SaveItem(){
+    //     SaveSystem.Instant.SaveData();
+    // }
+
+    private void Start() {
+        items=SaveSystem.Instant.PlayerData.itemList;
     }
     public void ListItems()
     {

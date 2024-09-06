@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 1011001276514617657}
   - component: {fileID: 4267835693741455710}
   - component: {fileID: 2730564633394395285}
+  - component: {fileID: 4081973718640735851}
   m_Layer: 6
   m_Name: player
   m_TagString: Player
@@ -500,7 +501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCoin: 100
-  currenDiamond: 50
 --- !u!114 &2538471997980844191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +661,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79661655, y: 0.5609503}
   m_EdgeRadius: 0
+--- !u!114 &4081973718640735851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078319783470011926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e139b13b34fbb47a99b68a9ebe2c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scores: 
 --- !u!1 &4448293500737357817
 GameObject:
   m_ObjectHideFlags: 0

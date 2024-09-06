@@ -12,9 +12,6 @@ using Random = UnityEngine.Random;
 
 public class AbilityManager : Singleton<AbilityManager>
 {
-
-
-
     // public List<AbilityData> abilityDatas = new List<AbilityData>();
     [Header("Inventpry Info")]
     [SerializeField] Transform ParentInventoryAbilityInfo;
@@ -55,6 +52,7 @@ public class AbilityManager : Singleton<AbilityManager>
     //update display upgrade ability in inventory
     public void ListAbilitys()
     {
+     
         // Clear the existing ability buttons
         foreach (AbilitySlot button in abilityButton)
         {
@@ -82,6 +80,7 @@ public class AbilityManager : Singleton<AbilityManager>
     //update display upgrade ability in Game
    public void ListAbilitysUse()
 {
+    
     List<Ability> availableAbilities = new List<Ability>(abilities); // Clone the abilities list
 
     // Loop through the ability use buttons
@@ -105,22 +104,6 @@ public class AbilityManager : Singleton<AbilityManager>
         availableAbilities.RemoveAt(randomIndex);
     }
 }
-
-    // // use ability in game by index
-    // public void UseAbilityByIndex(int index)
-    // {
-    //     if (index >= abilities.Count)
-    //     {
-    //         Debug.LogWarning("Khong tim thay ki nang");
-    //         return;
-    //     }
-    //     if (abilities[index].UnClock == false)
-    //     {
-    //         Debug.LogWarning("ki nang chua mo khoa: " + abilities[index].name);
-    //         return;
-    //     }
-    //     abilities[index].Use();
-    // }
     public void UseAbility(Ability _ability)
     {
         Ability ability = abilities.Find(ad => ad == _ability);

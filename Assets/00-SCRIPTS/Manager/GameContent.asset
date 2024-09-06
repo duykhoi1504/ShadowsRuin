@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7bd4a599199e045be1d499c6aade42, type: 3}
   m_Name: GameContent
   m_EditorClassIdentifier: 
-  diamond: 0
+  diamond: 29
   resetHour: 23
   resetMinute: 42
   resetSecond: 0
-  currentGoal: 20
+  currentGoal: 121
   quests:
   - {fileID: 11400000, guid: 5a872517237aa6a4ab57fcbaade3d87d, type: 2}
   - {fileID: 11400000, guid: dc8a01d8e9977fa439012522b925cbdf, type: 2}

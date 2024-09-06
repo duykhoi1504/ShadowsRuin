@@ -2,25 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
- public class Singleton<T> : MonoBehaviour where T : MonoBehaviour 
+using UnityEngine;
+
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+{
+    private static T _instant;
+
+    public static T Instant
     {
-
-        private static T _instant = null;
-        public static T Instant => _instant;
-        
-       
-        void Awake()
+        get
         {
-            if (_instant != null && _instant.gameObject.GetInstanceID() != this.gameObject.GetInstanceID())
+            if (_instant == null)
             {
-                Debug.LogError("Singleton already exist "+ _instant.gameObject.name);
-                Destroy(this.gameObject);
+                _instant = FindObjectOfType<T>();
+                if (_instant == null)
+                {
+                    Debug.LogError($"Instance of {typeof(T)} is needed in the scene, but there is none.");
+                }
+        
             }
-            else
-                _instant = this.GetComponent<T>();
-                DontDestroyOnLoad(gameObject);
+            return _instant;
         }
-
-
-
     }
+
+    protected virtual void Awake()
+    {
+        if (_instant != null && _instant != this)
+        {
+            Debug.LogError("Singleton already exists: " + _instant.gameObject.name);
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instant = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+}

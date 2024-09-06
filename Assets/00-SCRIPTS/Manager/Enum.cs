@@ -5,6 +5,7 @@ public enum GameState
     MENU,
     OPTION,
     GAMEPLAY,
+    SCOREMENU,
     PAUSE,
     SHOP,
     GAMEOVER,

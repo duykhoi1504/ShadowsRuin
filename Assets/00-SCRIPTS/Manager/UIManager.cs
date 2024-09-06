@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,7 +46,14 @@ public class UIManager : Singleton<UIManager>
     public void SkipShopButton() => GameManager.Instant.ChangeState(GameState.GAMEPLAY);
     public void ReTryButton() => SceneManager.LoadScene(1);
     public void BackToLobby() => SceneManager.LoadScene(0);
-
+    public void ScoreMenuButton ()=> GameManager.Instant.ChangeState(GameState.SCOREMENU);
+    public void Save(){
+       SaveSystem.Instant.SaveData();
+    }
+      public void Load(){
+       SaveSystem.Instant.LoadData();
+        
+    }
     public void OptionButton() => GameManager.Instant.ChangeState(GameState.OPTION);
     public void MenuButton() => GameManager.Instant.ChangeState(GameState.MENU);
     public void PauseButton() => GameManager.Instant.ChangeState(GameState.PAUSE);
@@ -60,6 +68,7 @@ public class UIManager : Singleton<UIManager>
     }
     public void UpdateScoreGUI(int _currentScore)
     {
+        if(scoreText)
         scoreText.text = _currentScore.ToString();
     }
     public void UpdateDiamondGUI(int _currentDiamond)
