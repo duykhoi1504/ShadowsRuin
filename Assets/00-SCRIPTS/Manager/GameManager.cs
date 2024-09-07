@@ -200,7 +200,7 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 0f;
         scorePanel.SetActive(true);
-        ScoreMenuManager.Instant.ListScore();
+        // ScoreMenuManager.Instant.ListScore();
         while (currentState == GameState.SCOREMENU)
         {
             yield return null;

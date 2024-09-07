@@ -12,7 +12,7 @@ public class Item : ScriptableObject
     public int cost;
 
     public int quantity;
-    public int value;
+    public float value;
 
     public Sprite image;
     public ItemType itemType;
@@ -22,5 +22,5 @@ public class Item : ScriptableObject
 
 public enum ItemType{
     Postion,
-    Mana,
+    Speed,
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class SaveSystem:Singleton<SaveSystem>
+public class SaveSystem : Singleton<SaveSystem>
 {
     [SerializeField] private PLayerData playerData;
     [SerializeField] private GameContentSO gameContentSO;
@@ -32,18 +32,22 @@ public class SaveSystem:Singleton<SaveSystem>
     //         return default; // Trả về giá trị mặc định của kiểu T
     //     }
     // }
-    private void Start() {
+    private void Start()
+    {
         LoadData();
     }
-    private void Update() {
-        if(Input.GetKey(KeyCode.B)) {
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.B))
+        {
             SaveData();
         }
-        if(Input.GetKey(KeyCode.N)) {
+        if (Input.GetKey(KeyCode.N))
+        {
             LoadData();
         }
     }
-        public void LoadData()
+    public void LoadData()
     {
         if (!File.Exists(savePath))
         {
@@ -56,15 +60,16 @@ public class SaveSystem:Singleton<SaveSystem>
     }
     public void SaveData()
     {
-        playerData.diamond=gameContentSO.Diamond;
-        playerData.itemList=InventoryManager.Instant.items;
-        string json = JsonUtility.ToJson(PlayerData,true);
+        playerData.diamond = gameContentSO.Diamond;
+        playerData.itemList = InventoryManager.Instant.items;
+        string json = JsonUtility.ToJson(PlayerData, true);
         File.WriteAllText(savePath, json);
         Debug.Log("file save");
     }
 }
 [System.Serializable]
-public class PLayerData{
+public class PLayerData
+{
     public int diamond;
     public List<ScoreDetail> scores;
     public List<Item> itemList;
@@ -72,12 +77,14 @@ public class PLayerData{
 
 }
 [System.Serializable]
-public class ScoreDetail{
+public class ScoreDetail
+{
     public int score;
     public string time;
-    public ScoreDetail(int _score,string _time){
-        score=_score;
-        time=_time;
+    public ScoreDetail(int _score, string _time)
+    {
+        score = _score;
+        time = _time;
     }
-    }
+}
 

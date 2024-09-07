@@ -24,7 +24,7 @@ public class ItemSlot : MonoBehaviour
             case ItemType.Postion:
             PlayerHealth.Instant.health+=item.value;
             break;
-            case ItemType.Mana:
+            case ItemType.Speed:
             Player.Instant.moveSpeed+=item.value;
             break;
         } 

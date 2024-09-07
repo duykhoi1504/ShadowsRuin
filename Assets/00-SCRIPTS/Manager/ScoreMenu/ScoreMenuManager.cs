@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class ScoreMenuManager : Singleton<ScoreMenuManager>
 {
-   [SerializeField] List<ScoreDetail> scores;
+    [SerializeField] List<ScoreDetail> scores;
+    
     [SerializeField] ScoreItem scoreItemPrefab;
     [SerializeField] Transform parent;
 
-    void Start()
-    {
-        if(SaveSystem.Instant)
-            scores=SaveSystem.Instant.PlayerData.scores;
+    // void Start()
+    // {
+    //     if (SaveSystem.Instant)
+    //         scores = SaveSystem.Instant.PlayerData.scores;
 
-    }
+    // }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void ListScore(){
+    public void ListScore()
+    {
+         if (SaveSystem.Instant)
+            scores = SaveSystem.Instant.PlayerData.scores;
+
         parent.Clear();
-        foreach(ScoreDetail a in scores ){
-            ScoreItem pre=Instantiate(scoreItemPrefab,transform.position,Quaternion.identity,parent);
-                pre.ConfigScoreItem(a);
+        for (int i=0; i<scores.Count;i++){
+                ScoreItem pre = Instantiate(scoreItemPrefab, transform.position, Quaternion.identity, parent);
+                pre.ConfigScoreItem(i+1,scores[i]);
         }
+        
     }
 }

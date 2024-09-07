@@ -18,9 +18,7 @@ public class InventoryManager : Singleton<InventoryManager>
     //     SaveSystem.Instant.SaveData();
     // }
 
-    private void Start() {
-        items=SaveSystem.Instant.PlayerData.itemList;
-    }
+
     public void ListItems()
     {
         GameManager.Instant.ChangeState(GameState.INVENTORY);
