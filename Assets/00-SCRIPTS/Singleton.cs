@@ -15,7 +15,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 _instant = FindObjectOfType<T>();
                 if (_instant == null)
                 {
-                    Debug.LogError($"Instance of {typeof(T)} is needed in the scene, but there is none.");
+                    Debug.LogWarning($"Instance of {typeof(T)} is needed in the scene, but there is none.");
                 }
         
             }
@@ -27,7 +27,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (_instant != null && _instant != this)
         {
-            Debug.LogError("Singleton already exists: " + _instant.gameObject.name);
+            Debug.LogWarning("Singleton already exists: " + _instant.gameObject.name);
             Destroy(gameObject);
         }
         else

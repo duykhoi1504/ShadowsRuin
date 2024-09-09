@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 
-public class WaveManager :Singleton<WaveManager>
+public class WaveManager : Singleton<WaveManager>
 {
     [SerializeField] private float distanceRanPos = 15f;
 
@@ -31,6 +31,7 @@ public class WaveManager :Singleton<WaveManager>
     void Update()
     {
         WaveComplete();
+        
         if (GameManager.Instant.currentState == GameState.GAMEPLAY)
         {
             gameTimer += Time.deltaTime;

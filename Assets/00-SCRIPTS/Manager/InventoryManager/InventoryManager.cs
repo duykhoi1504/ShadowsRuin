@@ -59,7 +59,7 @@ public class InventoryManager : Singleton<InventoryManager>
         }
         // ListAbilityValid();
     }
-        public void ListAbilityValid()
+    public void ListAbilityValid()
     {
         itemAbilityHolder.Clear();
         for (int i = 0; i < gameContentSO.Abilities.Count; i++)

@@ -119,6 +119,7 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1f;
         gamePanel.SetActive(true);
+        //reset random skill moi lan restart new gameplay
         AbilityManager.Instant.ListAbilitysUse();
         if (PlayerScore.Instant)
         {

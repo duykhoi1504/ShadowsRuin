@@ -22,12 +22,17 @@ public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
     }
     private void OnDestroy()
     {
+      if (WaveManager.Instant != null)
+    {
         WaveManager.Instant.onPlayerLevelUp -= SetRandomCard;
-
+    }
+    else
+    {
+        Debug.LogWarning("WaveManager.Instant is null, cannot unsubscribe from onPlayerLevelUp.");
+    }
     }
     void Start()
     {
-        // WaveManager.Instant.onPlayerLevelUp += SetRandomCard;
         
         SetUpUnAssignedWeapons();
         //ran dom vũ khi ban đàu
