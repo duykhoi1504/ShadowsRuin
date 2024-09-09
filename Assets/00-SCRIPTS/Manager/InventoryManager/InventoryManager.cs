@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class InventoryManager : Singleton<InventoryManager>
 {
+    [SerializeField] private GameContentSO gameContentSO;
+
     public List<Item> items;
-    public List<Item> ownedAbility;
+    // public List<Item> ownedAbility;
     // public List<Transform> inventorySlot;
     public GameObject itemSlot;
     public Transform inventoryHolder;
     public Toggle EnableRemove;
+    [Header("Ability")]
+    // public List<Ability> abilities;
+    public GameObject itemAbilitySlot;
+    public Transform itemAbilityHolder;
 
 
     // [Button]
@@ -18,19 +25,20 @@ public class InventoryManager : Singleton<InventoryManager>
     //     SaveSystem.Instant.SaveData();
     // }
 
-
     public void ListItems()
+
     {
-        GameManager.Instant.ChangeState(GameState.INVENTORY);
+
+        // GameManager.Instant.ChangeState(GameState.INVENTORY);
         // checkQuantityZero();
 
         // inventorySlot = new List<Transform>();
 
-        foreach (Transform slot in inventoryHolder)
-        {
-            Destroy(slot.gameObject);
-        }
-
+        // foreach (Transform slot in inventoryHolder)
+        // {
+        //     Destroy(slot.gameObject);
+        // }
+        inventoryHolder.Clear();
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].quantity <= 0) return;
@@ -49,11 +57,31 @@ public class InventoryManager : Singleton<InventoryManager>
             //     RemmoveItem(items[i]);
             // }
         }
+        // ListAbilityValid();
     }
-    public void CloseInventory()
+        public void ListAbilityValid()
     {
-        GameManager.Instant.ChangeState(GameState.GAMEPLAY);
+        itemAbilityHolder.Clear();
+        for (int i = 0; i < gameContentSO.Abilities.Count; i++)
+        {
+            if (gameContentSO.Abilities[i].IsBuy == false) continue;
+
+            GameObject slot = Instantiate(itemAbilitySlot, itemAbilityHolder);
+            slot.transform.GetChild(0).GetComponent<Image>().sprite = gameContentSO.Abilities[i].Image;
+            slot.transform.GetChild(1).GetComponent<Text>().text = gameContentSO.Abilities[i].Name;
+            //menu update ability khi chien dau
+            if (slot.GetComponent<AbilitySlot>() != null)
+            {
+                // AbilitySlot slotComponent = slot.GetComponent<AbilitySlot>();
+                slot.GetComponent<AbilitySlot>().ConfgiAbilitySLot(gameContentSO.Abilities[i]);
+            }
+        }
+
     }
+    // public void CloseInventory()
+    // {
+    //     GameManager.Instant.ChangeState(GameState.GAMEPLAY);
+    // }
     public void AddItem(Item item, int quantity)
     {
         if (items.Contains(item))

@@ -217,7 +217,7 @@ public class Enemy : MonoBehaviour
     {
          if (player)
     {
-        Debug.Log($"Player X: {player.transform.position.x}, Enemy X: {transform.position.x}");
+        // Debug.Log($"Player X: {player.transform.position.x}, Enemy X: {transform.position.x}");
         Vector3 scale = _transform.localScale;
         scale.x = player.transform.position.x > transform.position.x ? 1 : -1;
         _transform.localScale = scale;

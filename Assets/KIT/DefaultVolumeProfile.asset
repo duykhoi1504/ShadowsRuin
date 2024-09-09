@@ -460,7 +460,7 @@ MonoBehaviour:
     m_Value: 0.9
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 92.54
   scatter:
     m_OverrideState: 1
     m_Value: 0.7
@@ -531,13 +531,11 @@ MonoBehaviour:
   - {fileID: 6596051601105661212}
   - {fileID: -8704971708655236025}
   - {fileID: -6978967761489473157}
-  - {fileID: -5393247058434648079}
   - {fileID: -4088440802356399704}
   - {fileID: -5577364916646211481}
   - {fileID: -3344247482308713920}
   - {fileID: 3272768772294492088}
   - {fileID: -2812273367630120916}
-  - {fileID: 4950406752947933795}
 --- !u!114 &855922590112605118
 MonoBehaviour:
   m_ObjectHideFlags: 3

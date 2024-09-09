@@ -8,27 +8,36 @@ public class UIUpgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private Upgrade upgrade;
     [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private Image image;
+
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI costText;
-
+     [SerializeField] Button button;
+    private void OnEnable()
+    {
+        button.GetComponent<Button>().onClick.AddListener(()=>ClickUpgrade());
+    }
     public void SetUpgrade(Upgrade _upgrade)
     {
         upgrade = _upgrade;
+        image.sprite = upgrade.icon;
         nameText.text = upgrade.upgradeName;
         descriptionText.text = upgrade.description;
-    }
-    private void Start() {
-     
-    }
-    public void SetCostTextColor()
-    {
-        costText.color = upgrade.baseCost > 0 ? Color.white : Color.red;
+        costText.text = upgrade.baseCost.ToString();
     }
 
+    public void SetCostTextColor()
+    {
+        costText.color = upgrade.baseCost > 40 ? Color.red : Color.white;
+    }
+    public void ClickUpgrade(){
+         upgrade.DoUpgrade();
+         
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-       upgrade.DoUpgrade();
-       Debug.Log("pointtttt");
+    //    upgrade.DoUpgrade();
+    //    Debug.Log("pointtttt");
     }
 
     public void OnPointerExit(PointerEventData eventData)

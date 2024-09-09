@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aba3483846a86e49b505480a80c0f62, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 09777c6673130274ca8d759ba7bfbf35, type: 3}
   upgradeName: Speed
   description: 
-  baseCost: 0
-  level: 0
+  baseCost: 8
+  level: 8
   statInfo:
     statType: 0
-    value: 0
+    value: 50
   isPercentage: 0

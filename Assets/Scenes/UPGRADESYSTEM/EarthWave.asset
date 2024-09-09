@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3d49df9afe5614e8faafb392c03af8, type: 3}
+  m_Name: EarthWave
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 132af0584a1ee574180e575a65e52bde, type: 3}
+  upgradeName: EarthquakeAbility
+  description: kjood
+  baseCost: 50
+  level: 0
+  scriptName: EarthquakeAbility

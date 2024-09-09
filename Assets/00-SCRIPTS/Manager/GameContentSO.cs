@@ -21,6 +21,10 @@ public class GameContentSO : ScriptableObject
     [SerializeField] private int currentGoal;
     [SerializeField] private List<Quest> quests;
     [SerializeField] private List<Quest> questValid;
+    #region ability
+    [SerializeField] private List<Ability> abilities;
+    #endregion
+
     #region getter setter
     public DateTime LastResetDate { get => lastResetDate; set => lastResetDate = value; }
     public int ResetHour { get => resetHour; set => resetHour = value; }
@@ -30,5 +34,6 @@ public class GameContentSO : ScriptableObject
     public List<Quest> QuestValid { get => questValid; set => questValid = value; }
     public int CurrentGoal { get => currentGoal; set => currentGoal = value; }
     public int Diamond { get => diamond; set => diamond = value; }
+    public List<Ability> Abilities { get => abilities; set => abilities = value; }
     #endregion
 }

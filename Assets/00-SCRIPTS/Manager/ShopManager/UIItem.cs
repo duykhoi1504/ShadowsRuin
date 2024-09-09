@@ -18,7 +18,8 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] Button plusButton;
     [SerializeField] Button minusButton;
     Item item;
-
+    Ability abi;
+    public StyleItem styleItem;
     void OnCompleteW()
     {
         quantity.color = Color.red;
@@ -30,7 +31,7 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     private void Start()
     {
-
+        styleItem=ShopManager.Instant.styleItem;
         amount = 0;
         plusButton.onClick.AddListener(() => PlusItems());
         minusButton.onClick.AddListener(() => MinusItems());
@@ -47,27 +48,60 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         quantity.text = amount.ToString();
 
     }
+    public void ConfigItem(Ability _abi)
+    {
+        abi = _abi;
+        name.text = abi.Name;
+        cost.text = abi.BaseCost.ToString();
+        image.sprite = abi.Image;
+        quantity.text = null;
+
+    }
     public void BuyItem()
     {
-        if (GameManager.Instant.GameContentSO.Diamond < item.cost * amount)
+        if (styleItem == StyleItem.Medicine)
         {
-            LeanTween.scale(quantity.gameObject, Vector3.one * 2, .1f).setDelay(.1f).setEase(LeanTweenType.easeInBounce).setOnComplete(OnCompleteW);
-        }
-        else
-        {
-            if (GameManager.Instant.GameContentSO.Diamond <= 0)
+            if (GameManager.Instant.GameContentSO.Diamond < item.cost * amount)
             {
-                GameManager.Instant.GameContentSO.Diamond = 0;
+                LeanTween.scale(quantity.gameObject, Vector3.one * 2, .1f).setDelay(.1f).setEase(LeanTweenType.easeInBounce).setOnComplete(OnCompleteW);
             }
             else
             {
+                if (GameManager.Instant.GameContentSO.Diamond <= 0)
+                {
+                    GameManager.Instant.GameContentSO.Diamond = 0;
+                }
+                else
+                {
 
-                GameManager.Instant.GameContentSO.Diamond -= item.cost * amount;
+                    GameManager.Instant.GameContentSO.Diamond -= item.cost * amount;
+                }
+                InventoryManager.Instant.AddItem(item, amount);
+
             }
-            InventoryManager.Instant.AddItem(item, amount);
-
         }
+        else if (styleItem == StyleItem.Ability)
+        {
+            if (GameManager.Instant.GameContentSO.Diamond < abi.BaseCost)
+            {
+                LeanTween.scale(quantity.gameObject, Vector3.one * 2, .1f).setDelay(.1f).setEase(LeanTweenType.easeInBounce).setOnComplete(OnCompleteW);
+            }
+            else
+            {
+                if (GameManager.Instant.GameContentSO.Diamond <= 0)
+                {
+                    GameManager.Instant.GameContentSO.Diamond = 0;
+                }
+                else
+                {
 
+                    GameManager.Instant.GameContentSO.Diamond -= abi.BaseCost;
+                    abi.IsBuy=true;
+                }
+                AbilityManager.Instant.CheckIsBuy();
+                 ShopManager.Instant.LoadItemAbility();
+            }
+        }
 
     }
     public void PlusItems()

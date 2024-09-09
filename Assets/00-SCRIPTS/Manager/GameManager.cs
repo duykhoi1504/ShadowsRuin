@@ -10,15 +10,15 @@ using System.Threading;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField]private GameContentSO gameContentSO;
+    [SerializeField] private GameContentSO gameContentSO;
     public GameContentSO GameContentSO { get => gameContentSO; set => gameContentSO = value; }
 
     public GameState currentState;
-    public Action onPlayerLevelUp;
+    // public Action onPlayerLevelUp;
 
-    [Header("Timer info")]
+    // [Header("Timer info")]
 
-    public float gameTimer;
+    // public float gameTimer;
     public TextMeshProUGUI gameTimerText;
     [Header("Gameover info")]
     public TextMeshProUGUI timeSurvire;
@@ -48,63 +48,56 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        
-        // upgradeManager = GetComponent<UpgradeManager>();
+
+
         Time.timeScale = 0.0f;
         Application.targetFrameRate = 60;
-        ChangeState(GameState.MENU);
-        
+        ChangeState(GameState.GAMEPLAY);
+
 
 
     }
     private void Update()
     {
-        WaveComplete();
-        if (currentState == GameState.GAMEPLAY)
-        {
-            gameTimer += Time.deltaTime;
-            updateTimer(gameTimer);
-        }
+        // WaveComplete();
+        // if (currentState == GameState.GAMEPLAY)
+        // {
+        //     gameTimer += Time.deltaTime;
+        //     updateTimer(gameTimer);
+        // }
 
     }
 
 
-    private void updateTimer(float time)
-    {
-        float minutes = Mathf.FloorToInt(time / 60f);
-        //chia lay du time= 60 % 60 du 0
-        float seconds = Mathf.FloorToInt(time % 60f);
 
-        gameTimerText.text = minutes.ToString() + ":" + seconds.ToString();
-    }
-    private void endLevel()
-    {
-        float minutes = Mathf.FloorToInt(gameTimer / 60f);
-        //chia lay du time= 60 % 60 du 0
-        float seconds = Mathf.FloorToInt(gameTimer % 60f);
-        timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString() + " secs";
-    }
-    private string TimeToString()
-    {
-        float minutes = Mathf.FloorToInt(gameTimer / 60f);
-        //chia lay du time= 60 % 60 du 0
-        float seconds = Mathf.FloorToInt(gameTimer % 60f);
-       
-        return minutes.ToString() + " mins " + seconds.ToString() + " secs";
-    }
-    public void WaveComplete()
-    {
-        if (Player.Instant.HasLevelUp())
-        {
-            ChangeState(GameState.SHOP);
-            UIManager.Instant.ShopContainer.SetActive(true);
-            onPlayerLevelUp?.Invoke();
+    // private void endLevel()
+    // {
+    //     float minutes = Mathf.FloorToInt(gameTimer / 60f);
+    //     //chia lay du time= 60 % 60 du 0
+    //     float seconds = Mathf.FloorToInt(gameTimer % 60f);
+    //     timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString() + " secs";
+    // }
+    // private string TimeToString()
+    // {
+    //     float minutes = Mathf.FloorToInt(gameTimer / 60f);
+    //     //chia lay du time= 60 % 60 du 0
+    //     float seconds = Mathf.FloorToInt(gameTimer % 60f);
+
+    //     return minutes.ToString() + " mins " + seconds.ToString() + " secs";
+    // }
+    // public void WaveComplete()
+    // {
+    //     if (Player.Instant.HasLevelUp())
+    //     {
+    //         ChangeState(GameState.SHOP);
+    //         UIManager.Instant.ShopContainer.SetActive(true);
+    //         onPlayerLevelUp?.Invoke();
 
 
-            // PlayerStatsManager.Instant.SetStatsRandButton();
-            // PlayerWeaponManager.Instant.SetRandomCard();
-        }
-    }
+    //         // PlayerStatsManager.Instant.SetStatsRandButton();
+    //         // PlayerWeaponManager.Instant.SetRandomCard();
+    //     }
+    // }
     public void ChangeState(GameState gameState)
     {
         currentState = gameState;
@@ -131,7 +124,7 @@ public class GameManager : Singleton<GameManager>
         {
             PlayerScore.Instant.ResetScore();
         }
-        ChangeState(GameState.GAMEPLAY);
+        // ChangeState(GameState.GAMEPLAY);
         while (currentState == GameState.NEWGAME)
         {
             yield return null;
@@ -166,8 +159,10 @@ public class GameManager : Singleton<GameManager>
     IEnumerator INVENTORYState()
     {
         Time.timeScale = 0f;
-        inventoryPanel.SetActive(true);
         // UpgradeManager.Instance.setButtonUpgrade();
+        // InventoryManager.Instant.ListItems();
+        // InventoryManager.Instant.ListAbilityValid();
+        inventoryPanel.SetActive(true);
 
         while (currentState == GameState.INVENTORY)
         {
@@ -178,14 +173,14 @@ public class GameManager : Singleton<GameManager>
     IEnumerator GAMEOVERState()
     {
         yield return new WaitForSeconds(3f);
-        
-        
+
+
         Time.timeScale = 0f;
-         PlayerScore.Instant.AddHighScore(TimeToString());
-        endLevel();
+        PlayerScore.Instant.AddHighScore(WaveManager.Instant.TimeToString());
+        WaveManager.Instant.endLevel();
         totalScore.text = PlayerScore.Instant.Score.ToString();
-       
-        
+
+
         // OnNewGame?.Invoke();
         gameoverPanel.SetActive(true);
         // LeanTween.delayedCall(2,()=>SceneManager.LoadScene(0));
@@ -196,7 +191,7 @@ public class GameManager : Singleton<GameManager>
         gameoverPanel.SetActive(false);
 
     }
- IEnumerator SCOREMENUState()
+    IEnumerator SCOREMENUState()
     {
         Time.timeScale = 0f;
         scorePanel.SetActive(true);
@@ -219,7 +214,7 @@ public class GameManager : Singleton<GameManager>
         optionPanel.SetActive(false);
 
     }
-       IEnumerator PAUSEState()
+    IEnumerator PAUSEState()
     {
         Time.timeScale = 0f;
         pausePanel.SetActive(true);

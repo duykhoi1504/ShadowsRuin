@@ -18,16 +18,17 @@ public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
     public LevelUpSelectionButton[] levelUpButon;
     private void OnEnable()
     {
-       
+        WaveManager.Instant.onPlayerLevelUp += SetRandomCard;
     }
     private void OnDestroy()
     {
-        GameManager.Instant.onPlayerLevelUp -= SetRandomCard;
+        WaveManager.Instant.onPlayerLevelUp -= SetRandomCard;
 
     }
     void Start()
     {
-         GameManager.Instant.onPlayerLevelUp += SetRandomCard;
+        // WaveManager.Instant.onPlayerLevelUp += SetRandomCard;
+        
         SetUpUnAssignedWeapons();
         //ran dom vũ khi ban đàu
 

@@ -25,7 +25,15 @@ public class PlayerHealth : Singleton<PlayerHealth>
         UpdateHPGUI();
 
     }
+    // private void OnEnable()
+    // {
+    //     stats.upgradeApplied += HandleMaxHealthChanged;
+    // }
 
+    // private void OnDisable()
+    // {
+    //     stats.upgradeApplied -= HandleMaxHealthChanged;
+    // }
     // Update is called once per frame
     void Update()
     {
@@ -35,9 +43,16 @@ public class PlayerHealth : Singleton<PlayerHealth>
             health = maxHealth;
             UpdateHPGUI();
         }
-       
+
 
     }
+    // private void HandleMaxHealthChanged(StatsUpgrade upgrade)
+    // {
+    //     if (upgrade.statInfo.statType == Stat.Health)
+    //     {
+    //         maxHealth += health * (upgrade.statInfo.value / 100f);
+    //     }
+    // }
     public void TakeDamage(float _damage)
     {
 
@@ -57,7 +72,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         // Time.timeScale = 0;
         // SceneManager.LoadScene(0);
 
-        VFXManager.Instant.SpawnVFX("playerdead", this.transform.position);  
+        VFXManager.Instant.SpawnVFX("playerdead", this.transform.position);
         AudioManager.Instant.PlaySFX(CONTANST.explosion);
         Player.Instant.gameObject.SetActive(false);
         GameManager.Instant.ChangeState(GameState.GAMEOVER);

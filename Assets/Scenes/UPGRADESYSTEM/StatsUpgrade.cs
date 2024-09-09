@@ -1,16 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 [CreateAssetMenu(menuName = "Upgrades/Stats Upgrade")]
 public class StatsUpgrade : Upgrade
 {
-       public StatInfo statInfo;
+    // public List<StatInfo> statInfo = new List<StatInfo>();
+    // public List<StatsP> statsToUpgrade;
+    public StatInfo statInfo;
     public bool isPercentage;
 
     public override void DoUpgrade()
     {
         level++;
-        // Logic to apply the stat upgrade
+        Upgrade(this);
+
+    }
+    public void Upgrade(StatsUpgrade upgrade)
+    {
+        switch (upgrade.statInfo.statType)
+        {
+            case Stat.Health:
+
+                PlayerHealth.Instant.maxHealth += PlayerHealth.Instant.health * (upgrade.statInfo.value / 100f);
+                break;
+            case Stat.MoveSpeed:
+                Player.Instant.moveSpeed += 2 / upgrade.statInfo.value;
+                break;
+        }
+        // this.upgradeApplied?.Invoke(upgrade);
+
     }
 }
 [System.Serializable]

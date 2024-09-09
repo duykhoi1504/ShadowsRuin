@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3d49df9afe5614e8faafb392c03af8, type: 3}
-  m_Name: FireBall
+  m_Script: {fileID: 11500000, guid: 21d8c279e1e36e24e917afb8fc68d03d, type: 3}
+  m_Name: StatsP
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  upgradeName: fireball
-  description: 
-  baseCost: 0
-  level: 0
-  scriptName: 
+  statInfo:
+  - statType: 1
+    value: 10
+  - statType: 0
+    value: 5

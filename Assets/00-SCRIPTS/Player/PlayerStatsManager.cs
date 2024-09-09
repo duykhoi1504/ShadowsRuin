@@ -21,10 +21,10 @@ public class PlayerStatsManager : Singleton<PlayerStatsManager>
 
 
 private void OnEnable() {
-    GameManager.Instant.onPlayerLevelUp+=SetStatsRandButton;
+    WaveManager.Instant.onPlayerLevelUp+=SetStatsRandButton;
 }
 private void OnDestroy() {
-    GameManager.Instant.onPlayerLevelUp-=SetStatsRandButton;
+    WaveManager.Instant.onPlayerLevelUp-=SetStatsRandButton;
     
 }
     private void Start()

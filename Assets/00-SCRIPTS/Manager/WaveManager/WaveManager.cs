@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 
-using NaughtyAttributes;
-using TMPro;
-using Unity.Mathematics;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-public class WaveManager : MonoBehaviour
+using System;
+
+public class WaveManager :Singleton<WaveManager>
 {
     [SerializeField] private float distanceRanPos = 15f;
 
@@ -16,19 +14,30 @@ public class WaveManager : MonoBehaviour
     private float waveCounter;
     public List<Wave> waves = new List<Wave>();
     public List<GameObject> spawnEnemies = new List<GameObject>();
+    [Header("Timer info")]
+
+    public float gameTimer;
+    public Action onPlayerLevelUp;
 
     void Start()
     {
 
         currentWave = -1;
         GoToNextWave();
+        // AbilityManager.Instant.ListAbilitysUse();
     }
 
     // Update is called once per frame
     void Update()
     {
+        WaveComplete();
+        if (GameManager.Instant.currentState == GameState.GAMEPLAY)
+        {
+            gameTimer += Time.deltaTime;
+            updateTimer(gameTimer);
+        }
         //set game timer text
-       
+
         /////////////////////
 
         if (!Player.Instant.gameObject.activeSelf) return;
@@ -51,7 +60,42 @@ public class WaveManager : MonoBehaviour
         // GameManager.Instance.WaveCompleteCallBack();
 
     }
+    public void WaveComplete()
+    {
+        if (Player.Instant.HasLevelUp())
+        {
+            GameManager.Instant.ChangeState(GameState.SHOP);
+            UIManager.Instant.ShopContainer.SetActive(true);
+            onPlayerLevelUp?.Invoke();
 
+
+            // PlayerStatsManager.Instant.SetStatsRandButton();
+            // PlayerWeaponManager.Instant.SetRandomCard();
+        }
+    }
+    public void updateTimer(float time)
+    {
+        float minutes = Mathf.FloorToInt(time / 60f);
+        //chia lay du time= 60 % 60 du 0
+        float seconds = Mathf.FloorToInt(time % 60f);
+
+        GameManager.Instant.gameTimerText.text = minutes.ToString() + ":" + seconds.ToString();
+    }
+    public void endLevel()
+    {
+        float minutes = Mathf.FloorToInt(gameTimer / 60f);
+        //chia lay du time= 60 % 60 du 0
+        float seconds = Mathf.FloorToInt(gameTimer % 60f);
+        GameManager.Instant.timeSurvire.text = minutes.ToString() + " mins " + seconds.ToString() + " secs";
+    }
+    public string TimeToString()
+    {
+        float minutes = Mathf.FloorToInt(gameTimer / 60f);
+        //chia lay du time= 60 % 60 du 0
+        float seconds = Mathf.FloorToInt(gameTimer % 60f);
+
+        return minutes.ToString() + " mins " + seconds.ToString() + " secs";
+    }
     void GoToNextWave()
     {
         currentWave++;

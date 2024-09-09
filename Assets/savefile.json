@@ -1,5 +1,5 @@
 {
-    "diamond": 29,
+    "diamond": 581,
     "scores": [
         {
             "score": 195,
@@ -16,7 +16,10 @@
     ],
     "itemList": [
         {
-            "instanceID": 31520
+            "instanceID": 32170
+        },
+        {
+            "instanceID": 31830
         }
     ]
 }

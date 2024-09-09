@@ -29,7 +29,7 @@ public class UIManager : Singleton<UIManager>
 
     void Start()
     {
-
+        
     }
 
     private void Update()
@@ -44,9 +44,19 @@ public class UIManager : Singleton<UIManager>
     public void StartGameButton() => GameManager.Instant.ChangeState(GameState.NEWGAME);
 
     public void SkipShopButton() => GameManager.Instant.ChangeState(GameState.GAMEPLAY);
-    public void ReTryButton() => SceneManager.LoadScene(1);
-    public void BackToLobby() => SceneManager.LoadScene(0);
+    public void BackToStartMenu() => SceneManager.LoadScene(0);
+
+    public void ReTryButton() => SceneManager.LoadScene(2);
+    public void BackToLobby() => SceneManager.LoadScene(1);
     public void ScoreMenuButton ()=> GameManager.Instant.ChangeState(GameState.SCOREMENU);
+    public void OptionButton() => GameManager.Instant.ChangeState(GameState.OPTION);
+    public void MenuButton() => GameManager.Instant.ChangeState(GameState.MENU);
+    public void PauseButton() => GameManager.Instant.ChangeState(GameState.PAUSE);
+    public void InventoryButton() => GameManager.Instant.ChangeState(GameState.INVENTORY);
+
+
+    public void ExitButon() => Application.Quit();
+      public void CloseInventory() =>GameManager.Instant.ChangeState(GameState.GAMEPLAY);
     public void Save(){
        SaveSystem.Instant.SaveData();
     }
@@ -54,12 +64,6 @@ public class UIManager : Singleton<UIManager>
        SaveSystem.Instant.LoadData();
         
     }
-    public void OptionButton() => GameManager.Instant.ChangeState(GameState.OPTION);
-    public void MenuButton() => GameManager.Instant.ChangeState(GameState.MENU);
-    public void PauseButton() => GameManager.Instant.ChangeState(GameState.PAUSE);
-
-
-    public void ExitButon() => Application.Quit();
 
 
     public void UpdateCoinGUI(int _currentCoin)

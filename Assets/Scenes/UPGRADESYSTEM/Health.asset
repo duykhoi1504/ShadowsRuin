@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aba3483846a86e49b505480a80c0f62, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: -1260370165506841113, guid: 6926af5391dcaaf4b8f012405b6399d4, type: 3}
   upgradeName: Health
   description: 
-  baseCost: 0
-  level: 0
+  baseCost: 4
+  level: 14
   statInfo:
     statType: 1
-    value: 0
+    value: 50
   isPercentage: 0

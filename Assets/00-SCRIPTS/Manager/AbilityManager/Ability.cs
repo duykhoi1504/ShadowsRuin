@@ -13,6 +13,10 @@ public class Ability : ScriptableObject
         public int cost;
 
     }
+    [SerializeField] private bool isBuy = false;
+
+    [SerializeField] private int baseCost;
+
     [SerializeField] private string name;
     [SerializeField] private Sprite image;
     [SerializeField] private bool unClock = false;
@@ -34,6 +38,8 @@ public class Ability : ScriptableObject
     public float Damage { get => damage; set => damage = value; }
     public int Level { get => level; set => level = value; }
     public float CoolDownTimer { get => coolDownTimer; set => coolDownTimer = value; }
+    public int BaseCost { get => baseCost; set => baseCost = value; }
+    public bool IsBuy { get => isBuy; set => isBuy = value; }
 
     protected virtual void OnEnable()
     {
