@@ -10,6 +10,7 @@ public class Item : ScriptableObject
 {
     public string name;
     public int cost;
+    public string description;
 
     public int quantity;
     public float value;

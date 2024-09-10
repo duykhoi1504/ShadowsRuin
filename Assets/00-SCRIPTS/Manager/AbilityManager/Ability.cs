@@ -8,7 +8,7 @@ public class Ability : ScriptableObject
     [System.Serializable]
     public class AbilityStats
     {
-        public string desceiption;
+        public string description;
         public float value;
         public int cost;
 

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.0001, y: -47.293}
+  m_AnchoredPosition: {x: -2.0000992, y: -47.293}
   m_SizeDelta: {x: -4.0001, y: 94.586}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5575821921949891671
@@ -84,6 +84,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161011264639385119}
+  - component: {fileID: -4928479034172208846}
+  - component: {fileID: 8750938898543714100}
   - component: {fileID: 4730496457530192449}
   - component: {fileID: 8597723457407654237}
   - component: {fileID: 8849367596255815507}
@@ -115,6 +117,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-4928479034172208846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264776199869141520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f022fc48e470b745bde5f0be68c8617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8750938898543714100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264776199869141520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf3121fa1af73e4bb5092245316c48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: {fileID: 0}
+  levelDot: {fileID: 0}
+  levelDots: []
+  levelPanel: {fileID: 0}
+  cost: {fileID: 0}
+  button: {fileID: 0}
 --- !u!222 &4730496457530192449
 CanvasRenderer:
   m_ObjectHideFlags: 0

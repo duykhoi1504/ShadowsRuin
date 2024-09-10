@@ -5,8 +5,12 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilitySlot : MonoBehaviour
+public class AbilitySlot : MonoBehaviour, IItemSlot
 {
+
+    public string Name => ability.name;
+    public string Description => ability.abilityStats[ability.Level].description;
+    public Sprite Image => ability.Image;
     // [SerializeField] private AbilityType abilityType;
 
     [SerializeField] private Ability ability;
@@ -24,8 +28,10 @@ public class AbilitySlot : MonoBehaviour
     {
         // button = this.GetComponent<Button>();
         // UpgradeDisplayAbility();
+         if (!InventoryManager.Instant.isInLobby){
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => BuyUpgradeAbility());
+         }
 
     }
     public void UpgradeAbility()
@@ -40,7 +46,8 @@ public class AbilitySlot : MonoBehaviour
     public void ConfgiAbilitySLot(Ability _ab)
     {
         ability = _ab;
-        UpgradeDisplayAbility();
+        if (!InventoryManager.Instant.isInLobby)
+            UpgradeDisplayAbility();
     }
 
     private void BuyUpgradeAbility()
@@ -58,80 +65,81 @@ public class AbilitySlot : MonoBehaviour
         }
     }
 
-  public void UpgradeDisplayAbility()
-{
-    Debug.Log("Starting UpgradeDisplayAbility");
-
-    if (ability == null)
+    public void UpgradeDisplayAbility()
     {
-        Debug.LogError("Ability is not assigned.");
-        return;
-    }
+         if (InventoryManager.Instant.isInLobby) return;
+        Debug.Log("Starting UpgradeDisplayAbility");
 
-    if (levelDots == null)
-    {
-        Debug.LogError("LevelDots list is not assigned.");
-        return;
-    }
-
-    if (levelDot == null)
-    {
-        Debug.LogError("LevelDot prefab is not assigned.");
-        return;
-    }
-
-    if (levelPanel == null)
-    {
-        Debug.LogError("LevelPanel is not assigned.");
-        return;
-    }
-
-    if (button == null)
-    {
-        Debug.LogError("Button is not assigned.");
-        return;
-    }
-
-    if (!ability.UnClock)
-    {
-        button.enabled = false;
-        return;
-    }
-    else
-    {
-        int currentLevel = ability.Level;
-        int maxLevel = ability.abilityStats.Count - 1;
-        Debug.Log($"Current Level: {currentLevel}, Max Level: {maxLevel}");
-
-        // Clear the existing level dots
-        foreach (Image dot in levelDots)
+        if (ability == null)
         {
-            if (dot != null)
-            {
-                Destroy(dot.gameObject);
-            }
-        }
-        levelDots.Clear();
-
-        // Create new level dots
-        for (int i = 0; i < maxLevel; i++)
-        {
-            Image dot = Instantiate(levelDot, levelPanel.transform);
-            dot.color = i < currentLevel ? Color.green : Color.red;
-            levelDots.Add(dot);
+            Debug.LogError("Ability is not assigned.");
+            return;
         }
 
-        if (currentLevel >= maxLevel)
+        if (levelDots == null)
+        {
+            Debug.LogError("LevelDots list is not assigned.");
+            return;
+        }
+
+        if (levelDot == null)
+        {
+            Debug.LogError("LevelDot prefab is not assigned.");
+            return;
+        }
+
+        if (levelPanel == null)
+        {
+            Debug.LogError("LevelPanel is not assigned.");
+            return;
+        }
+
+        if (button == null)
+        {
+            Debug.LogError("Button is not assigned.");
+            return;
+        }
+
+        if (!ability.UnClock)
         {
             button.enabled = false;
-            cost.text = "MAX";
+            return;
         }
         else
         {
-            cost.text = ability.abilityStats[currentLevel + 1].cost.ToString();
-        }
-    }
+            int currentLevel = ability.Level;
+            int maxLevel = ability.abilityStats.Count - 1;
+            Debug.Log($"Current Level: {currentLevel}, Max Level: {maxLevel}");
 
-    Debug.Log("Finished UpgradeDisplayAbility");
-}
+            // Clear the existing level dots
+            foreach (Image dot in levelDots)
+            {
+                if (dot != null)
+                {
+                    Destroy(dot.gameObject);
+                }
+            }
+            levelDots.Clear();
+
+            // Create new level dots
+            for (int i = 0; i < maxLevel; i++)
+            {
+                Image dot = Instantiate(levelDot, levelPanel.transform);
+                dot.color = i < currentLevel ? Color.green : Color.red;
+                levelDots.Add(dot);
+            }
+
+            if (currentLevel >= maxLevel)
+            {
+                button.enabled = false;
+                cost.text = "MAX";
+            }
+            else
+            {
+                cost.text = ability.abilityStats[currentLevel + 1].cost.ToString();
+            }
+        }
+
+        Debug.Log("Finished UpgradeDisplayAbility");
+    }
 }

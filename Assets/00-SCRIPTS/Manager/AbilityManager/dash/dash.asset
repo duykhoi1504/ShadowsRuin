@@ -16,7 +16,7 @@ MonoBehaviour:
   baseCost: 158
   name: dash
   image: {fileID: -4693932192084691647, guid: 5fcaa73b845b43e45965f29558bd1ff3, type: 3}
-  unClock: 1
+  unClock: 0
   coolDown: 2
   coolDownTimer: 0
   duration: 0.2
@@ -24,13 +24,13 @@ MonoBehaviour:
   level: 0
   abilityType: 0
   abilityStats:
-  - desceiption: dashspeed+ 2
+  - description: luot 1
     value: 1
     cost: 0
-  - desceiption: dashspeed+ 4
+  - description: luot 2
     value: 3
     cost: 30
-  - desceiption: dashspeed+ 4
+  - description: luot 3
     value: 6
     cost: 40
   vfx: {fileID: 411043980872126998, guid: 4440b449e87a38a4f805dfc6f2e2be61, type: 3}

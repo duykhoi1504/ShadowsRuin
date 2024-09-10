@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a56afdac4c1d141b7aef9075743940, type: 3}
   m_Name: PushAway
   m_EditorClassIdentifier: 
+  isBuy: 0
+  baseCost: 0
   name: PushAway
   image: {fileID: 4867283697779050822, guid: e421583bccc04a940aea90c0c0d6a2b7, type: 3}
-  unClock: 1
+  unClock: 0
   coolDown: 5
-  coolDownTimer: -0.0088946
+  coolDownTimer: 0
   duration: 1
   damage: 50
   level: 0
   abilityType: 3
   abilityStats:
-  - desceiption: scale 2
+  - description: knockback 1
     value: 1
     cost: 0
-  - desceiption: scale 4
+  - description: knockback + damage
     value: 2
     cost: 60
-  - desceiption: scale 5
+  - description: knockback + damage *2
     value: 3
     cost: 80
   vfx: {fileID: 8363353122148639658, guid: 38be6ff6fb453e94aacee5ccc73b19b4, type: 3}
