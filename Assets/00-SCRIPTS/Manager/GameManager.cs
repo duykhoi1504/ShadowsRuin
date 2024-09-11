@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
     [Header("Gameover info")]
     public TextMeshProUGUI timeSurvire;
     public TextMeshProUGUI totalScore;
+    public TextMeshProUGUI Level;
+
 
 
     [Header("BUTON")]
@@ -179,7 +181,8 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 0f;
         PlayerScore.Instant.AddHighScore(WaveManager.Instant.TimeToString());
         WaveManager.Instant.endLevel();
-        totalScore.text = PlayerScore.Instant.Score.ToString();
+        totalScore.text = $"Score: {PlayerScore.Instant.Score.ToString()}";
+        Level.text = $"Level: {PlayerLevel.Instant.Level.ToString()}";
 
 
         // OnNewGame?.Invoke();

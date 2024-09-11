@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 1337982062501713106}
   - component: {fileID: 7870244668901333308}
   - component: {fileID: 6949648215743078435}
+  - component: {fileID: -8934108771267573610}
   m_Layer: 5
   m_Name: buttonSkillUpgrade
   m_TagString: Untagged
@@ -352,6 +353,18 @@ MonoBehaviour:
   levelPanel: {fileID: 6247513572807490443}
   cost: {fileID: 1938172770077182789}
   button: {fileID: 7870244668901333308}
+--- !u!114 &-8934108771267573610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717584898684277311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f022fc48e470b745bde5f0be68c8617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3760751832391516213
 GameObject:
   m_ObjectHideFlags: 0

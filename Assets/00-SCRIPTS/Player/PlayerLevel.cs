@@ -14,12 +14,17 @@ public class PlayerLevel : Singleton<PlayerLevel>
     [SerializeField] private int level;
     [SerializeField] private bool isLevelUp;
 
+    public int RequireXP { get => requireXP; set => requireXP = value; }
+    public int CurrentXP { get => currentXP; set => currentXP = value; }
+    public int Level { get => level; set => level = value; }
+    public bool IsLevelUp { get => isLevelUp; set => isLevelUp = value; }
+
     void Start()
     {
-        isLevelUp = false;
+        IsLevelUp = false;
         Exp.onCollectedEXP += UpdateCurrentXP;
         UpdateRequireXP();
-        UIManager.Instant.UpdateXPGUI( currentXP, requireXP, level);
+        UIManager.Instant.UpdateXPGUI( CurrentXP, RequireXP, Level);
     }
     private void OnDestroy()
     {
@@ -33,7 +38,7 @@ public class PlayerLevel : Singleton<PlayerLevel>
     }
     void UpdateRequireXP()
     {
-        requireXP = (level + 1) * 5;
+        RequireXP = (Level + 1) * 5;
     }
     // void UpdateGUI()
     // {
@@ -42,13 +47,13 @@ public class PlayerLevel : Singleton<PlayerLevel>
     // }
     private void UpdateCurrentXP(Exp exp)
     {
-        currentXP++;
-        if (currentXP >= requireXP)
+        CurrentXP++;
+        if (CurrentXP >= RequireXP)
         {
             // Debug.Log(exp.gameObject.name);
-            isLevelUp = true;
-            currentXP = 0;
-            level++;
+            IsLevelUp = true;
+            CurrentXP = 0;
+            Level++;
             UpdateRequireXP();
             // GameManager.Instance.ChangeState(GameState.SHOP);
 
@@ -70,15 +75,15 @@ public class PlayerLevel : Singleton<PlayerLevel>
         //     }
         // }
 
-         UIManager.Instant.UpdateXPGUI( currentXP, requireXP, level);
+         UIManager.Instant.UpdateXPGUI( CurrentXP, RequireXP, Level);
 
     }
     public bool HasLevelUp()
     {
-        if (isLevelUp)
+        if (IsLevelUp)
         {
             AudioManager.Instant.PlaySFX(CONTANST.powerup);
-            isLevelUp = false;
+            IsLevelUp = false;
             // Player.Instance.activeWeapon.levelUpWeapon();
             return true;
         };
