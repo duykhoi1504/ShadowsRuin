@@ -23,8 +23,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - MiniMap
+  - PostProccesing
   - 
   - 
   - 
@@ -69,4 +69,7 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 1689931045
+    locked: 0
+  - name: MiniMap
+    uniqueID: 533252767
     locked: 0

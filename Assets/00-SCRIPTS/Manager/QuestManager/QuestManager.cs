@@ -25,11 +25,12 @@ public class QuestManager : Singleton<QuestManager>
         canOpen = false;
         LoadLastResetDate();
         CheckForReset();
-       
+
     }
-     private void OnDestroy() {
+    private void OnDestroy()
+    {
         Enemy.OnPassAway -= AddGoal;
-        
+
     }
     private void Update()
     {
@@ -63,7 +64,7 @@ public class QuestManager : Singleton<QuestManager>
         Debug.Log($"Reset Time: {resetTime}");
         Debug.Log($"Last Reset Date: {GameContentSO.LastResetDate}");
         // Check if today is Monday and the current time is past the reset time
-        if (currentDate.DayOfWeek == DayOfWeek.Monday &&
+        if (currentDate.DayOfWeek == DayOfWeek.Thursday &&
             currentDate >= resetTime &&
             GameContentSO.LastResetDate.Date != currentDate.Date)
         {
@@ -75,17 +76,18 @@ public class QuestManager : Singleton<QuestManager>
     [Button]
     private void ResetQuests()
     {
-        foreach (var a in GameContentSO.QuestValid){
-            
+        foreach (var a in GameContentSO.QuestValid)
+        {
+
             a.IsComplete = false;
             a.IsRecieved = false;
         }
         //xoa tong so quai giet dc trong tuan
-        GameContentSO.CurrentGoal=0;
+        GameContentSO.CurrentGoal = 0;
 
         GameContentSO.QuestValid.Clear(); // Xóa danh sách nhiệm vụ hợp lệ
-                                          
-        
+
+
         int questCount = Mathf.Min(3, GameContentSO.Quests.Count);
         List<Quest> tempQuestList = new List<Quest>(GameContentSO.Quests);
 
@@ -107,16 +109,20 @@ public class QuestManager : Singleton<QuestManager>
 
     private void LoadLastResetDate()
     {
-        if (PlayerPrefs.HasKey("LastResetDate"))
-        {
-            GameContentSO.LastResetDate = DateTime.Parse(PlayerPrefs.GetString("LastResetDate"));
-        }
-        else
-        {
-            GameContentSO.LastResetDate = DateTime.MinValue; // Set to current date if not found
-        }
+        // if (PlayerPrefs.HasKey("LastResetDate"))
+        // {
+        //     GameContentSO.LastResetDate = DateTime.Parse(PlayerPrefs.GetString("LastResetDate"));
+        // }
+        // else
+        // {
+        //     GameContentSO.LastResetDate = DateTime.MinValue; // Set to current date if not found
+        // }
+
+        string dateString = PlayerPrefs.GetString("LastResetDate", DateTime.MinValue.ToString("o"));
+        GameContentSO.LastResetDate = DateTime.Parse(dateString, null, System.Globalization.DateTimeStyles.RoundtripKind);
     }
-    private void AddGoal(Vector2 enemyPos){
-        gameContentSO.CurrentGoal+=1;
+    private void AddGoal(Vector2 enemyPos)
+    {
+        gameContentSO.CurrentGoal += 1;
     }
 }

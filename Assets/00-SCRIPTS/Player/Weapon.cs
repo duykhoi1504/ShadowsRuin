@@ -54,12 +54,10 @@ public abstract class Weapon : MonoBehaviour, ISkill
     protected Enemy GetEnemyClosest()
     {
         Enemy closetTarget = null;
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
-
-
         // foreach (var enemy in enemies)
         //     Debug.Log(enemy.name);
-
         if (enemies.Length <= 0)
             return null;
 
@@ -111,7 +109,7 @@ public abstract class Weapon : MonoBehaviour, ISkill
         // Gizmos.DrawWireSphere(hitCheck.transform.position, hitRadius);
 
     }
-    public virtual void SetStats() { }
+    public abstract void SetStats();
 
 }
 [System.Serializable]

@@ -1,7 +1,5 @@
 using System;
-
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item Data", menuName = "Scriptable Objects/GameContent")]
@@ -9,19 +7,20 @@ using UnityEngine;
 public class GameContentSO : ScriptableObject
 {
     [Header("Player")]
-    [SerializeField ] private int diamond;
-    
-
+    [SerializeField] private int diamond;
     [Header("QuestManager")]
-    
     [SerializeField] private DateTime lastResetDate;
     [SerializeField] private int resetHour;
     [SerializeField] private int resetMinute;
     [SerializeField] private int resetSecond;
     [SerializeField] private int currentGoal;
+
     [SerializeField] private List<Quest> quests;
     [SerializeField] private List<Quest> questValid;
+    [Header("ItemIvnetory")]
+    [SerializeField] private List<Item> items;
     #region ability
+    [Header("Abilities")]
     [SerializeField] private List<Ability> abilities;
     #endregion
 
@@ -35,5 +34,6 @@ public class GameContentSO : ScriptableObject
     public int CurrentGoal { get => currentGoal; set => currentGoal = value; }
     public int Diamond { get => diamond; set => diamond = value; }
     public List<Ability> Abilities { get => abilities; set => abilities = value; }
+    public List<Item> Items { get => items; set => items = value; }
     #endregion
 }

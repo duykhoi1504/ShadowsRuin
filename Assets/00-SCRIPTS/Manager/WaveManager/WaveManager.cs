@@ -4,6 +4,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 
+[System.Serializable]
+public class Wave
+{
+    public GameObject enemyPrefab;
+    public float waveLenght = 10f;
+    public float timeBeTweeenSpawns = 1f;
+}
+
 public class WaveManager : Singleton<WaveManager>
 {
     [SerializeField] private float distanceRanPos = 15f;
@@ -82,7 +90,18 @@ public class WaveManager : Singleton<WaveManager>
 
         GameManager.Instant.gameTimerText.text = minutes.ToString() + ":" + seconds.ToString();
     }
-    public void endLevel()
+
+    void GoToNextWave()
+    {
+        currentWave++;
+        if (currentWave >= waves.Count)
+        {
+            currentWave = waves.Count - 1;
+        }
+        waveCounter = waves[currentWave].waveLenght;
+        spawnCounter = waves[currentWave].timeBeTweeenSpawns;
+    }
+        public void endLevel()
     {
         float minutes = Mathf.FloorToInt(gameTimer / 60f);
         //chia lay du time= 60 % 60 du 0
@@ -97,16 +116,6 @@ public class WaveManager : Singleton<WaveManager>
 
         return minutes.ToString() + " mins " + seconds.ToString() + " secs";
     }
-    void GoToNextWave()
-    {
-        currentWave++;
-        if (currentWave >= waves.Count)
-        {
-            currentWave = waves.Count - 1;
-        }
-        waveCounter = waves[currentWave].waveLenght;
-        spawnCounter = waves[currentWave].timeBeTweeenSpawns;
-    }
     private Vector2 GetRandomPos()
     {
         return (Vector2)Player.Instant.transform.position + Random.insideUnitCircle * distanceRanPos;
@@ -115,10 +124,3 @@ public class WaveManager : Singleton<WaveManager>
 
 
 
-[System.Serializable]
-public class Wave
-{
-    public GameObject enemyPrefab;
-    public float waveLenght = 10f;
-    public float timeBeTweeenSpawns = 1f;
-}

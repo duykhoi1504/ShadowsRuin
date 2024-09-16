@@ -60,5 +60,8 @@ public class RangeWeapon : Weapon
          _bullet.gameObject.SetActive(true);
     }
 
-   
+    public override void SetStats()
+    {
+        // throw new System.NotImplementedException();
+    }
 }

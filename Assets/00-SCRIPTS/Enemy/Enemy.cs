@@ -62,21 +62,21 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
         knockSpeed = 10f;
         isKnocked = false;
         cd.enabled = false;
     }
     protected virtual void Awake()
     {
-        anim            = GetComponentInChildren<Animator>();
-        fx              = GetComponent<EntityFX>();
-        rb              = GetComponent<Rigidbody2D>();
-        cd              = GetComponent<Collider2D>();
-        stateMachine    = new StateMachine();
-        idleState       = new EnemyIdleState    (this, stateMachine, "idle");
-        chaseState      = new EnemyChaseState   (this, stateMachine, "move");
-        attackState     = new EnemyAttackState  (this, stateMachine, "attack");
+        anim = GetComponentInChildren<Animator>();
+        fx = GetComponent<EntityFX>();
+        rb = GetComponent<Rigidbody2D>();
+        cd = GetComponent<Collider2D>();
+        stateMachine = new StateMachine();
+        idleState = new EnemyIdleState(this, stateMachine, "idle");
+        chaseState = new EnemyChaseState(this, stateMachine, "move");
+        attackState = new EnemyAttackState(this, stateMachine, "attack");
 
 
     }
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
         SetRenderersVisibility(true);
         stateMachine.InitState(idleState);
         // stateMachine.InitState(chaseState);
-    
+
 
     }
 
@@ -130,16 +130,6 @@ public class Enemy : MonoBehaviour
         rb.velocity = _Velocity;
     }
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-    protected virtual void OnDrawGizmos()
-    {
-        // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRadious);
-        Gizmos.color = Color.yellow;
-
-        Gizmos.DrawWireSphere(transform.position, chaseRadious);
-
-    }
     public virtual void passAway()
     {
 
@@ -161,15 +151,15 @@ public class Enemy : MonoBehaviour
             if (shouldKnockBack)
                 StartCoroutine("HitKnockBack");
         }
-        health -= _damage;  
+        health -= _damage;
         AudioManager.Instant.PlayerSFXPitch(CONTANST.enemyhurt);
 
         OnDamageTaken?.Invoke(_damage, this.transform.position, isCriticalHit);
         if (health <= 0)
         {
-            
+
             passAway();
-     
+
         }
 
     }
@@ -215,12 +205,22 @@ public class Enemy : MonoBehaviour
     }
     public virtual void FlipController(Transform _transform)
     {
-         if (player)
-    {
-        // Debug.Log($"Player X: {player.transform.position.x}, Enemy X: {transform.position.x}");
-        Vector3 scale = _transform.localScale;
-        scale.x = player.transform.position.x > transform.position.x ? 1 : -1;
-        _transform.localScale = scale;
+        if (player)
+        {
+            // Debug.Log($"Player X: {player.transform.position.x}, Enemy X: {transform.position.x}");
+            Vector3 scale = _transform.localScale;
+            scale.x = player.transform.position.x > transform.position.x ? 1 : -1;
+            _transform.localScale = scale;
+        }
     }
+    protected virtual void OnDrawGizmos()
+    {
+        // Vẽ một đường tròn với bán kính 2 tại vị trí của game object
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRadious);
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position, chaseRadious);
+
     }
 }

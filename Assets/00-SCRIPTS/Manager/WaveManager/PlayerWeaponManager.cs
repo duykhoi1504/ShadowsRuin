@@ -22,18 +22,18 @@ public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
     }
     private void OnDestroy()
     {
-      if (WaveManager.Instant != null)
-    {
-        WaveManager.Instant.onPlayerLevelUp -= SetRandomCard;
-    }
-    else
-    {
-        Debug.LogWarning("WaveManager.Instant is null, cannot unsubscribe from onPlayerLevelUp.");
-    }
+        if (WaveManager.Instant != null)
+        {
+            WaveManager.Instant.onPlayerLevelUp -= SetRandomCard;
+        }
+        else
+        {
+            Debug.LogWarning("WaveManager.Instant is null, cannot unsubscribe from onPlayerLevelUp.");
+        }
     }
     void Start()
     {
-        
+
         SetUpUnAssignedWeapons();
         //ran dom vũ khi ban đàu
 
@@ -43,7 +43,15 @@ public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
         AddWeapon(randWeapon);
     }
 
+    void SetUpUnAssignedWeapons()
+    {
+        unAssignedWeapons = new List<Weapon>();
 
+        foreach (Transform weapon in weaponsParent)
+        {
+            unAssignedWeapons.Add(weapon.GetComponent<Weapon>());
+        }
+    }
 
     public void SetRandomCard()
     {
@@ -107,13 +115,5 @@ public class PlayerWeaponManager : Singleton<PlayerWeaponManager>
         unAssignedWeapons.Remove(weaponToAdd);
 
     }
-    void SetUpUnAssignedWeapons()
-    {
-        unAssignedWeapons = new List<Weapon>();
 
-        foreach (Transform weapon in weaponsParent)
-        {
-            unAssignedWeapons.Add(weapon.GetComponent<Weapon>());
-        }
-    }
 }

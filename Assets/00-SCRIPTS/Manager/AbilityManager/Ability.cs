@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability : ScriptableObject
+public class Ability : ScriptableObject, ISkill
 {
 
     [System.Serializable]
@@ -21,12 +21,12 @@ public class Ability : ScriptableObject
     [SerializeField] private Sprite image;
     [SerializeField] private bool unClock = false;
     [SerializeField] private float coolDown;
-     [SerializeField] protected  float coolDownTimer;
+    [SerializeField] protected float coolDownTimer;
     [SerializeField] private float duration;
     [SerializeField] private float damage;
     [SerializeField] protected int level;
-    
-   [SerializeField] protected AbilityType abilityType;
+
+    [SerializeField] protected AbilityType abilityType;
     [SerializeField] public List<AbilityStats> abilityStats;
 
     public AbilityType AbilityType { get => abilityType; set => abilityType = value; }
@@ -53,7 +53,18 @@ public class Ability : ScriptableObject
     public virtual void ResetData()
     {
         level = 0;
-        unClock=false;
+        unClock = false;
+    }
+
+    public float GetDamage(out bool isCriticalHit)
+    {
+        isCriticalHit = false;
+        if (Random.Range(0, 100) <= 50)
+        {
+            isCriticalHit = true;
+            return damage * 2;
+        }
+        return damage;
     }
 
 

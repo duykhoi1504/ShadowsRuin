@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISkill 
+public interface IDamageable 
 {
-    public float GetDamage(out bool isCriticalHit);
+    
 }

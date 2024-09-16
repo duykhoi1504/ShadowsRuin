@@ -18,13 +18,15 @@ public class InventoryManager : Singleton<InventoryManager>
     // public List<Ability> abilities;
     public GameObject itemAbilitySlot;
     public Transform itemAbilityHolder;
-    public bool isInLobby=false;
+    public bool isInLobby = false;
 
     // [Button]
     // public void SaveItem(){
     //     SaveSystem.Instant.SaveData();
     // }
-
+    private void Start() {
+        items=gameContentSO.Items;
+    }
     public void ListItems()
 
     {
@@ -70,7 +72,7 @@ public class InventoryManager : Singleton<InventoryManager>
             slot.transform.GetChild(0).GetComponent<Image>().sprite = gameContentSO.Abilities[i].Image;
             slot.transform.GetChild(1).GetComponent<Text>().text = gameContentSO.Abilities[i].Name;
             //menu update ability khi chien dau
-            if (slot.GetComponent<AbilitySlot>() != null )
+            if (slot.GetComponent<AbilitySlot>() != null)
             {
                 // AbilitySlot slotComponent = slot.GetComponent<AbilitySlot>();
                 slot.GetComponent<AbilitySlot>().ConfgiAbilitySLot(gameContentSO.Abilities[i]);

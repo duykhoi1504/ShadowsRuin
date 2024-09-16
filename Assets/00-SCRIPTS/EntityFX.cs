@@ -24,15 +24,15 @@ public class EntityFX : MonoBehaviour
         sprite.material = originMat;
 
     }
-    private void RedColorBlink(){
-        if(sprite.color!=Color.white){
-            sprite.color = Color.white;
-        }else
-            sprite.color = Color.red;
+    // private void RedColorBlink(){
+    //     if(sprite.color!=Color.white){
+    //         sprite.color = Color.white;
+    //     }else
+    //         sprite.color = Color.red;
 
-    }
-    private void CancelRedBlink(){
-        CancelInvoke();
-        sprite.color = Color.white;
-    }
+    // }
+    // private void CancelRedBlink(){
+    //     CancelInvoke();
+    //     sprite.color = Color.white;
+    // }
 }

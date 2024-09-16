@@ -15,7 +15,7 @@ public class MeleeWeapon : Weapon
         Idle,
         Attack
     }
-    private State state;
+    [SerializeField]private State state;
     [SerializeField] List<Enemy> damageEnemies = new List<Enemy>();
 
        void Start()
@@ -106,6 +106,11 @@ public class MeleeWeapon : Weapon
             AttackTimer = 0;
             StartAttack();
         }
+    }
+
+    public override void SetStats()
+    {
+        // throw new System.NotImplementedException();
     }
     // protected override void OnDrawGizmos()
     // {   

@@ -32,10 +32,6 @@ public class PlayerLevel : Singleton<PlayerLevel>
 
     }
     // Update is called once per frame
-    void Update()
-    {
-
-    }
     void UpdateRequireXP()
     {
         RequireXP = (Level + 1) * 5;
@@ -58,6 +54,7 @@ public class PlayerLevel : Singleton<PlayerLevel>
             // GameManager.Instance.ChangeState(GameState.SHOP);
 
         }
+         UIManager.Instant.UpdateXPGUI( CurrentXP, RequireXP, Level);
         // UIManager.Instance.levelUpButon[0].UpdateButtonDisplay(PlayerManager.Instance.assignedwWeapons[0].GetComponent<Weapon>());
         // UIManager.Instance.levelUpButon[1].UpdateButtonDisplay(PlayerManager.Instance.unAssignedWeapons[0].GetComponent<Weapon>());
         // UIManager.Instance.levelUpButon[2].UpdateButtonDisplay(PlayerManager.Instance.unAssignedWeapons[1].GetComponent<Weapon>());
@@ -75,7 +72,6 @@ public class PlayerLevel : Singleton<PlayerLevel>
         //     }
         // }
 
-         UIManager.Instant.UpdateXPGUI( CurrentXP, RequireXP, Level);
 
     }
     public bool HasLevelUp()
