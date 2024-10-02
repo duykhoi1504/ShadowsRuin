@@ -15,11 +15,18 @@ public class Thunder : Ability
     protected override void OnEnable()
     {
          base.OnEnable();
+        isPlaySFx = true;
+
         coolDownTimer = 0f;
              SetStatsForUpGrade();
     }
     public override void Use()
     {
+            if (isPlaySFx)
+        {
+            isPlaySFx = false;
+            AudioManager.Instant.PlaySFX(CONTANST.thunder);
+        }
         Vector3[] directions = {
             Player.Instant.transform.position+Vector3.up*distance,
             Player.Instant.transform.position+Vector3.down*distance,
@@ -48,6 +55,10 @@ public class Thunder : Ability
         if (coolDownTimer > 0)
         {
             coolDownTimer -= deltaTime;
+        }
+              if (coolDownTimer <= 0)
+        {
+            isPlaySFx = true;
         }
     }
 

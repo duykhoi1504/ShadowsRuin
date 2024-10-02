@@ -21,6 +21,8 @@ public class TraingleAttack : Ability
     protected override void OnEnable()
     {
         base.OnEnable();
+        isPlaySFx = true;
+
         speed = abilityStats[level].value;
         coolDownTimer = 0f;
         SetStatsForUpGrade();
@@ -29,6 +31,11 @@ public class TraingleAttack : Ability
 
     public override void Use()
     {
+             if (isPlaySFx)
+        {
+            isPlaySFx = false;
+            AudioManager.Instant.PlaySFX(CONTANST.block);
+        }
         Vector3 playerDir = Player.Instant.currentDir;
         Vector3[] directions = new Vector3[NumShots];
 
@@ -68,6 +75,10 @@ public class TraingleAttack : Ability
         if (coolDownTimer > 0)
         {
             coolDownTimer -= deltaTime;
+        }
+              if (coolDownTimer <= 0)
+        {
+            isPlaySFx = true;
         }
     }
 

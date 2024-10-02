@@ -59,6 +59,8 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void BuyItem()
     {
+             AudioManager.Instant.PlaySFX(CONTANST.buy);
+        
         if (styleItem == StyleItem.Medicine)
         {
             if (GameManager.Instant.GameContentSO.Diamond < item.cost * amount)
@@ -106,12 +108,16 @@ public class UIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void PlusItems()
     {
+             AudioManager.Instant.PlaySFX(CONTANST.open);
+
         amount++;
         quantity.text = amount.ToString();
         total.text = (amount * item.cost).ToString();
     }
     public void MinusItems()
     {
+             AudioManager.Instant.PlaySFX(CONTANST.open);
+
         if (amount <= 0)
         {
             amount = 0;

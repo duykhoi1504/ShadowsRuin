@@ -67,6 +67,8 @@ public class QuestItem : MonoBehaviour
     }
     public void Clamp()
     {
+        AudioManager.Instant.PlaySFX(CONTANST.use);
+
         quest.IsRecieved = true;
 
         GameManager.Instant.GameContentSO.Diamond += quest.Diamond;

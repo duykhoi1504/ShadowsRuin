@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CONTANST 
+public static class CONTANST 
 {
     //theme Audios
     public static string theme = "theme";
+    public static string gameover = "gameover";
+
     // public static string villageTheme = "VillageTheme";
     // public static string adventureTheme = "AdventureTheme";
     // public static string bossTheme = "BossTheme";
@@ -17,6 +19,19 @@ public class CONTANST
     public static string powerup = "powerup";
     public static string enemyhurt = "enemyhurt";
     public static string explosion = "explosion";
+    public static string use = "use";
+    public static string equip = "equip";
+    public static string buy = "buy";
+    public static string open = "open";
+    public static string close = "close";
+    public static string earth = "earth";
+    public static string dash = "dash";
+    public static string block = "block";
+    public static string fire = "fire";
+    public static string thunder = "thunder";
+
+
+
 
 
 

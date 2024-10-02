@@ -7,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private Sound[] sfxSounds, musicSounds;
     [SerializeField] private AudioSource sfxSource, musicSource;
 
+
     [System.Serializable]
     public class Sound
     {
@@ -78,7 +79,9 @@ public class AudioManager : Singleton<AudioManager>
     {
         sfxSource.volume = _volumn;
     }
-
-
+    public void PlaySFXClick()=>PlaySFX(CONTANST.open);
+    public void PlaySFXClose()=>PlaySFX(CONTANST.close);
+    public void PlaySFXBuy()=>PlaySFX(CONTANST.buy);
+    public void PlaySFXEquip()=>PlaySFX(CONTANST.equip);
 }
 

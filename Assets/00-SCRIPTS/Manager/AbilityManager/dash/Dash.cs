@@ -18,6 +18,8 @@ public class Dash : Ability
         base.OnEnable();
         // dashSpeed=2f;
         coolDownTimer = 0f;
+        isPlaySFx = true;
+
         SetStatsForUpGrade();
 
 
@@ -31,6 +33,11 @@ public class Dash : Ability
     // }
     public override void Use()
     {
+            if (isPlaySFx)
+        {
+            isPlaySFx = false;
+            AudioManager.Instant.PlaySFX(CONTANST.dash);
+        }
         if (coolDownTimer <= 0)
         {
             coolDownTimer = CoolDown;
@@ -60,6 +67,10 @@ public class Dash : Ability
         {
             coolDownTimer -= deltaTime;
 
+        }
+             if (coolDownTimer <= 0)
+        {
+            isPlaySFx = true;
         }
 
     }

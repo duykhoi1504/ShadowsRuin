@@ -254,7 +254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1181222746034494597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1225255396453997935
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +603,7 @@ MonoBehaviour:
   buyButton: {fileID: 8094185939556696178}
   plusButton: {fileID: 346634262776248386}
   minusButton: {fileID: 2494042265881997662}
+  styleItem: 0
 --- !u!222 &7630127557432060360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -749,7 +762,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7607200626921278736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2140076968946919661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,7 +1618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7188727369524705761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8867231373150196872
 GameObject:
   m_ObjectHideFlags: 0

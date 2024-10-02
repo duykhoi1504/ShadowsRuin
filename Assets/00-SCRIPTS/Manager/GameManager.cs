@@ -181,6 +181,7 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 0f;
         PlayerScore.Instant.AddHighScore(WaveManager.Instant.TimeToString());
         WaveManager.Instant.endLevel();
+        AudioManager.Instant.PlayerMusic(CONTANST.gameover);
         totalScore.text = $"Score: {PlayerScore.Instant.Score.ToString()}";
         Level.text = $"Level: {PlayerLevel.Instant.Level.ToString()}";
 

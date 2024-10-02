@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -41,6 +42,8 @@ public class UIManager : Singleton<UIManager>
             PauseButton();
         }
     }
+
+
     public void StartGameButton() => GameManager.Instant.ChangeState(GameState.NEWGAME);
 
     public void SkipShopButton() => GameManager.Instant.ChangeState(GameState.GAMEPLAY);
@@ -65,7 +68,7 @@ public class UIManager : Singleton<UIManager>
         
     }
 
-
+    
     public void UpdateCoinGUI(int _currentCoin)
     {
         coinText.text = _currentCoin.ToString();

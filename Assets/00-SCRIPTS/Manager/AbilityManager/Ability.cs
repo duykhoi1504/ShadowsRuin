@@ -13,6 +13,7 @@ public class Ability : ScriptableObject, ISkill
         public int cost;
 
     }
+       [SerializeField] protected bool isPlaySFx=true;
     [SerializeField] private bool isBuy = false;
 
     [SerializeField] private int baseCost;

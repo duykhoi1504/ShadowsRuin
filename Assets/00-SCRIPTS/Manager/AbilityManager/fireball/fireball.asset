@@ -12,27 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe247c9f252a3c4fbe67a1d9014c520, type: 3}
   m_Name: fireball
   m_EditorClassIdentifier: 
+  isPlaySFx: 0
+  isBuy: 1
+  baseCost: 0
   name: fireball
   image: {fileID: 1098286324429101383, guid: d324cc73e0e562f4eb709a519e9c6bfa, type: 3}
   unClock: 1
   coolDown: 2
+  coolDownTimer: 0.68367535
   duration: 3
   damage: 5
   level: 0
   abilityType: 1
   abilityStats:
-  - desceiption: default
+  - description: 
     value: 5
     cost: 0
-  - desceiption: 
+  - description: 
     value: 10
     cost: 20
-  - desceiption: 
+  - description: 
     value: 15
     cost: 30
-  - desceiption: 
+  - description: 
     value: 20
     cost: 40
   vfx: {fileID: 411043980872126998, guid: 16bed022679cff84f9b0376c48226acb, type: 3}
-  coolDownTimer: 0
-  speed: 10
+  speed: 30

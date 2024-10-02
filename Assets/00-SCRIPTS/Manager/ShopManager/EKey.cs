@@ -51,9 +51,14 @@ public class EKey : MonoBehaviour
         }
     }
     public void ShopManagerOpen(bool _canOpen){
-             ShopManager.Instant.canOpen = _canOpen;
+            
+      
+              ShopManager.Instant.canOpen = _canOpen;
     }
      public void QuestManagerOpen(bool _canOpen){
-             QuestManager.Instant.canOpen = _canOpen;
+            
+            
+              QuestManager.Instant.canOpen = _canOpen;
+
     }
 }

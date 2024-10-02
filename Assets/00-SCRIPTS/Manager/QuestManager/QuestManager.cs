@@ -35,8 +35,10 @@ public class QuestManager : Singleton<QuestManager>
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.E) && canOpen)
+        if (Input.GetKeyDown(KeyCode.E) && canOpen)
         {
+             AudioManager.Instant.PlaySFX(CONTANST.open);
+
             questPanel.SetActive(true);
             LoadQuest();
         }

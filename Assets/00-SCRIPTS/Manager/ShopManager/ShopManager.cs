@@ -38,8 +38,9 @@ public class ShopManager : Singleton<ShopManager>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.E) && canOpen)
+        if (Input.GetKeyDown(KeyCode.E) && canOpen)
         {
+             AudioManager.Instant.PlaySFX(CONTANST.open);
             lobbyShopPanel.SetActive(true);
             LoadItem();
         }
@@ -48,6 +49,7 @@ public class ShopManager : Singleton<ShopManager>
 
     public void LoadItem()
     {
+        AudioManager.Instant.PlaySFX(CONTANST.open);
         styleItem = StyleItem.Medicine;
         parentToSpawn.Clear();
 
@@ -60,6 +62,8 @@ public class ShopManager : Singleton<ShopManager>
 
     public void LoadItemAbility()
     {
+        AudioManager.Instant.PlaySFX(CONTANST.open);
+
         styleItem = StyleItem.Ability;
         parentToSpawn.Clear();
         foreach (var a in Abilitys)

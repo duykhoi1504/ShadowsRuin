@@ -16,12 +16,18 @@ public class FireBall : Ability
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        isPlaySFx = true;
         coolDownTimer = 0f;
     }
+
     public override void Use()
     {
 
+        if (isPlaySFx)
+        {
+            isPlaySFx = false;
+            AudioManager.Instant.PlaySFX(CONTANST.fire);
+        }
         if (coolDownTimer <= 0)
         {
             coolDownTimer = CoolDown;
@@ -31,6 +37,7 @@ public class FireBall : Ability
             // Vector2 dir = worldPoint - Player.Instant.transform.position;
 
             fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * speed;
+            fx.transform.up= fx.GetComponent<Rigidbody2D>().velocity.normalized ;
             Destroy(fx, Duration);
 
         }
@@ -42,14 +49,21 @@ public class FireBall : Ability
         {
             coolDownTimer -= deltaTime;
         }
+        if (coolDownTimer <= 0)
+        {
+            isPlaySFx = true;
+        }
+
+
     }
 
     public override void SetStatsForUpGrade()
     {
-           if(level>=abilityStats.Count){
-             level=abilityStats.Count-1;
+        if (level >= abilityStats.Count)
+        {
+            level = abilityStats.Count - 1;
         }
-        speed=abilityStats[level].value;
+        speed = abilityStats[level].value;
     }
 
     // public override bool CanUseSkill()
