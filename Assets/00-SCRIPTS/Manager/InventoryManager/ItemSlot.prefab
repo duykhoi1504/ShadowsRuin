@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.0001, y: -47.293}
+  m_AnchoredPosition: {x: -2.0000992, y: -47.293}
   m_SizeDelta: {x: -4.0001, y: 94.586}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5575821921949891671
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -4.0001, y: 42.047}
+  m_AnchoredPosition: {x: -4.000099, y: 42.047}
   m_SizeDelta: {x: -0.00027466, y: 66.5177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8364689155582589029
@@ -273,19 +273,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1143921652327058404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
-        m_MethodName: RemmoveItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5264776199869141520
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f022fc48e470b745bde5f0be68c8617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
 --- !u!222 &4730496457530192449
 CanvasRenderer:
   m_ObjectHideFlags: 0

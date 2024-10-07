@@ -13,13 +13,23 @@ public class ItemSlot : MonoBehaviour, IItemSlot
     public string Description => item.description;
     public Sprite Image => item.image;
 
+    private void Start()
+    {
+        removeItems.onClick.AddListener(() => RemmoveItem());
+    }
     public void AddItem(Item newItem)
     {
         item = newItem;
     }
     public void RemmoveItem()
     {
+        foreach (var it in GameManager.Instant.GameContentSO.Items)
+            if (it.itemType == item.itemType)
+            {
+                it.quantity = 0;
+            }
         InventoryManager.Instant.RemmoveItem(item);
+
         Destroy(gameObject);
 
     }

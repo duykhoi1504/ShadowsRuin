@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a56afdac4c1d141b7aef9075743940, type: 3}
   m_Name: PushAway
   m_EditorClassIdentifier: 
-  isBuy: 0
-  baseCost: 0
+  isPlaySFx: 0
+  isBuy: 1
+  baseCost: 4
   name: PushAway
   image: {fileID: 4867283697779050822, guid: e421583bccc04a940aea90c0c0d6a2b7, type: 3}
-  unClock: 0
+  unClock: 1
   coolDown: 5
-  coolDownTimer: 0
+  coolDownTimer: 3.2348442
   duration: 1
   damage: 50
   level: 0

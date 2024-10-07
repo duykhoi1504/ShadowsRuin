@@ -18,7 +18,7 @@ public class EnemyIdleState : EnemyState
         base.Enter();
         // Debug.Log("enterIdle");
 
-        PatrolRandomPos();
+        // PatrolRandomPos();
       
          enemy.animIndicator(enemy.spawnIndicator.gameObject);
          
@@ -35,26 +35,26 @@ public class EnemyIdleState : EnemyState
             stateMachine.ChangeState(enemy.chaseState);
         // }
         
-        dirPatrol=(targetPos-enemy.transform.position).normalized;
+        // dirPatrol=(targetPos-enemy.transform.position).normalized;
         
-        enemy.SetVelocity(dirPatrol*enemy.moveSpeed);
+        // enemy.SetVelocity(dirPatrol*enemy.moveSpeed);
         
-        distanceRanPos=(targetPos-enemy.transform.position).sqrMagnitude;
+        // distanceRanPos=(targetPos-enemy.transform.position).sqrMagnitude;
         
-        if(distanceRanPos<0.01f){
-             PatrolRandomPos();
-            //  Debug.Log(targetPos);
-        }
+        // if(distanceRanPos<0.01f){
+        //      PatrolRandomPos();
+        //     //  Debug.Log(targetPos);
+        // }
         
     }
     public override void Exit()
     {
         base.Exit();
     }
-    private void PatrolRandomPos(){
-        // targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
-        targetPos=Player.Instant.gameObject.transform.position;
+    // private void PatrolRandomPos(){
+    //     // targetPos=(Vector2)enemy.transform.position + Random.insideUnitCircle*enemy.chaseRadious;
+    //     targetPos=Player.Instant.gameObject.transform.position;
        
-    }
+    // }
     
 }

@@ -7,7 +7,7 @@ using System;
 [System.Serializable]
 public class Wave
 {
-    public GameObject enemyPrefab;
+    public Enemy enemyPrefab;
     public float waveLenght = 10f;
     public float timeBeTweeenSpawns = 1f;
 }
@@ -23,13 +23,13 @@ public class WaveManager : Singleton<WaveManager>
     public List<Wave> waves = new List<Wave>();
     public List<GameObject> spawnEnemies = new List<GameObject>();
     [Header("Timer info")]
-
+    EnemyPool enemyPool;
     public float gameTimer;
     public Action onPlayerLevelUp;
 
     void Start()
     {
-
+        enemyPool = FindObjectOfType<EnemyPool>(); 
         currentWave = -1;
         GoToNextWave();
         // AbilityManager.Instant.ListAbilitysUse();
@@ -62,12 +62,33 @@ public class WaveManager : Singleton<WaveManager>
             if (spawnCounter <= 0)
             {
                 spawnCounter = waves[currentWave].timeBeTweeenSpawns;
-                GameObject newEnemy = Instantiate(waves[currentWave].enemyPrefab, GetRandomPos(), Quaternion.identity, transform);
-                spawnEnemies.Add(newEnemy);
+                // GameObject newEnemy = Instantiate(waves[currentWave].enemyPrefab, GetRandomPos(), Quaternion.identity, transform);
+                // spawnEnemies.Add(newEnemy);
+            // SpawnE(waves[currentWave].enemyPrefab);
+                 Enemy enemy = enemyPool.GetObjectType(waves[currentWave].enemyPrefab);
+            if (enemy == null)
+    {
+        Debug.LogError("Enemy is null! Check if the enemy prefab is correctly assigned in the wave configuration.");
+        return;
+    }
+        enemy.transform.position = GetRandomPos();
+        enemy.transform.rotation = Quaternion.identity;
+        enemy.gameObject.SetActive(true);
             }
         }
         // GameManager.Instance.WaveCompleteCallBack();
 
+    }
+    private void SpawnE(Enemy _enemy){
+    //      Enemy enemy = enemyPool.GetObjectType(_enemy);
+    //         if (enemy == null)
+    // {
+    //     Debug.LogError("Enemy is null! Check if the enemy prefab is correctly assigned in the wave configuration.");
+    //     return;
+    // }
+    //     enemy.transform.position = GetRandomPos();
+    //     enemy.transform.rotation = Quaternion.identity;
+    //     enemy.gameObject.SetActive(true);
     }
     public void WaveComplete()
     {

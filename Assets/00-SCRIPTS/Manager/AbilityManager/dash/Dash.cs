@@ -79,7 +79,7 @@ public class Dash : Ability
 
 
         // Áp dụng lực dash
-        Player.Instant.transform.Translate(Player.Instant.currentDir * dashSpeed);
+        Player.Instant.transform.Translate(Player.Instant.rb.velocity * dashSpeed);
         // Chờ một khoảng thời gian để hoàn thành Dash
         yield return new WaitForSeconds(Duration);
 

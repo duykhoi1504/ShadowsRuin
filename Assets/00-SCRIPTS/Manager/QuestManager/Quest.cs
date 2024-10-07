@@ -1,6 +1,6 @@
-using System.Collections;
+// using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+// using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private string desc;
 
-    [SerializeField] private Image image;
+    // [SerializeField] private Image image;
 
 
     [SerializeField] private int questGoal;
@@ -24,7 +24,7 @@ public class Quest : ScriptableObject
 
     public string Name { get => name; set => name = value; }
     public string Desc { get => desc; set => desc = value; }
-    public Image Image { get => image; set => image = value; }
+    // public Image Image { get => image; set => image = value; }
 
     public int QuestGoal { get => questGoal; set => questGoal = value; }
     public int Diamond { get => diamond; set => diamond = value; }

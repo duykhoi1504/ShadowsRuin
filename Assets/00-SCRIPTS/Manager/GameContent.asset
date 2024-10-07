@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7bd4a599199e045be1d499c6aade42, type: 3}
   m_Name: GameContent
   m_EditorClassIdentifier: 
-  diamond: 693
+  diamond: 363
   resetHour: 12
   resetMinute: 42
   resetSecond: 0
-  currentGoal: 6
+  currentGoal: 137
   quests:
   - {fileID: 11400000, guid: 5a872517237aa6a4ab57fcbaade3d87d, type: 2}
   - {fileID: 11400000, guid: dc8a01d8e9977fa439012522b925cbdf, type: 2}
@@ -27,11 +27,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc10a7228f5eafc4e84b482706be4be4, type: 2}
   - {fileID: 11400000, guid: 4e0ca59576117b040ae0c9a60716fe5c, type: 2}
   items:
-  - {fileID: 11400000, guid: 156b518e9a981564db552198d4cf7017, type: 2}
   - {fileID: 11400000, guid: d1ccaddee13813c4689ba1c3d4a449bd, type: 2}
   abilities:
+  - {fileID: 11400000, guid: 54b3fd7904b981147a3463d9c5685f59, type: 2}
+  - {fileID: 11400000, guid: 159a95e67e9c9bf44a2f540396842073, type: 2}
   - {fileID: 11400000, guid: 1c4891a4808428740959c5472951a5a4, type: 2}
   - {fileID: 11400000, guid: ad7ad44cf47b858468a7e91ea7024f53, type: 2}
-  - {fileID: 11400000, guid: 159a95e67e9c9bf44a2f540396842073, type: 2}
   - {fileID: 11400000, guid: d2396374986b2a34dab77119267dc90b, type: 2}
-  - {fileID: 11400000, guid: 54b3fd7904b981147a3463d9c5685f59, type: 2}

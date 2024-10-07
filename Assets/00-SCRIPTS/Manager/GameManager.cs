@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
+// using System.Collections.Generic;
+// using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
+// using UnityEngine.SceneManagement;
+// using System;
 using TMPro;
-using System.Threading;
+// using System.Threading;
 
 
 public class GameManager : Singleton<GameManager>
@@ -176,12 +176,11 @@ public class GameManager : Singleton<GameManager>
     IEnumerator GAMEOVERState()
     {
         yield return new WaitForSeconds(3f);
-
-
         Time.timeScale = 0f;
+
+        AudioManager.Instant.PlayerMusic(CONTANST.gameover);
         PlayerScore.Instant.AddHighScore(WaveManager.Instant.TimeToString());
         WaveManager.Instant.endLevel();
-        AudioManager.Instant.PlayerMusic(CONTANST.gameover);
         totalScore.text = $"Score: {PlayerScore.Instant.Score.ToString()}";
         Level.text = $"Level: {PlayerLevel.Instant.Level.ToString()}";
 

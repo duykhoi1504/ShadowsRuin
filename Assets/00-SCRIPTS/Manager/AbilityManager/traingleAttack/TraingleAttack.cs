@@ -90,7 +90,7 @@ public class TraingleAttack : Ability
         {
             level = abilityStats.Count - 1;
         }
-        speed = abilityStats[level].value;
+        speed = abilityStats[level].value+2;
         NumShots = (int)abilityStats[level].value;
 
         if (vfx.GetComponent<EnemyDamager>() != null )

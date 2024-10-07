@@ -40,11 +40,11 @@ public class QuestItem : MonoBehaviour
         }
         if (quest.IsComplete)
         {
-            setButton(true, "Complete", Color.yellow);
+            setButton(true, "Claim", Color.yellow);
         }
         if (quest.IsRecieved)
         {
-            setButton(false, "Recieved", Color.black);
+            setButton(false, "Claimed", Color.black);
         }
     }
     public void ConfigQuestItem(Quest _quest)

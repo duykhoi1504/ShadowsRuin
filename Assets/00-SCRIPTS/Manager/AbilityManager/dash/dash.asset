@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f0d812961168546bae8db936fae684, type: 3}
   m_Name: dash
   m_EditorClassIdentifier: 
-  isBuy: 1
-  baseCost: 158
+  isPlaySFx: 1
+  isBuy: 0
+  baseCost: 10
   name: dash
   image: {fileID: -4693932192084691647, guid: 5fcaa73b845b43e45965f29558bd1ff3, type: 3}
   unClock: 0

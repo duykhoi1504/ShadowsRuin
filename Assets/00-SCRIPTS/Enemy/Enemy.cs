@@ -6,6 +6,7 @@ using UnityEngine;
 // ushort System;
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private EnemyType enemyType;
     Player player;
     EntityFX fx;
     [SerializeField] bool isKnocked = false;
@@ -60,12 +61,13 @@ public class Enemy : MonoBehaviour
     public EnemyChaseState chaseState;
     public EnemyAttackState attackState;
 
+    public EnemyType EnemyType { get => enemyType; set => enemyType = value; }
+
     private void OnEnable()
     {
-
-        knockSpeed = 10f;
         isKnocked = false;
-        cd.enabled = false;
+        // cd.enabled = false;
+        SetUp();
     }
     protected virtual void Awake()
     {
@@ -80,18 +82,10 @@ public class Enemy : MonoBehaviour
 
 
     }
+
     protected virtual void Start()
     {
-        knockSpeed = 10f;
-
-        cd.enabled = false;
-        player = Player.Instant;
-
-        health = maxHealth;
-        SetRenderersVisibility(true);
-        stateMachine.InitState(idleState);
-        // stateMachine.InitState(chaseState);
-
+        SetUp();
 
     }
 
@@ -133,15 +127,37 @@ public class Enemy : MonoBehaviour
     public virtual void passAway()
     {
 
-
+        cd.enabled = false;
+        textHealth.enabled = false;
+        enemySprite.enabled = false;
         OnPassAway?.Invoke(transform.position);
-        passAwayPS.transform.SetParent(null);
+        // passAwayPS.transform.SetParent(null);
+
         passAwayPS.Play();
         // Destroy(gameObject);
         PlayerScore.Instant.AddScore(scoreToAdd);
-        gameObject.SetActive(false);
+        StartCoroutine(Destruct());
+        // gameObject.SetActive(false);
     }
+    private void SetUp()
+    {
+        knockSpeed = 10f;
 
+        cd.enabled = false;
+
+        player = Player.Instant;
+
+        health = maxHealth;
+        textHealth.enabled = true;
+        SetRenderersVisibility(true);
+        stateMachine.InitState(idleState);
+    }
+    private IEnumerator Destruct()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
+
+    }
     public virtual void TakeDamage(float _damage, bool isCriticalHit, bool shouldKnockBack)
     {
         // Check if the game object is active before starting the coroutine

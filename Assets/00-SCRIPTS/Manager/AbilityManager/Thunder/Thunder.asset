@@ -12,23 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92866459da3ed29439cb0c0031348aa2, type: 3}
   m_Name: Thunder
   m_EditorClassIdentifier: 
+  isPlaySFx: 1
+  isBuy: 0
+  baseCost: 5
   name: thunder
   image: {fileID: 3417001947327018488, guid: 4a2fa19f367feda4d87aa7de39375771, type: 3}
-  unClock: 1
+  unClock: 0
   coolDown: 5
-  coolDownTimer: 1.0116882
+  coolDownTimer: 0
   duration: 1
   damage: 50
   level: 0
   abilityType: 2
   abilityStats:
-  - desceiption: 
+  - description: 
     value: 2
     cost: 20
-  - desceiption: 
+  - description: 
     value: 5
     cost: 30
-  - desceiption: 
+  - description: 
     value: 6
     cost: 50
   vfx: {fileID: 411043980872126998, guid: 2405f4c8c1cc66944b95593bbdb3b0b5, type: 3}

@@ -12,25 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a15be0bbd64d041b63a114fc47e08c, type: 3}
   m_Name: TraingleAttack
   m_EditorClassIdentifier: 
+  isPlaySFx: 1
+  isBuy: 1
+  baseCost: 5
   name: traingle
   image: {fileID: -96461886030738025, guid: 233563d19f7857b4dbebb99a587109b6, type: 3}
-  unClock: 0
+  unClock: 1
   coolDown: 3
-  coolDownTimer: 0
+  coolDownTimer: -0.0052781086
   duration: 2
   damage: 10
   level: 0
   abilityType: 4
   abilityStats:
-  - desceiption: +4 archor
+  - description: 
     value: 4
     cost: 60
-  - desceiption: +2 archor, unclock knockback
-    value: 6
+  - description: 
+    value: 5
     cost: 30
-  - desceiption: +1 archor
-    value: 7
+  - description: 
+    value: 8
     cost: 10
   vfx: {fileID: 411043980872126998, guid: 87287585155e46244b48460ce473d8dd, type: 3}
   distance: 10
-  speed: 4
+  speed: 6

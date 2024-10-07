@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: quest 1
   desc: dasdas
-  questGoal: 1
+  questGoal: 220
   diamond: 12
   isComplete: 0
   isRecieved: 0

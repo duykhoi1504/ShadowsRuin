@@ -7,11 +7,11 @@ using UnityEngine;
 public class FireBall : Ability
 {
     // Start is called before the first frame update
-    [SerializeField] private GameObject vfx;
+    [SerializeField] private FireBallParabol vfx;
 
     // public float coolDownTimer;
     public float speed;
-
+    [SerializeField] float numBullet;
 
     protected override void OnEnable()
     {
@@ -31,16 +31,25 @@ public class FireBall : Ability
         if (coolDownTimer <= 0)
         {
             coolDownTimer = CoolDown;
-            GameObject fx = Instantiate(vfx, Player.Instant.transform.position, Quaternion.identity);
-            // Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // worldPoint.z = 0;
-            // Vector2 dir = worldPoint - Player.Instant.transform.position;
+            SpawnFire();
 
-            fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * speed;
-            fx.transform.up= fx.GetComponent<Rigidbody2D>().velocity.normalized ;
-            Destroy(fx, Duration);
 
         }
+    }
+    public void SpawnFire()
+    {
+        for (int i = 0; i < numBullet; i++)
+        {
+            FireBallParabol fx = Instantiate(vfx, Player.Instant.transform.position, Quaternion.identity);
+            fx.Init(Player.Instant.transform.position, Player.Instant.Mouse, (a) => Destroy(a));
+        }
+        // Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // worldPoint.z = 0;
+        // Vector2 dir = worldPoint - Player.Instant.transform.position;
+
+        // fx.GetComponent<Rigidbody2D>().velocity = Player.Instant.currentDir.normalized * speed;
+        // fx.transform.up= fx.GetComponent<Rigidbody2D>().velocity.normalized ;
+
     }
 
     public override void UpdateCoolDownTimer(float deltaTime)

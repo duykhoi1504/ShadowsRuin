@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instant { get; private set; }
+    public Vector3 Mouse { get => mouse; set => mouse = value; }
+
     [Header("Components info")]
     public PlayerHealth playerHealth;
     public Rigidbody2D rb;
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
     // public MobileJoystick joyTick;
     public JoySticks joyStick1;
     public bool isBusy;
-
+    private Vector3 mouse;
 
 
     private void Awake()
@@ -78,6 +80,8 @@ public class Player : MonoBehaviour
         // xInput = Input.GetAxisRaw("Horizontal");
         // yInput = Input.GetAxisRaw("Vertical");
         // rb.velocity = new Vector3(xInput, yInput).normalized * moveSpeed;
+        mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0;
         if (getDir() != Vector2.zero)
         {
             currentDir = getDir();
@@ -94,7 +98,10 @@ public class Player : MonoBehaviour
     }
     public Vector2 getDir()
     {
-        Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y);
+        // Vector2 dir = new Vector2(rb.velocity.x, rb.velocity.y);
+
+
+        Vector2 dir = (Mouse - transform.position).normalized;
         return dir;
         // return joyStick1.GetMoveVector().normalized;
 
